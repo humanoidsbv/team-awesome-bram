@@ -1,3 +1,15 @@
+@font-face {
+    font-family: Bello;
+    src: url(fonts/bello-script.ttf);
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Proxima Nova;
+    src: url(fonts/proxima-nova-regular.ttf);
+    font-display: swap;
+}
+
 
 * {
     background-color: #4F88EF;
@@ -5,6 +17,7 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     display: flex;
     flex-direction: column;
@@ -17,7 +30,7 @@ header {
 }
 
 .header__logo {
-    font-family: bello;
+    font-family: Bello;
     font-size: 26px;
 
 }
@@ -26,17 +39,16 @@ button {
     border: 0;
 }
 
-.header__button--cross {
-    display: none;
+
+.header__nav-button__image {
+    height: 14px;
+    width: 14px;
 }
 
-.header__button--hamburger {
-    display: inline;
-}
 nav {
     padding: 60px 0 0 0;
     
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     gap: 35px;
@@ -44,19 +56,21 @@ nav {
 }
 
 article {
-    display: none;
+    display: flex;
     width: 100vw;
     height: 100vh;
     background-color: white;
 }
 
 a {
+    padding: 5px;
+    border-radius: 3px;
     font-family: Proxima Nova;
     font-size: 24px;
     text-decoration: none;
 }
 
-a:selected {
+a:active {
     text-decoration: underline;
 }
 
