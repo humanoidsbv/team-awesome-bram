@@ -1,3 +1,7 @@
+:root {
+    --color: #fff;
+}
+
 * {
     background-color: #4F88EF;
     color: white;
@@ -13,6 +17,7 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    color:var(--color);
 }
 
 #logo {
