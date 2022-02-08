@@ -3,22 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My html page</title>
+    <title>Team Awesome</title>
     <link rel="stylesheet" href="/style.css">
     <script type="text/javascript" src="/script.js" defer></script>
-
 </head>
 <body>
     <header>
-            <div class="header__logo">team awesome</div>
-            <button class="header__nav-button"><img class="header__nav-button__image" src="images/Hamburger.svg"></button>   
+        <div class="header__left">
+            <div class="header__logo"><a href="/index.html">team awesome</a></div>
+            <nav class="navigation--desktop">
+                <ul>
+                    <li><a href="/index.html">Timesheets</a></li>
+                    <li><a href="team-members.html">Team members</a></li>
+                    <li><a href="project.html">Projects</a></li>
+                    <li><a href="clients.html">Clients</a></li>
+                    <li><a href="documents.html">Documents</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header__right">
+            <div class="header__nav-button--desktop">
+                <div class="header__nav-button__avatar--desktop">
+                    <img class="header__avatar__logo" src="images/humanoids_logo.svg">
+                    <img class="header__avatar__profile-picture" src="images/amijs.jpg">
+                </div>
+            </div>
+            <button class="header__nav-button--mobile"><img class="header__nav-button__image--mobile" src="images/hamburger.svg"></button>
+        </div>   
     </header>
-    <nav>
-        <a href="index.html">Timesheets</a>
-        <a href="team-members.html">Team members</a>
-        <a href="project.html">Projects</a>
-        <a href="clients.html">Clients</a>
-        <a href="documents.html">Documents</a>
+    <nav class="navigation--mobile">
+        <ul>
+            <li><a href="/index.html">Timesheets</a></li>
+            <li><a href="team-members.html">Team members</a></li>
+            <li><a href="project.html">Projects</a></li>
+            <li><a href="clients.html">Clients</a></li>
+            <li><a href="documents.html">Documents</a></li>
+        </ul>
     </nav>
     <article>
         test
