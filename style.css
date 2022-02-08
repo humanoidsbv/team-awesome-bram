@@ -144,9 +144,6 @@ article {
 
 /* Toggles to mobile version */
 @media screen and (max-width: 900px) {
-    .navigation--mobile { 
-    }
-
     .navigation--desktop {
         display: none;
     }
@@ -158,4 +155,12 @@ article {
     .header__nav-button--desktop {
         display: none;
     }
+}
+
+
+@media screen and (min-width: 899px) {
+    .navigation--mobile { 
+        display: none;
+    }
+   
 }
