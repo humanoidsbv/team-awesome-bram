@@ -14,8 +14,8 @@ export const Container = styled.nav`
 
     @media screen and (min-width: 992px) {
         background-color: rgba(79, 136, 239, 0);
-        flex-direction: row;
         display: flex;
+        flex-direction: row;
         flex: 0 1 70%;
         gap: 20px;
         height: auto;
@@ -47,13 +47,12 @@ export const UnorderList = styled.ul`
     list-style-type: none;
     
     @media screen and (min-width: 992px) {
-        position: relative;
-
         @keyframes comeSide {
         0%   {left: 10vw;}
         100% {left: 0vw;}
         }  
-
+        
+        position: relative;
         animation-name: comeSide;
         animation-duration: 0.2s;
             
