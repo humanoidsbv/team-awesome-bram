@@ -5,22 +5,23 @@ import { useEffect, useState } from 'react'
 import { Navigation } from "../navigation";
 import { Logo } from "../logo";
 import { MenuButton } from '../menu-button';
-
+import { Profile } from '../profile';
 
 const Header = () => {
 
     const [menuIsOpen, toggleMenuIsOpen] = useState(false);
 
-    console.log(menuIsOpen)
-
     const handleMenuToggle = () => {
         toggleMenuIsOpen(!menuIsOpen)
     }
+
     
     return (
         <Styled.HeaderBar>
             <Logo />
-            {menuIsOpen && <Navigation />}
+            {/* {(menuIsOpen) && <Navigation />} */}
+            <Navigation menuIsOpen={menuIsOpen} />
+            <Profile />
             <MenuButton menuIsOpen={menuIsOpen} handleMenuToggle={handleMenuToggle} />
         </Styled.HeaderBar>
         );

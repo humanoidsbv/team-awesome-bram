@@ -1,10 +1,12 @@
 import * as Styled from './Navigation.styled.js'
 
-export function Navigation() {
+export function Navigation({menuIsOpen}) {
+    console.log(menuIsOpen);
+    
     return (
-        <Styled.Container>
+        <Styled.Container menuIsOpen={menuIsOpen}>
         <Styled.UnorderList>
-            <li><Styled.Link href="/index.html">Timesheets</Styled.Link></li>
+            <li><Styled.Link href="/">Timesheets</Styled.Link></li>
             <li><Styled.Link href="team-members.html">Team members</Styled.Link></li>
             <li><Styled.Link href="project.html">Projects</Styled.Link></li>
             <li><Styled.Link href="clients.html">Clients</Styled.Link></li>

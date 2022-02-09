@@ -7,4 +7,5 @@ export const HeaderBar = styled.div`
     height: 70px;
     padding: 0 30px;
     align-items: center;
+    gap: 50px;
 `;
