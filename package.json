@@ -1,0 +1,35 @@
+{
+  "name": "team-awesome-bram",
+  "version": "1.0.0",
+  "description": "Team Awesome app",
+  "main": "script.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humanoidsbv/team-awesome-bram.git"
+  },
+  "keywords": [
+    "team",
+    "awesome",
+    "bram"
+  ],
+  "author": "Bram Brink",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/humanoidsbv/team-awesome-bram/issues"
+  },
+  "homepage": "https://github.com/humanoidsbv/team-awesome-bram#readme",
+  "dependencies": {
+    "next": "^12.0.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "babel-plugin-inline-react-svg": "^2.0.1"
+  }
+}
