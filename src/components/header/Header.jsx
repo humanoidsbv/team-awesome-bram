@@ -1,6 +1,6 @@
 import * as Styled from './Header.styled.js'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Navigation } from "../navigation";
 import { Logo } from "../logo";
@@ -8,23 +8,19 @@ import { MenuButton } from '../menu-button';
 import { Profile } from '../profile';
 
 const Header = () => {
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-    const [menuIsOpen, toggleMenuIsOpen] = useState(false);
-
-    const handleMenuToggle = () => {
-        toggleMenuIsOpen(!menuIsOpen)
+    const toggleMenu = () => {
+        setMenuIsOpen(!menuIsOpen)
     }
 
-    
     return (
         <Styled.HeaderBar>
             <Logo />
-            {/* {(menuIsOpen) && <Navigation />} */}
             <Navigation menuIsOpen={menuIsOpen} />
             <Profile />
-            <MenuButton menuIsOpen={menuIsOpen} handleMenuToggle={handleMenuToggle} />
+            <MenuButton menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
         </Styled.HeaderBar>
         );
 }
-export default Header
-
+export default Header;

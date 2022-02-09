@@ -12,7 +12,7 @@ export const Container = styled.nav`
     width: 100vw;
     z-index: -1;
 
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 992px) {
         flex-direction: row;
         display: flex;
         flex: 0 1 70%;
@@ -28,6 +28,16 @@ export const Container = styled.nav`
 `;
 
 export const UnorderList = styled.ul`
+    position: relative;
+    
+    @keyframes comeUp {
+        0%   {top: 100vh;}
+        100% {top: 0vh;}
+    }  
+
+    animation-name: comeUp;
+    animation-duration: 0.2s;
+
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -35,7 +45,17 @@ export const UnorderList = styled.ul`
     justify-content: center;
     list-style-type: none;
     
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 992px) {
+        position: relative;
+
+        @keyframes comeSide {
+        0%   {left: 10vw;}
+        100% {left: 0vw;}
+        }  
+
+        animation-name: comeSide;
+        animation-duration: 0.2s;
+            
         align-items: flex-start;
         flex-direction: row;
         gap: 20px;
@@ -44,11 +64,6 @@ export const UnorderList = styled.ul`
             font-size: 14px;
         }
     }
-`;
-
-
-
-export const ListItem = styled.li`
 `;
 
 export const Link = styled.a`

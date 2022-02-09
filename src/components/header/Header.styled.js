@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const HeaderBar = styled.div`
+    position: fixed;
+    width: 100vw;
     background-color: #4F88EF;
     display: flex;
     justify-content: space-between;

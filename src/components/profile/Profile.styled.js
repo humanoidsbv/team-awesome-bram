@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const HeaderRight = styled.div`
 display: none;
-       @media screen and (min-width: 1000px) {
+       @media screen and (min-width: 992px) {
                 align-items: center;
                 display: flex;
                 gap: 10px;
@@ -36,4 +36,3 @@ export const Avatar = styled.div`
         margin: 2px;
         width: 36px;
 `;
-
