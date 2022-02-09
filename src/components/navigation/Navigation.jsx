@@ -1,8 +1,6 @@
 import * as Styled from './Navigation.styled.js'
 
 export function Navigation({menuIsOpen}) {
-    console.log(menuIsOpen);
-    
     return (
         <Styled.Container menuIsOpen={menuIsOpen}>
         <Styled.UnorderList>
