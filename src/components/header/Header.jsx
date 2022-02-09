@@ -1,6 +1,6 @@
 import * as Styled from './Header.styled.js'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Navigation } from "../navigation";
 import { Logo } from "../logo";
@@ -8,18 +8,38 @@ import { MenuButton } from '../menu-button';
 import { Profile } from '../profile';
 
 const Header = () => {
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(false);
 
     const toggleMenu = () => {
-        setMenuIsOpen(!menuIsOpen)
-    }
+        setIsMenuOpen(!isMenuOpen)
+    };
+
+    const handleScroll = () => {
+        if(window.pageYOffset<50){
+            console.log('yay')
+            setScrollPosition(true);
+        } else {
+            console.log('nay')
+            setScrollPosition(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        console.log(scrollPosition)
+
+        return () => {
+            window.addEventListener("scroll", handleScroll);
+        }
+    }, [])
 
     return (
-        <Styled.HeaderBar>
+        <Styled.HeaderBar scrollPosition={scrollPosition}>
             <Logo />
-            <Navigation menuIsOpen={menuIsOpen} />
+            <Navigation menuIsOpen={isMenuOpen} />
             <Profile />
-            <MenuButton menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} />
+            <MenuButton menuIsOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </Styled.HeaderBar>
         );
 }

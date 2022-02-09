@@ -13,6 +13,7 @@ export const Container = styled.nav`
     z-index: -1;
 
     @media screen and (min-width: 992px) {
+        background-color: rgba(79, 136, 239, 0);
         flex-direction: row;
         display: flex;
         flex: 0 1 70%;
