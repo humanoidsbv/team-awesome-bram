@@ -7,7 +7,7 @@ import { Logo } from "../logo";
 import { MenuButton } from "../menu-button";
 import { Profile } from "../profile";
 
-export const Header = (): React.ReactElement => {
+export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTextUnderHeader, setIsTextUnderHeader] = useState(false);
 

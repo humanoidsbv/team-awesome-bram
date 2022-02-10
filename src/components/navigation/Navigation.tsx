@@ -5,7 +5,7 @@ interface NavigationProps {
   isMenuOpen: boolean;
 }
 
-export const Navigation = ({ isMenuOpen }: NavigationProps): React.ReactElement => {
+export const Navigation = ({ isMenuOpen }: NavigationProps) => {
   return (
     <Styled.Container isMenuOpen={isMenuOpen}>
       <Styled.UnorderList>

@@ -6,7 +6,7 @@ interface AvatarProps {
   userPictureSrc: string;
 }
 
-export const Profile = ({ userPictureSrc }: AvatarProps): React.ReactElement => {
+export const Profile = ({ userPictureSrc }: AvatarProps) => {
   return (
     <Styled.HeaderRight>
       <Styled.Profile>
