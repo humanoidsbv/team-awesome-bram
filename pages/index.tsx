@@ -1,8 +1,9 @@
 import GlobalStyle from "../styles/global";
 
-import Header from "../src/components/header/Header";
-import Main from "../src/components/main/Main";
-const Homepage = () => {
+import { Header } from "../src/components/header/Header";
+import { Main } from "../src/components/main/Main";
+
+const Homepage = (): React.ReactElement => {
   return (
     <>
       <GlobalStyle />

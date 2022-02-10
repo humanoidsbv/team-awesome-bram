@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HeaderRight = styled.div`
   display: none;
+
   @media screen and (min-width: 992px) {
     align-items: center;
     display: flex;
@@ -26,9 +27,7 @@ export const Profile = styled.div`
   }
 `;
 
-export const Avatar = styled.div`
-  background-image: url("images/amijs.jpg");
-  background-size: cover;
+export const Avatar = styled.img`
   border-radius: 100%;
   height: 36px;
   margin: 2px;

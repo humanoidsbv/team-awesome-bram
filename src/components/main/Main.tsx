@@ -1,7 +1,5 @@
-import * as Styled from "./Main.styled.js";
+import * as Styled from "./Main.styled";
 
-const Main = () => {
+export const Main = () => {
   return <Styled.Article>Test test test test test test test test</Styled.Article>;
 };
-
-export default Main;

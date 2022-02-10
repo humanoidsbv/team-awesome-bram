@@ -1,3 +1,3 @@
 module.exports = {
-    extends: "@humanoids/eslint-config"
-  };
+  extends: "@humanoids/eslint-config",
+};

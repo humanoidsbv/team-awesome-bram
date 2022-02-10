@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.nav`
+export const Container = styled.nav<{ isMenuOpen: boolean }>`
   background-color: #4f88ef;
-  display: ${(props) => (props.menuIsOpen ? "flex" : "none")};
+  display: ${({ isMenuOpen }) => (isMenuOpen ? "flex" : "none")};
   flex-direction: column;
   height: 100vh;
   left: 0;
@@ -29,42 +29,38 @@ export const Container = styled.nav`
 `;
 
 export const UnorderList = styled.ul`
-  position: relative;
-
-  @keyframes comeUp {
+  @keyframes slideUp {
     0% {
-      top: 100vh;
+      transform: translateY(100vh);
     }
     100% {
-      top: 0vh;
+      transform: translateY(0);
     }
   }
 
-  animation-name: comeUp;
-  animation-duration: 0.2s;
-
   align-items: center;
+  animation-duration: 0.2s;
+  animation-name: slideUp;
   display: flex;
   flex-direction: column;
   gap: 50px;
   justify-content: center;
   list-style-type: none;
+  position: relative;
 
   @media screen and (min-width: 992px) {
-    @keyframes comeSide {
+    @keyframes slideLeft {
       0% {
-        left: 10vw;
+        transform: translateX(10vw);
       }
       100% {
-        left: 0vw;
+        transform: translateX(0);
       }
     }
 
-    position: relative;
-    animation-name: comeSide;
-    animation-duration: 0.2s;
-
     align-items: flex-start;
+    animation-duration: 0.2s;
+    animation-name: slideLeft;
     flex-direction: row;
     gap: 20px;
 

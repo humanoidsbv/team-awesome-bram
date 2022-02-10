@@ -1,6 +1,6 @@
-import * as Styled from "./Logo.styled.js";
+import * as Styled from "./Logo.styled";
 
-export const Logo = () => {
+export const Logo = (): React.ReactElement => {
   return (
     <Styled.LogoText>
       <a href="/">team awesome</a>

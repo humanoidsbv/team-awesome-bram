@@ -1,8 +1,13 @@
-import * as Styled from "./Navigation.styled.js";
+import { ReactElement } from "react";
+import * as Styled from "./Navigation.styled";
 
-export function Navigation({ menuIsOpen }) {
+interface NavigationProps {
+  isMenuOpen: boolean;
+}
+
+export const Navigation = ({ isMenuOpen }: NavigationProps): React.ReactElement => {
   return (
-    <Styled.Container menuIsOpen={menuIsOpen}>
+    <Styled.Container isMenuOpen={isMenuOpen}>
       <Styled.UnorderList>
         <li>
           <Styled.Link href="/">Timesheets</Styled.Link>
@@ -22,4 +27,4 @@ export function Navigation({ menuIsOpen }) {
       </Styled.UnorderList>
     </Styled.Container>
   );
-}
+};
