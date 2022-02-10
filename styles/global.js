@@ -1,10 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  :root {
-    --min-width: 1024px;
-  }
-
   * {
     box-sizing: border-box;
     margin: 0;
