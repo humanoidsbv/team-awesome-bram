@@ -9,7 +9,7 @@ import { Profile } from "../profile";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isTextUnderHeader, setIsTextUnderHeader] = useState(false);
+  const [pageOffSet, setPageOffset] = useState(false);
 
   const userPictureSrc: string = "images/amijs.jpg";
 
@@ -18,7 +18,7 @@ export const Header = () => {
   };
 
   const handleScroll = (): void => {
-    window.pageYOffset < 50 ? setIsTextUnderHeader(true) : setIsTextUnderHeader(false);
+    window.pageYOffset < 50 ? setPageOffset(false) : setPageOffset(true);
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Header = () => {
   });
 
   return (
-    <Styled.HeaderBar isTextUnderHeader={isTextUnderHeader}>
+    <Styled.HeaderBar pageOffSet={pageOffSet}>
       <Logo />
       <Navigation isMenuOpen={isMenuOpen} />
       <Profile userPictureSrc={userPictureSrc} />
