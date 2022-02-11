@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 interface HeaderBarProps {
-  pageOffSet: boolean;
+  pageOffset: boolean;
 }
 
 export const HeaderBar = styled.div<HeaderBarProps>`
   align-items: center;
-  background-color: rgba(79, 136, 239, ${({ pageOffSet }) => (pageOffSet ? 0.9 : 1)});
+  background-color: rgba(79, 136, 239, ${({ pageOffset }) => (pageOffset ? 0.9 : 1)});
   display: flex;
   gap: 50px;
   height: 70px;

@@ -9,7 +9,7 @@ import { Profile } from "../profile";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [pageOffSet, setPageOffset] = useState(false);
+  const [pageOffset, setPageOffset] = useState(false);
 
   const userPictureSrc: string = "images/amijs.jpg";
 
@@ -26,7 +26,7 @@ export const Header = () => {
   });
 
   return (
-    <Styled.HeaderBar pageOffSet={pageOffSet}>
+    <Styled.HeaderBar pageOffset={pageOffset}>
       <Logo />
       <Navigation isMenuOpen={isMenuOpen} />
       <Profile userPictureSrc={userPictureSrc} />
