@@ -1,8 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Button = styled.button`
+interface ButtonProps {
+  style?: "primary" | "secondary";
+}
+
+export const Button = styled.button<ButtonProps>`
   align-items: center;
-  background-color: #37b047;
+  background-color: ${({ theme }) => theme.backgroundSecondary300};
   border-radius: 4px;
   border: none;
   color: white;
@@ -12,5 +16,19 @@ export const Button = styled.button`
   height: 40px;
   justify-content: center;
   flex: 0 1 auto;
-  padding: 0 50px;
+  padding: 0 30px;
+
+  :active {
+    background-color: blue;
+  }
+  ${({ style }) =>
+    style === "secondary" &&
+    css`
+      background-color: ${({ theme }) => theme.greyShade200};
+      color: ${({ theme }) => theme.greyShade700};
+
+      :active {
+        background-color: ${({ theme }) => theme.greyShade500};
+      }
+    `}
 `;

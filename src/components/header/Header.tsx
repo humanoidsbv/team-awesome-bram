@@ -28,13 +28,13 @@ export const Header = () => {
 
   return (
     <Styled.Header>
-      <Styled.HeaderBar pageOffset={pageOffset}>
+      <Styled.HeaderBar {...{ pageOffset }}>
         <Logo />
-        <Navigation isMenuOpen={isMenuOpen} />
-        <Profile userPictureSrc={userPictureSrc} />
-        <MenuButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        <Navigation {...{ isMenuOpen }} />
+        <Profile {...{ userPictureSrc }} />
+        <MenuButton {...{ isMenuOpen }} {...{ toggleMenu }} />
       </Styled.HeaderBar>
-      <SubHeader />
+      <SubHeader {...{ isMenuOpen }} />
     </Styled.Header>
   );
 };

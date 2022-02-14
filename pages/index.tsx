@@ -4,7 +4,6 @@ import GlobalStyle from "../styles/global";
 import { defaultTheme } from "../styles/theme";
 
 import { Header } from "../src/components/header/Header";
-import { SubHeader } from "../src/components/subheader";
 import { Main } from "../src/components/main/Main";
 
 const Homepage = () => {

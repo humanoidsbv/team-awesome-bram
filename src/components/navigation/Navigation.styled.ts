@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.nav<{ isMenuOpen: boolean }>`
-  background-color: ${({ theme }) => theme.backgroundPrimary300};
+  background-color: ${({ theme }) => theme.blueShade300};
   display: ${({ isMenuOpen }) => (isMenuOpen ? "flex" : "none")};
   flex-direction: column;
   height: 100vh;
@@ -12,7 +12,7 @@ export const Container = styled.nav<{ isMenuOpen: boolean }>`
   width: 100vw;
   z-index: -1;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidth}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthDesktop}) {
     display: flex;
     flex-direction: row;
     flex: 0 1 70%;
@@ -47,7 +47,7 @@ export const UnorderList = styled.ul`
   list-style-type: none;
   position: relative;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidth}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthDesktop}) {
     @keyframes slideLeft {
       0% {
         transform: translateX(10vw);
@@ -77,7 +77,7 @@ export const Link = styled.a`
   text-decoration: none;
 
   :hover {
-    background-color: ${({ theme }) => theme.backgroundPrimary500};
+    background-color: ${({ theme }) => theme.blueShade500};
   }
 
   :visited {

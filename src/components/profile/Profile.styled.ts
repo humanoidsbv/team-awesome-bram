@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderRight = styled.div`
   display: none;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidth}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthDesktop}) {
     align-items: center;
     display: flex;
     gap: 10px;
@@ -13,7 +13,7 @@ export const HeaderRight = styled.div`
 
 export const Profile = styled.div`
   align-items: center;
-  background-color: white;
+  background-color: ${({ theme }) => theme.greyShade100};
   border-radius: 20px;
   display: flex;
   height: 40px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MenuButton = styled.button`
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidth}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthDesktop}) {
     display: none;
   }
 
