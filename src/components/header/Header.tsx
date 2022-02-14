@@ -32,7 +32,7 @@ export const Header = () => {
         <Logo />
         <Navigation {...{ isMenuOpen }} />
         <Profile {...{ userPictureSrc }} />
-        <MenuButton {...{ isMenuOpen }} {...{ toggleMenu }} />
+        <MenuButton {...{ isMenuOpen, toggleMenu }} />
       </Styled.HeaderBar>
       <SubHeader {...{ isMenuOpen }} />
     </Styled.Header>

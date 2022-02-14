@@ -17,6 +17,6 @@ export const defaultTheme = {
   colorSecondary700: "#4B5464",
   colorSecondary300: "#7F8FA4",
 
-  breakpointWidthTablet: "550px",
-  breakpointWidthDesktop: "992px",
+  breakpointTablet: "550px",
+  breakpointDesktop: "992px",
 };

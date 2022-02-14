@@ -12,7 +12,7 @@ export const Container = styled.nav<{ isMenuOpen: boolean }>`
   width: 100vw;
   z-index: -1;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthDesktop}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointDesktop}) {
     display: flex;
     flex-direction: row;
     flex: 0 1 70%;
@@ -47,7 +47,7 @@ export const UnorderList = styled.ul`
   list-style-type: none;
   position: relative;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthDesktop}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointDesktop}) {
     @keyframes slideLeft {
       0% {
         transform: translateX(10vw);

@@ -14,9 +14,8 @@ export const SubHeaderBar = styled.div<SubHeaderProp>`
   height: 120px;
   justify-content: center;
   padding: 0 20px;
-  opacity: 0.9;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthTablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     align-items: center;
     flex-direction: row;
     height: 70px;
@@ -30,7 +29,7 @@ export const Label = styled.div`
   justify-content: space-around;
   align-items: baseline;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthTablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     gap: 30px;
     justify-content: flex-start;
   }
@@ -42,7 +41,7 @@ export const Title = styled.h2`
   font-size: 18px;
   font-weight: 600;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthTablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     flex: 0 1 auto;
   }
 `;
@@ -54,7 +53,7 @@ export const Counter = styled.p`
   font-weight: 600;
   text-align: end;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpointWidthTablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     flex: 0 1 auto;
     text-align: start;
     border-left: 1px solid ${({ theme }) => theme.greyShade600};
