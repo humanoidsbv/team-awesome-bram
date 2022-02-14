@@ -4,6 +4,13 @@ interface HeaderBarProps {
   pageOffset: boolean;
 }
 
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: Proxima;
+  position: fixed;
+`;
+
 export const HeaderBar = styled.div<HeaderBarProps>`
   align-items: center;
   background-color: ${({ theme }) => theme.backgroundPrimary300};
@@ -13,6 +20,6 @@ export const HeaderBar = styled.div<HeaderBarProps>`
   justify-content: space-between;
   opacity: ${({ pageOffset }) => (pageOffset ? 0.9 : 1)};
   padding: 0 30px;
-  position: fixed;
   width: 100vw;
+  z-index: 2;
 `;

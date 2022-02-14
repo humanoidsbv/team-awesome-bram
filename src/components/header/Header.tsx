@@ -6,6 +6,7 @@ import { Navigation } from "../navigation";
 import { Logo } from "../logo";
 import { MenuButton } from "../menu-button";
 import { Profile } from "../profile";
+import { SubHeader } from "../subheader";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,11 +27,14 @@ export const Header = () => {
   });
 
   return (
-    <Styled.HeaderBar pageOffset={pageOffset}>
-      <Logo />
-      <Navigation isMenuOpen={isMenuOpen} />
-      <Profile userPictureSrc={userPictureSrc} />
-      <MenuButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-    </Styled.HeaderBar>
+    <Styled.Header>
+      <Styled.HeaderBar pageOffset={pageOffset}>
+        <Logo />
+        <Navigation isMenuOpen={isMenuOpen} />
+        <Profile userPictureSrc={userPictureSrc} />
+        <MenuButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      </Styled.HeaderBar>
+      <SubHeader />
+    </Styled.Header>
   );
 };
