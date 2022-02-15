@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import * as Styled from "./Navigation.styled";
 
 interface NavigationProps {

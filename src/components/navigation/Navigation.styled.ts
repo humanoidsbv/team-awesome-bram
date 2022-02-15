@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.nav<{ isMenuOpen: boolean }>`
-  background-color: #4f88ef;
+  background-color: ${({ theme }) => theme.blueShade300};
   display: ${({ isMenuOpen }) => (isMenuOpen ? "flex" : "none")};
   flex-direction: column;
   height: 100vh;
@@ -12,8 +12,7 @@ export const Container = styled.nav<{ isMenuOpen: boolean }>`
   width: 100vw;
   z-index: -1;
 
-  @media screen and (min-width: 992px) {
-    background-color: rgba(79, 136, 239, 0);
+  @media screen and (min-width: ${({ theme }) => theme.breakpointDesktop}) {
     display: flex;
     flex-direction: row;
     flex: 0 1 70%;
@@ -48,7 +47,7 @@ export const UnorderList = styled.ul`
   list-style-type: none;
   position: relative;
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpointDesktop}) {
     @keyframes slideLeft {
       0% {
         transform: translateX(10vw);
@@ -73,13 +72,12 @@ export const UnorderList = styled.ul`
 export const Link = styled.a`
   border-radius: 3px;
   color: white;
-  font-family: Proxima;
   font-size: 24px;
   padding: 5px;
   text-decoration: none;
 
   :hover {
-    background-color: #1166a5;
+    background-color: ${({ theme }) => theme.blueShade500};
   }
 
   :visited {
