@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button<{ style?: "primary" | "secondary" }>`
+export const Button = styled.button<{ secondary?: boolean }>`
   align-items: center;
   background-color: ${({ theme }) => theme.greenShade200};
   border-radius: 4px;
@@ -15,6 +15,9 @@ export const Button = styled.button<{ style?: "primary" | "secondary" }>`
   justify-content: center;
   padding: 0 30px;
 
+  svg {
+    fill: white;
+  }
   :hover {
     background-color: ${({ theme }) => theme.greenShade300};
   }
@@ -23,16 +26,14 @@ export const Button = styled.button<{ style?: "primary" | "secondary" }>`
     background-color: ${({ theme }) => theme.greenShade400};
   }
 
-  ${({ style }) =>
-    style === "secondary" &&
+  ${({ secondary }) =>
+    secondary &&
     css`
       background-color: ${({ theme }) => theme.greyShade200};
       color: ${({ theme }) => theme.greyShade700};
 
       svg {
-        path {
-          fill: ${({ theme }) => theme.greyShade700};
-        }
+        fill: ${({ theme }) => theme.greyShade700};
       }
 
       :hover {

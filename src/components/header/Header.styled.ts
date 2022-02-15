@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: Proxima;
+  font-family: ${({ theme }) => theme.fontPrimary};
   position: fixed;
 `;
 

@@ -3,48 +3,47 @@ import styled from "styled-components";
 export const TimeEntryWrapper = styled.div`
   background-color: white;
   border: 1px solid ${({ theme }) => theme.greyShade300};
-  border-radius: 4px;
   border-left: 4px solid ${({ theme }) => theme.blueShade300};
+  border-radius: 4px;
   display: flex;
   height: 80px;
   width: 100%;
 `;
 
 export const TimeEntry = styled.div`
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
   flex: 1 1 auto;
+  justify-content: space-between;
   padding: 0 15px;
 `;
 
 export const DeleteButton = styled.button`
-  width: 40px;
-  height: 100%;
+  background-color: transparent;
   border: none;
   flex: 0 0 auto;
-  background-color: transparent;
+  height: 100%;
+  width: 40px;
 
   :hover {
     border: 1px dashed rgba(0, 0, 0, 0.2);
+
     svg {
-      path {
-        fill: ${({ theme }) => theme.redShade300};
-      }
+      fill: ${({ theme }) => theme.redShade300};
     }
   }
 `;
 
 export const OrganizationLabel = styled.h3`
-  font-size: 18px;
   color: ${({ theme }) => theme.greyShade700};
+  font-size: 18px;
 `;
 
 export const HoursWrapper = styled.div`
-  text-align: right;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  text-align: right;
 `;
 
 export const Hours = styled.h4`
@@ -52,6 +51,6 @@ export const Hours = styled.h4`
 `;
 
 export const TotalHours = styled.p`
-  font-size: 14px;
   color: ${({ theme }) => theme.greyShade500};
+  font-size: 14px;
 `;

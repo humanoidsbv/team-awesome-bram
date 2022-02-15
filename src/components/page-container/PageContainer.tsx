@@ -1,11 +1,12 @@
-import { TimeEntries } from "../time-entries";
+import { ReactNode } from "react";
+
 import * as Styled from "./PageContainer.styled";
 
-interface PageContainer {
-  children: React.ReactElement;
+interface PageContainerProps {
+  children: ReactNode;
 }
 
-export const PageContainer = ({ children }: PageContainer) => {
+export const PageContainer = ({ children }: PageContainerProps) => {
   return (
     <Styled.PageContainer>
       <Styled.Page>{children}</Styled.Page>
