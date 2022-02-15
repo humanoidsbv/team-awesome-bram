@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-interface SubHeaderProp {
-  isMenuOpen: boolean;
-}
-
-export const SubHeaderBar = styled.div<SubHeaderProp>`
+export const SubHeaderBar = styled.div<{ isMenuOpen: boolean }>`
   align-items: space-between;
   background-color: white;
   border-bottom: 1px solid #e6eaee;

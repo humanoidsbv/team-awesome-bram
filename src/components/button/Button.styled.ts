@@ -1,10 +1,6 @@
 import styled, { css } from "styled-components";
 
-interface ButtonProps {
-  style?: "primary" | "secondary";
-}
-
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button<{ style?: "primary" | "secondary" }>`
   align-items: center;
   background-color: ${({ theme }) => theme.greenShade200};
   border-radius: 4px;
@@ -32,6 +28,12 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: ${({ theme }) => theme.greyShade200};
       color: ${({ theme }) => theme.greyShade700};
+
+      svg {
+        path {
+          fill: ${({ theme }) => theme.greyShade700};
+        }
+      }
 
       :hover {
         background-color: ${({ theme }) => theme.greyShade300};

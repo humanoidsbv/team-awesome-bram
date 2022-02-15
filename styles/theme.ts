@@ -14,8 +14,13 @@ export const defaultTheme = {
   greenShade300: "#1E990A",
   greenShade400: "#19770A",
 
+  redShade300: "#FFA2AD",
+
   colorSecondary700: "#4B5464",
   colorSecondary300: "#7F8FA4",
+
+  pagePaddingMobile: "230px",
+  pagePaddingTablet: "180px",
 
   breakpointTablet: "550px",
   breakpointDesktop: "992px",

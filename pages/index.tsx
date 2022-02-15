@@ -4,7 +4,8 @@ import GlobalStyle from "../styles/global";
 import { defaultTheme } from "../styles/theme";
 
 import { Header } from "../src/components/header/Header";
-import { Main } from "../src/components/main/Main";
+import { PageContainer } from "../src/components/page-container/PageContainer";
+import { TimeEntries } from "../src/components/time-entries/TimeEntries";
 
 const Homepage = () => {
   return (
@@ -12,7 +13,9 @@ const Homepage = () => {
       <GlobalStyle />
       <ThemeProvider theme={defaultTheme}>
         <Header />
-        <Main />
+        <PageContainer>
+          <TimeEntries />
+        </PageContainer>
       </ThemeProvider>
     </>
   );
