@@ -12,7 +12,7 @@ export const Subheader = ({ isMenuOpen }: SubheaderProp) => {
         <Styled.Title>Timesheets</Styled.Title>
         <Styled.Counter>12 Entries</Styled.Counter>
       </Styled.Label>
-      <Button label="New time entry" icon={true} />
+      <Button label="New time entry" icon />
     </Styled.SubheaderBar>
   );
 };
