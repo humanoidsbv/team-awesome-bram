@@ -72,7 +72,6 @@ export const UnorderList = styled.ul`
 export const Link = styled.a`
   border-radius: 3px;
   color: white;
-  cursor: pointer;
   font-size: 24px;
   padding: 5px;
   text-decoration: none;

@@ -11,27 +11,27 @@ export const Navigation = ({ isMenuOpen }: NavigationProps) => {
     <Styled.Container isMenuOpen={isMenuOpen}>
       <Styled.UnorderList>
         <li>
-          <Link href="/">
+          <Link href="/" passHref>
             <Styled.Link>Timesheets</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="team-members.html">
+          <Link href="team-members.html" passHref>
             <Styled.Link>Team members</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="project.html">
+          <Link href="project.html" passHref>
             <Styled.Link> Projects</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="clients.html">
+          <Link href="clients.html" passHref>
             <Styled.Link>Clients</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="documents.html">
+          <Link href="documents.html" passHref>
             <Styled.Link>Documents</Styled.Link>
           </Link>
         </li>

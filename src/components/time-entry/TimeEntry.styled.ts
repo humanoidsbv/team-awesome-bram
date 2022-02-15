@@ -21,6 +21,7 @@ export const TimeEntry = styled.div`
 export const DeleteButton = styled.button`
   background-color: transparent;
   border: none;
+  cursor: pointer;
   flex: 0 0 auto;
   height: 100%;
   width: 40px;

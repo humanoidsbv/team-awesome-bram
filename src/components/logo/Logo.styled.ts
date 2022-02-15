@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export const LogoText = styled.a`
+export const Logo = styled.a`
+  cursor: pointer;
   flex: 0 0 auto;
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
 `;

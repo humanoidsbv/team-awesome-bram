@@ -6,6 +6,7 @@ export const Button = styled.button<{ secondary?: boolean }>`
   border-radius: 4px;
   border: none;
   color: white;
+  cursor: pointer;
   display: flex;
   flex: 0 1 auto;
   font-size: 14px;

@@ -6,12 +6,10 @@ import TeamAwesomeLogo from "../../../public/images/team-awesome-logo.svg";
 
 export const Logo = () => {
   return (
-    <Styled.LogoText>
-      <Link href="/">
-        <a>
-          <TeamAwesomeLogo />
-        </a>
+    <Styled.Logo>
+      <Link href="/" passHref>
+        <TeamAwesomeLogo />
       </Link>
-    </Styled.LogoText>
+    </Styled.Logo>
   );
 };
