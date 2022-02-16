@@ -1,18 +1,18 @@
 import * as Styled from "./SubHeader.styled";
 import { Button } from "../button/Button";
 
-interface SubHeaderProp {
+interface SubheaderProp {
   isMenuOpen: boolean;
 }
 
-export const SubHeader = ({ isMenuOpen }: SubHeaderProp) => {
+export const Subheader = ({ isMenuOpen }: SubheaderProp) => {
   return (
-    <Styled.SubHeaderBar {...{ isMenuOpen }}>
+    <Styled.SubheaderBar {...{ isMenuOpen }}>
       <Styled.Label>
         <Styled.Title>Timesheets</Styled.Title>
         <Styled.Counter>12 Entries</Styled.Counter>
       </Styled.Label>
-      <Button label="New time entry" style="primary" icon={true} />
-    </Styled.SubHeaderBar>
+      <Button label="New time entry" icon />
+    </Styled.SubheaderBar>
   );
 };

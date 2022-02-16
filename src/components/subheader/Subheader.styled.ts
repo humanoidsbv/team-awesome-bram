@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-interface SubHeaderProp {
-  isMenuOpen: boolean;
-}
-
-export const SubHeaderBar = styled.div<SubHeaderProp>`
+export const SubheaderBar = styled.div<{ isMenuOpen: boolean }>`
   align-items: space-between;
   background-color: white;
   border-bottom: 1px solid #e6eaee;
@@ -24,10 +20,10 @@ export const SubHeaderBar = styled.div<SubHeaderProp>`
 `;
 
 export const Label = styled.div`
+  align-items: baseline;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: baseline;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     gap: 30px;
@@ -54,9 +50,9 @@ export const Counter = styled.p`
   text-align: end;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
-    flex: 0 1 auto;
-    text-align: start;
     border-left: 1px solid ${({ theme }) => theme.greyShade600};
+    flex: 0 1 auto;
     padding-left: 30px;
+    text-align: start;
   }
 `;

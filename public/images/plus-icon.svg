@@ -4,8 +4,8 @@
     <title>Plus Icon</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="teamawesome-team-members" transform="translate(-1101.000000, -182.000000)" fill="#fff">
+    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="teamawesome-team-members" transform="translate(-1101.000000, -182.000000)">
             <g id="New-Humanoid" transform="translate(1087.000000, 169.000000)">
                 <path d="M20,17 L24,17 L24,19 L20,19 L20,23 L18,23 L18,19 L14,19 L14,17 L18,17 L18,13 L20,13 L20,17 Z" id="Plus-Icon"></path>
             </g>
