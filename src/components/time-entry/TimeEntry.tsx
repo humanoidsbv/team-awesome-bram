@@ -12,9 +12,7 @@ export const TimeEntry = ({ id, client, startTimestamp, endTimestamp }: TimeEntr
   const formattedStartTimestamp = startTimestampDate.toLocaleTimeString("nl-NL", timestampOptions);
   const formattedEndTimestamp = endTimestampDate.toLocaleTimeString("nl-NL", timestampOptions);
 
-  const durationDate = new Date(
-    endTimestampDate.getTime() - startTimestampDate.getTime() - 3600000,
-  );
+  const duration = new Date(endTimestampDate.getTime() - startTimestampDate.getTime() - 3600000);
 
   return (
     <Styled.TimeEntryWrapper>
@@ -25,7 +23,7 @@ export const TimeEntry = ({ id, client, startTimestamp, endTimestamp }: TimeEntr
             {formattedStartTimestamp} - {formattedEndTimestamp}
           </Styled.Hours>
           <Styled.TotalHours>
-            {durationDate.toLocaleTimeString("nl-NL", timestampOptions)}
+            {duration.toLocaleTimeString("nl-NL", timestampOptions)}
           </Styled.TotalHours>
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
