@@ -16,22 +16,22 @@ export const Navigation = ({ isMenuOpen }: NavigationProps) => {
           </Link>
         </li>
         <li>
-          <Link href="team-members.html" passHref>
+          <Link href="/team-members.html" passHref>
             <Styled.Link>Team members</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="project.html" passHref>
+          <Link href="/project.html" passHref>
             <Styled.Link> Projects</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="clients.html" passHref>
+          <Link href="/clients.html" passHref>
             <Styled.Link>Clients</Styled.Link>
           </Link>
         </li>
         <li>
-          <Link href="documents.html" passHref>
+          <Link href="/documents.html" passHref>
             <Styled.Link>Documents</Styled.Link>
           </Link>
         </li>

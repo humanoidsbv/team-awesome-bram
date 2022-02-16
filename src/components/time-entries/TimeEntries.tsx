@@ -17,23 +17,52 @@ export const TimeEntries = () => {
       {
         id: 29138,
         client: "Belastingdienst",
-        startTimestamp: "2019-09-26T16:00:00.000Z",
-        endTimestamp: "2019-09-26T18:00:00.000Z",
+        startTimestamp: "2022-09-26T05:00:00.000Z",
+        endTimestamp: "2022-09-26T07:00:00.000Z",
       },
     ]);
   }
 
+  const dateOptions: {} = {
+    weekday: "long",
+    day: "numeric",
+    month: "numeric",
+    year: "2-digit",
+  };
+
+  const timeEntriesDates = Array.from(
+    timeEntries.reduce(
+      (dates, timeEntry) =>
+        dates.add(new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptions)),
+      new Set(),
+    ),
+  ) as string[];
+
+  const timeEntriesDatesArray = [...timeEntriesDates].map((timeEntryDate) =>
+    timeEntries.filter(
+      (timeEntry) =>
+        new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptions) ==
+        timeEntryDate,
+    ),
+  );
+
   return (
     <Styled.TimeEntries>
-      <Styled.TimeEntryHeader>
-        <p>Friday 29-07 (Today)</p>
-        <p>08:00</p>
-      </Styled.TimeEntryHeader>
-      <Styled.TimeEntryContainer>
-        {timeEntries.map((timeEntry) => (
-          <TimeEntry {...timeEntry} />
-        ))}
-      </Styled.TimeEntryContainer>
+      {timeEntriesDatesArray.map((timeEntries, index) => {
+        return (
+          <div key={timeEntriesDates[index]}>
+            <Styled.TimeEntryHeader>
+              <p>{timeEntriesDates[index]}</p>
+              <p>08:00</p>
+            </Styled.TimeEntryHeader>
+            <Styled.TimeEntryContainer>
+              {timeEntries.map((timeEntry) => (
+                <TimeEntry {...timeEntry} key={timeEntry.id} />
+              ))}
+            </Styled.TimeEntryContainer>
+          </div>
+        );
+      })}
       <Button label="Add time entry" onClick={handleClick} />
     </Styled.TimeEntries>
   );
