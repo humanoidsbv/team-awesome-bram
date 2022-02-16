@@ -13,7 +13,7 @@ export const HeaderRight = styled.div`
 
 export const Profile = styled.div`
   align-items: center;
-  background-color: ${({ theme }) => theme.greyShade100};
+  background-color: white;
   border-radius: 20px;
   display: flex;
   height: 40px;

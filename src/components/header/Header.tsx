@@ -6,7 +6,7 @@ import { Navigation } from "../navigation";
 import { Logo } from "../logo";
 import { MenuButton } from "../menu-button";
 import { Profile } from "../profile";
-import { SubHeader } from "../subheader";
+import { Subheader } from "../subheader";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +34,7 @@ export const Header = () => {
         <Profile {...{ userPictureSrc }} />
         <MenuButton {...{ isMenuOpen, toggleMenu }} />
       </Styled.HeaderBar>
-      <SubHeader {...{ isMenuOpen }} />
+      <Subheader {...{ isMenuOpen }} />
     </Styled.Header>
   );
 };

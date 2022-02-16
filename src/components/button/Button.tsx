@@ -6,12 +6,12 @@ interface ButtonProps {
   icon?: boolean;
   label: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  style?: "primary" | "secondary";
+  secondary?: boolean;
 }
 
-export const Button = ({ onClick, label, icon = false, style = "primary" }: ButtonProps) => {
+export const Button = ({ onClick, label, icon = false, secondary = false }: ButtonProps) => {
   return (
-    <Styled.Button {...{ style, onClick }}>
+    <Styled.Button {...{ onClick, secondary }}>
       {icon && <PlusIcon />}
       {label}
     </Styled.Button>

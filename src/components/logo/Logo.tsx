@@ -1,9 +1,15 @@
+import Link from "next/link";
+
 import * as Styled from "./Logo.styled";
+
+import TeamAwesomeLogo from "../../../public/images/team-awesome-logo.svg";
 
 export const Logo = () => {
   return (
-    <Styled.LogoText>
-      <a href="/">team awesome</a>
-    </Styled.LogoText>
+    <Styled.Logo>
+      <Link href="/" passHref>
+        <TeamAwesomeLogo />
+      </Link>
+    </Styled.Logo>
   );
 };
