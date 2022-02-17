@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const TimeEntries = styled.div`
   display: flex;
   flex-direction: column;
+  }
 `;
 
 export const TimeEntryHeader = styled.div`
@@ -14,6 +15,10 @@ export const TimeEntryHeader = styled.div`
   justify-content: space-between;
   padding-bottom: 20px;
   padding-top: 40px;
+
+  :first-of-type {
+    padding-top: 0;
+  }
 `;
 
 export const TimeEntryContainer = styled.div`

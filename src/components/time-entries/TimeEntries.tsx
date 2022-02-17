@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import * as Styled from "./TimeEntries.styled";
 import { TimeEntryProps } from "../../types/Types";
@@ -36,8 +36,8 @@ export const TimeEntries = () => {
     year: "2-digit",
   };
 
-  const timestampToDateString = (timestamp: string, sortingOptions: {}) => {
-    return new Date(timestamp).toLocaleDateString("en-EN", sortingOptions);
+  const timestampToDateString = (timestamp: string, options: {}) => {
+    return new Date(timestamp).toLocaleDateString("en-EN", options);
   };
 
   timeEntries.sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1));
@@ -45,20 +45,15 @@ export const TimeEntries = () => {
   return (
     <Styled.TimeEntries>
       {timeEntries.map((timeEntry, i, entries) => {
-        const currentDate: string = timestampToDateString(
-          timeEntry.startTimestamp,
-          dateOptionsSort,
-        );
+        const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
 
-        const previousDate: string =
+        const isDateDifferent =
           i > 0
-            ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort)
-            : timestampToDateString("0", dateOptionsSort);
-
-        const isDateDifferent: boolean = previousDate < currentDate;
+            ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) < currentDate
+            : true;
 
         return (
-          <div key={timeEntry.id}>
+          <React.Fragment key={timeEntry.id + "header"}>
             {isDateDifferent && (
               <Styled.TimeEntryHeader>
                 <p>{timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}</p>
@@ -68,7 +63,7 @@ export const TimeEntries = () => {
             <Styled.TimeEntryContainer>
               <TimeEntry {...timeEntry} key={timeEntry.id} />
             </Styled.TimeEntryContainer>
-          </div>
+          </React.Fragment>
         );
       })}
       <Button label="Add time entry" onClick={handleClick} />
