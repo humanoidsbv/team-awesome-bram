@@ -53,15 +53,15 @@ export const TimeEntries = () => {
             : true;
 
         return (
-          <React.Fragment key={timeEntry.id + "header"}>
+          <React.Fragment key={Math.random() * 1000}>
             {isDateDifferent && (
               <Styled.TimeEntryHeader>
                 <p>{timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}</p>
-                <p>08:00</p>
+                <p>-</p>
               </Styled.TimeEntryHeader>
             )}
             <Styled.TimeEntryContainer>
-              <TimeEntry {...timeEntry} key={timeEntry.id} />
+              <TimeEntry {...timeEntry} />
             </Styled.TimeEntryContainer>
           </React.Fragment>
         );
