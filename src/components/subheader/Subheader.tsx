@@ -1,4 +1,4 @@
-import * as Styled from "./SubHeader.styled";
+import * as Styled from "./Subheader.styled";
 import { Button } from "../button/Button";
 
 interface SubheaderProp {

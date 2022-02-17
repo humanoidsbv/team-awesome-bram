@@ -35,7 +35,7 @@ export const DeleteButton = styled.button`
   }
 `;
 
-export const OrganizationLabel = styled.h3`
+export const ClientLabel = styled.p`
   color: ${({ theme }) => theme.greyShade700};
   font-size: 18px;
 `;
@@ -47,7 +47,7 @@ export const HoursWrapper = styled.div`
   text-align: right;
 `;
 
-export const Hours = styled.h4`
+export const Hours = styled.p`
   font-size: 18px;
 `;
 

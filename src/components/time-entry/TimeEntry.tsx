@@ -1,15 +1,38 @@
 import * as Styled from "./TimeEntry.styled";
+import { TimeEntryProps } from "../../types/Types";
 
 import TrashBin from "../../../public/images/trash-bin.svg";
 
-export const TimeEntry = () => {
+export const TimeEntry = ({ id, client, startTimestamp, endTimestamp }: TimeEntryProps) => {
+  const startTimestampDate: Date = new Date(startTimestamp);
+  const endTimestampDate: Date = new Date(endTimestamp);
+
+  const timestampOptions: {} = { hour: "2-digit", minute: "2-digit" };
+
+  const formattedStartTimestamp: string = startTimestampDate.toLocaleTimeString(
+    "nl-NL",
+    timestampOptions,
+  );
+  const formattedEndTimestamp: string = endTimestampDate.toLocaleTimeString(
+    "nl-NL",
+    timestampOptions,
+  );
+
+  const duration: Date = new Date(
+    endTimestampDate.getTime() - startTimestampDate.getTime() - 3600000,
+  );
+
   return (
     <Styled.TimeEntryWrapper>
       <Styled.TimeEntry>
-        <Styled.OrganizationLabel>Port of Rotterdam</Styled.OrganizationLabel>
+        <Styled.ClientLabel>{client}</Styled.ClientLabel>
         <Styled.HoursWrapper>
-          <Styled.Hours>09:00 - 17:00</Styled.Hours>
-          <Styled.TotalHours>08:00</Styled.TotalHours>
+          <Styled.Hours>
+            {formattedStartTimestamp} - {formattedEndTimestamp}
+          </Styled.Hours>
+          <Styled.TotalHours>
+            {duration.toLocaleTimeString("nl-NL", timestampOptions)}
+          </Styled.TotalHours>
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
       <Styled.DeleteButton>

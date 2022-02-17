@@ -1,0 +1,38 @@
+[
+  {
+    "id": 93024,
+    "client": "Heineken",
+    "startTimestamp": "2022-09-26T06:17:10.000Z",
+    "endTimestamp": "2022-09-26T16:00:00.000Z"
+  },
+  {
+    "id": 87320,
+    "client": "Port of Rotterdam",
+    "startTimestamp": "2022-09-26T16:00:00.000Z",
+    "endTimestamp": "2022-09-26T18:00:00.000Z"
+  },
+  {
+    "id": 21196,
+    "client": "KPN",
+    "startTimestamp": "2022-09-25T05:00:00.000Z",
+    "endTimestamp": "2022-09-25T12:00:00.000Z"
+  },
+  {
+    "id": 32901,
+    "client": "Ahold",
+    "startTimestamp": "2022-09-26T06:00:00.000Z",
+    "endTimestamp": "2022-09-26T12:00:00.000Z"
+  },
+  {
+    "id": 21129,
+    "client": "ASML",
+    "startTimestamp": "2022-09-24T06:00:00.000Z",
+    "endTimestamp": "2022-09-24T12:00:00.000Z"
+  },
+  {
+    "id": 23321,
+    "client": "Rabobank",
+    "startTimestamp": "2022-09-24T10:00:00.000Z",
+    "endTimestamp": "2022-09-24T22:00:00.000Z"
+  }
+]
