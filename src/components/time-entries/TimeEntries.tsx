@@ -23,28 +23,12 @@ export const TimeEntries = () => {
     ]);
   }
 
-  const dateOptions: {} = {
+  const dateOptionsDisplay: {} = {
     weekday: "long",
     day: "numeric",
     month: "numeric",
     year: "2-digit",
   };
-
-  // const timeEntriesDates = Array.from(
-  //   timeEntries.reduce(
-  //     (dates, timeEntry) =>
-  //       dates.add(new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptions)),
-  //     new Set(),
-  //   ),
-  // ) as string[];
-
-  // const timeEntriesDatesArray = [...timeEntriesDates].map((timeEntryDate) =>
-  //   timeEntries.filter(
-  //     (timeEntry) =>
-  //       new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptions) ==
-  //       timeEntryDate,
-  //   ),
-  // );
 
   const dateOptionsSort: {} = {
     day: "numeric",
@@ -52,33 +36,32 @@ export const TimeEntries = () => {
     year: "2-digit",
   };
 
+  const timestampToDateString = (timestamp: string, sortingOptions: {}) => {
+    return new Date(timestamp).toLocaleDateString("en-EN", sortingOptions);
+  };
+
   timeEntries.sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1));
-
-  console.log(timeEntries);
-
-  const renderHeader = () => {};
 
   return (
     <Styled.TimeEntries>
-      {timeEntries.map((timeEntry, index, array) => {
+      {timeEntries.map((timeEntry, i, entries) => {
+        const currentDate: string = timestampToDateString(
+          timeEntry.startTimestamp,
+          dateOptionsSort,
+        );
+
+        const previousDate: string =
+          i > 0
+            ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort)
+            : timestampToDateString("0", dateOptionsSort);
+
+        const isDateDifferent: boolean = previousDate < currentDate;
+
         return (
           <div key={timeEntry.id}>
-            {index >= 1 ? (
-              new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptionsSort) >
-                new Date(timeEntries[index - 1].startTimestamp).toLocaleDateString(
-                  "en-EN",
-                  dateOptionsSort,
-                ) && (
-                <Styled.TimeEntryHeader>
-                  <p>
-                    {new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptions)}
-                  </p>
-                  <p>08:00</p>
-                </Styled.TimeEntryHeader>
-              )
-            ) : (
+            {isDateDifferent && (
               <Styled.TimeEntryHeader>
-                <p>{new Date(timeEntry.startTimestamp).toLocaleDateString("en-EN", dateOptions)}</p>
+                <p>{timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}</p>
                 <p>08:00</p>
               </Styled.TimeEntryHeader>
             )}
@@ -88,7 +71,6 @@ export const TimeEntries = () => {
           </div>
         );
       })}
-
       <Button label="Add time entry" onClick={handleClick} />
     </Styled.TimeEntries>
   );

@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const TimeEntries = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-top: 0px;
 `;
 
 export const TimeEntryHeader = styled.div`
@@ -14,11 +12,11 @@ export const TimeEntryHeader = styled.div`
   font-size: 24px;
   font-weight: normal;
   justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 40px;
 `;
 
 export const TimeEntryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0px;
-  margin-bottom: 40px;
 `;

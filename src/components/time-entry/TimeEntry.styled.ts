@@ -35,7 +35,7 @@ export const DeleteButton = styled.button`
   }
 `;
 
-export const OrganizationLabel = styled.h3`
+export const ClientLabel = styled.h3`
   color: ${({ theme }) => theme.greyShade700};
   font-size: 18px;
 `;
