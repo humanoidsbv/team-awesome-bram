@@ -5,15 +5,14 @@ export const TimeEntries = styled.div`
   flex-direction: column;
 `;
 
-export const TimeEntryHeader = styled.div`
+export const TimeEntryHeader = styled.p`
   color: ${({ theme }) => theme.greyShade600};
   display: flex;
   flex-direction: row;
   font-size: 24px;
   font-weight: normal;
   justify-content: space-between;
-  padding-bottom: 20px;
-  padding-top: 40px;
+  padding: 40px 0 20px 0;
 
   :first-of-type {
     padding-top: 0;

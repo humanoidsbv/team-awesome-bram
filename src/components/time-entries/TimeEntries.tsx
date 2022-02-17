@@ -40,32 +40,31 @@ export const TimeEntries = () => {
     return new Date(timestamp).toLocaleDateString("en-EN", options);
   };
 
-  timeEntries.sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1));
-
   return (
     <Styled.TimeEntries>
-      {timeEntries.map((timeEntry, i, entries) => {
-        const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
+      {timeEntries
+        .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))
+        .map((timeEntry, i, entries) => {
+          const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
 
-        const isDateDifferent =
-          i > 0
-            ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) < currentDate
-            : true;
+          const isDateDifferent =
+            i > 0
+              ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) < currentDate
+              : true;
 
-        return (
-          <React.Fragment key={Math.random() * 1000}>
-            {isDateDifferent && (
-              <Styled.TimeEntryHeader>
-                <p>{timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}</p>
-                <p>-</p>
-              </Styled.TimeEntryHeader>
-            )}
-            <Styled.TimeEntryContainer>
-              <TimeEntry {...timeEntry} />
-            </Styled.TimeEntryContainer>
-          </React.Fragment>
-        );
-      })}
+          return (
+            <React.Fragment key={timeEntry.id}>
+              {isDateDifferent && (
+                <Styled.TimeEntryHeader>
+                  {timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}
+                </Styled.TimeEntryHeader>
+              )}
+              <Styled.TimeEntryContainer>
+                <TimeEntry {...timeEntry} />
+              </Styled.TimeEntryContainer>
+            </React.Fragment>
+          );
+        })}
       <Button label="Add time entry" onClick={handleClick} />
     </Styled.TimeEntries>
   );
