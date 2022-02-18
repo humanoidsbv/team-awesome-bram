@@ -1,5 +1,5 @@
 import { TimeEntryProps } from "../../types/Types";
-import { NotFoundError } from "../../errors/not-found-error/NotFoundError";
+import { NotFoundError } from "../../errors/not-found-error";
 
 export async function retrieveTimeEntries(endpoint: string): Promise<TimeEntryProps[]> {
   return fetch(endpoint)

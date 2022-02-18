@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
 import * as Styled from "./TimeEntries.styled";
 import { TimeEntryProps } from "../../types/Types";
 
-import { retrieveTimeEntries } from "../../services/time-entry-api/RetrieveTimeEntries";
-import { timestampToDateString } from "../../services/time-entry-api/timeStampToDateString";
-import { NotFoundError } from "../../errors/not-found-error/NotFoundError";
+import { retrieveTimeEntries, timestampToDateString } from "../../services/time-entry-api/";
+import { NotFoundError } from "../../errors/not-found-error/";
 
 import { TimeEntry } from "../time-entry/TimeEntry";
 import { Button } from "../button/Button";
@@ -13,14 +12,14 @@ import { Button } from "../button/Button";
 export const TimeEntries = () => {
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
 
-  const endpoint = "http://localhost:3004/time-entries";
-
   async function fetchTimeEntries() {
-    if ((await retrieveTimeEntries(endpoint)) instanceof NotFoundError) {
+    const awaitTimeEntries = await retrieveTimeEntries("http://localhost:3004/time-entries");
+
+    if (awaitTimeEntries instanceof NotFoundError) {
       console.log("404: Not found!");
       return;
     }
-    setTimeEntries(await retrieveTimeEntries(endpoint));
+    setTimeEntries(awaitTimeEntries);
   }
 
   useEffect(() => {
@@ -65,7 +64,7 @@ export const TimeEntries = () => {
               : true;
 
           return (
-            <React.Fragment key={timeEntry.id}>
+            <Fragment key={timeEntry.id}>
               {isDateDifferent && (
                 <Styled.TimeEntryHeader>
                   {timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}
@@ -74,13 +73,10 @@ export const TimeEntries = () => {
               <Styled.TimeEntryContainer>
                 <TimeEntry {...timeEntry} />
               </Styled.TimeEntryContainer>
-            </React.Fragment>
+            </Fragment>
           );
         })}
       <Button label="Add time entry" onClick={handleClick} />
     </Styled.TimeEntries>
   );
 };
-function fetchTimeEntries() {
-  throw new Error("Function not implemented.");
-}
