@@ -7,16 +7,10 @@ export const TimeEntry = ({ id, client, startTimestamp, endTimestamp }: TimeEntr
   const startTimestampDate: Date = new Date(startTimestamp);
   const endTimestampDate: Date = new Date(endTimestamp);
 
-  const timestampOptions: {} = { hour: "2-digit", minute: "2-digit" };
+  const timestampOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit" };
 
-  const formattedStartTimestamp: string = startTimestampDate.toLocaleTimeString(
-    "nl-NL",
-    timestampOptions,
-  );
-  const formattedEndTimestamp: string = endTimestampDate.toLocaleTimeString(
-    "nl-NL",
-    timestampOptions,
-  );
+  const formattedStartTimestamp = startTimestampDate.toLocaleTimeString("nl-NL", timestampOptions);
+  const formattedEndTimestamp = endTimestampDate.toLocaleTimeString("nl-NL", timestampOptions);
 
   const duration: Date = new Date(
     endTimestampDate.getTime() - startTimestampDate.getTime() - 3600000,

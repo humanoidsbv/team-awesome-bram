@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import * as Styled from "./TimeEntries.styled";
 import { TimeEntryProps } from "../../types/Types";
 
-import importedTimeEntries from "../../fixtures/time-entries.json";
+import { retrieveTimeEntries } from "../../services/time-entry-api/RetrieveTimeEntries";
+import { timestampToDateString } from "../../services/time-entry-api/timeStampToDateString";
+import { NotFoundError } from "../../errors/not-found-error/NotFoundError";
 
 import { TimeEntry } from "../time-entry/TimeEntry";
 import { Button } from "../button/Button";
 
 export const TimeEntries = () => {
-  const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>(importedTimeEntries);
+  const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
+
+  const endpoint = "http://localhost:3004/time-entries";
+
+  async function fetchTimeEntries() {
+    if ((await retrieveTimeEntries(endpoint)) instanceof NotFoundError) {
+      console.log("404: Not found!");
+      return;
+    }
+    setTimeEntries(await retrieveTimeEntries(endpoint));
+  }
+
+  useEffect(() => {
+    fetchTimeEntries();
+  }, []);
 
   function handleClick() {
     setTimeEntries([
@@ -34,10 +50,6 @@ export const TimeEntries = () => {
     day: "numeric",
     month: "numeric",
     year: "2-digit",
-  };
-
-  const timestampToDateString = (timestamp: string, options: {}) => {
-    return new Date(timestamp).toLocaleDateString("en-EN", options);
   };
 
   return (
@@ -69,3 +81,6 @@ export const TimeEntries = () => {
     </Styled.TimeEntries>
   );
 };
+function fetchTimeEntries() {
+  throw new Error("Function not implemented.");
+}
