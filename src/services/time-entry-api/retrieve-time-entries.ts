@@ -1,8 +1,8 @@
 import { TimeEntryProps } from "../../types/Types";
 import { NotFoundError } from "../../errors/not-found-error";
 
-export async function retrieveTimeEntries(endpoint: string): Promise<TimeEntryProps[]> {
-  return fetch(endpoint)
+export async function retrieveTimeEntries(): Promise<TimeEntryProps[]> {
+  return fetch("http://localhost:3004/time-entries")
     .then((response) => {
       if (response.status === 404) {
         throw new NotFoundError(response.toString());

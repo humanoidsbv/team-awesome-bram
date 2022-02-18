@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import * as Styled from "./TimeEntries.styled";
 import { TimeEntryProps } from "../../types/Types";
@@ -13,7 +13,7 @@ export const TimeEntries = () => {
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
 
   async function fetchTimeEntries() {
-    const awaitTimeEntries = await retrieveTimeEntries("http://localhost:3004/time-entries");
+    const awaitTimeEntries = await retrieveTimeEntries();
 
     if (awaitTimeEntries instanceof NotFoundError) {
       console.log("404: Not found!");
