@@ -8,7 +8,6 @@ interface SubheaderProp {
   buttonCallback: () => void;
   buttonLabel: string;
   isMenuOpen: boolean;
-  modal: ReactNode;
   subtitle: string;
   title: string;
 }
@@ -19,7 +18,6 @@ export const Subheader = ({
   subtitle,
   buttonLabel,
   buttonCallback,
-  modal,
 }: SubheaderProp) => {
   return (
     <Styled.SubheaderBar {...{ isMenuOpen }}>
@@ -28,7 +26,6 @@ export const Subheader = ({
         <Styled.Subtitle>{subtitle}</Styled.Subtitle>
       </Styled.Label>
       <Button label={buttonLabel} icon onClick={buttonCallback} />
-      {modal}
     </Styled.SubheaderBar>
   );
 };

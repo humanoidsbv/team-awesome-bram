@@ -58,13 +58,13 @@ export const TimeEntries = () => {
   const buttonCallback = () => setIsModalActive(true);
   const buttonLabel = "New time entry";
   const isMenuOpen = false;
-  const modal = <TimeEntryModal {...{ isModalActive, onClose }} />;
   const subtitle = "12 Entries";
   const title = "Timesheet";
 
   return (
     <>
-      <Subheader {...{ buttonLabel, buttonCallback, isMenuOpen, modal, subtitle, title }} />
+      <Subheader {...{ buttonLabel, buttonCallback, isMenuOpen, subtitle, title }} />
+      <TimeEntryModal {...{ isModalActive, onClose }} />
       <Styled.TimeEntries>
         {timeEntries
           .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))
