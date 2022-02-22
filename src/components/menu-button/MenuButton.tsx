@@ -8,7 +8,7 @@ interface MenuButtonProps {
 }
 
 export const MenuButton = ({ isMenuOpen, toggleMenu }: MenuButtonProps) => {
-  const icon = isMenuOpen ? <CrossIcon /> : <HamburgerIcon />;
+  const icon = isMenuOpen ? <CrossIcon fill="#fff" /> : <HamburgerIcon />;
 
   return <Styled.MenuButton onClick={toggleMenu}>{icon}</Styled.MenuButton>;
 };

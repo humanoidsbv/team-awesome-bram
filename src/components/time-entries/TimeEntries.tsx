@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 
 import * as Styled from "./TimeEntries.styled";
 import { TimeEntryProps } from "../../types/Types";
@@ -6,8 +6,9 @@ import { TimeEntryProps } from "../../types/Types";
 import { retrieveTimeEntries, timestampToDateString } from "../../services/time-entry-api/";
 import { NotFoundError } from "../../errors/not-found-error/";
 
+import { TimeEntryModal } from "../time-entry-modal";
+import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
-import { Button } from "../button/Button";
 
 export const TimeEntries = () => {
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
@@ -51,32 +52,45 @@ export const TimeEntries = () => {
     year: "2-digit",
   };
 
+  const [isModalActive, setIsModalActive] = useState(false);
+  const onClose = () => setIsModalActive(false);
+
+  const buttonCallback = () => setIsModalActive(true);
+  const buttonLabel = "New time entry";
+  const isMenuOpen = false;
+  const modal = <TimeEntryModal {...{ isModalActive, onClose }} />;
+  const subtitle = "12 Entries";
+  const title = "Timesheet";
+
   return (
-    <Styled.TimeEntries>
-      {timeEntries
-        .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))
-        .map((timeEntry, i, entries) => {
-          const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
+    <>
+      <Subheader {...{ buttonLabel, buttonCallback, isMenuOpen, modal, subtitle, title }} />
+      <Styled.TimeEntries>
+        {timeEntries
+          .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))
+          .map((timeEntry, i, entries) => {
+            const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
 
-          const isDateDifferent =
-            i > 0
-              ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) < currentDate
-              : true;
+            const isDateDifferent =
+              i > 0
+                ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) <
+                  currentDate
+                : true;
 
-          return (
-            <Fragment key={timeEntry.id}>
-              {isDateDifferent && (
-                <Styled.TimeEntryHeader>
-                  {timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}
-                </Styled.TimeEntryHeader>
-              )}
-              <Styled.TimeEntryContainer>
-                <TimeEntry {...timeEntry} />
-              </Styled.TimeEntryContainer>
-            </Fragment>
-          );
-        })}
-      <Button label="Add time entry" onClick={handleClick} />
-    </Styled.TimeEntries>
+            return (
+              <Fragment key={timeEntry.id}>
+                {isDateDifferent && (
+                  <Styled.TimeEntryHeader>
+                    {timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}
+                  </Styled.TimeEntryHeader>
+                )}
+                <Styled.TimeEntryContainer>
+                  <TimeEntry {...timeEntry} />
+                </Styled.TimeEntryContainer>
+              </Fragment>
+            );
+          })}
+      </Styled.TimeEntries>
+    </>
   );
 };

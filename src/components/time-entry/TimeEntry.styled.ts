@@ -35,7 +35,7 @@ export const DeleteButton = styled.button`
   }
 `;
 
-export const ClientLabel = styled.p`
+export const ClientLabel = styled.h4`
   color: ${({ theme }) => theme.greyShade700};
   font-size: 18px;
 `;
