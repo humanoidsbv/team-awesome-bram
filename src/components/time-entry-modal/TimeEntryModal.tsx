@@ -20,7 +20,7 @@ export const TimeEntryModal = ({ isModalActive, onClose }: NewTimeEntryProps) =>
       <Styled.TitleBar>
         <Styled.Title>{title}</Styled.Title>
         <Styled.CloseButton onClick={onClose}>
-          <CloseButtonIcon fill="#000" />
+          <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>
       <Styled.Form>
