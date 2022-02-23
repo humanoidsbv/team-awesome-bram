@@ -2,7 +2,7 @@ import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../styles/global";
 import { defaultTheme } from "../styles/theme";
-import { TimeEntryProps } from "../src/types/Types";
+import { initialTimeEntriesProps } from "../src/types/Types";
 import { NotFoundError } from "../src/errors/not-found-error";
 
 import { Header } from "../src/components/header/Header";
@@ -11,12 +11,7 @@ import { TimeEntries } from "../src/components/time-entries/TimeEntries";
 
 import { retrieveTimeEntries } from "../src/services/time-entry-api";
 
-interface bla {
-  initialTimeEntries: TimeEntryProps[];
-}
-
-export const Homepage = ({ initialTimeEntries }: bla) => {
-  console.log(initialTimeEntries);
+export const Homepage = ({ initialTimeEntries }: initialTimeEntriesProps) => {
   return (
     <>
       <GlobalStyle />

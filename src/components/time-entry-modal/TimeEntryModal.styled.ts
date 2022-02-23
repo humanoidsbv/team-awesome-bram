@@ -84,10 +84,6 @@ export const TimeInputWrapper = styled.div`
   flex-direction: column;
   justify-self: flex-start;
   width: 100px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
-    width: 80px;
-  }
 `;
 
 export const Label = styled.p`
