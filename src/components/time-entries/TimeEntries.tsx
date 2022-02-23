@@ -1,20 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 
 import * as Styled from "./TimeEntries.styled";
-import { NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
+import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
-import {
-  addTimeEntry,
-  retrieveTimeEntries,
-  timestampToDateString,
-} from "../../services/time-entry-api/";
-import { NotFoundError } from "../../errors/not-found-error/";
+import { addTimeEntry, timestampToDateString } from "../../services/time-entry-api/";
 
 import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
 
-export const TimeEntries = () => {
+export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => {
   const dateOptionsDisplay: {} = {
     weekday: "long",
     day: "numeric",
@@ -29,22 +24,11 @@ export const TimeEntries = () => {
   };
 
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
-
-  async function fetchTimeEntries() {
-    const awaitTimeEntries = await retrieveTimeEntries();
-
-    if (awaitTimeEntries instanceof NotFoundError) {
-      console.log("404: Not found!");
-      return;
-    }
-    setTimeEntries(awaitTimeEntries);
-  }
+  const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
 
   useEffect(() => {
-    fetchTimeEntries();
+    setTimeEntries(initialTimeEntries);
   }, []);
-
-  const [newTimeEntry, setNewTimeEntry] = useState<NewTimeEntryProps>({});
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
@@ -57,14 +41,18 @@ export const TimeEntries = () => {
     const startTime = new Date(date + " " + newTimeEntry.from);
     const endTime = new Date(date + " " + newTimeEntry.to);
 
-    addTimeEntry({
+    const formattedNewTimeEntry = {
       id: Math.random() * 1000,
       client: `${newTimeEntry.client}`,
       startTimestamp: startTime.toJSON(),
       endTimestamp: endTime.toJSON(),
-    });
+    };
 
-    fetchTimeEntries();
+    console.log(formattedNewTimeEntry);
+
+    addTimeEntry(formattedNewTimeEntry);
+    setTimeEntries([...timeEntries, formattedNewTimeEntry]);
+
     setNewTimeEntry({});
     onClose();
   }

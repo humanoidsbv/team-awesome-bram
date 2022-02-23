@@ -9,9 +9,9 @@ import { Modal } from "../modal/Modal";
 
 interface TimeEntryModalProps {
   handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: Event) => void;
+  handleSubmit: (event: any) => void;
   isModalActive: boolean;
-  newTimeEntry: NewTimeEntryProps;
+  newTimeEntry: Partial<NewTimeEntryProps>;
   onClose: () => void;
 }
 
@@ -33,7 +33,7 @@ export const TimeEntryModal = ({
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>
-      <Styled.Form onSubmit={() => handleSubmit}>
+      <Styled.Form onSubmit={handleSubmit}>
         <Styled.InputContainer>
           <Input
             type="text"

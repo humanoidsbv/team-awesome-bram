@@ -35,12 +35,6 @@
       "client": "Rabobank",
       "startTimestamp": "2022-09-24T10:00:00.000Z",
       "endTimestamp": "2022-09-24T22:00:00.000Z"
-    },
-    {
-      "id": 649.1003866840581,
-      "client": "Test",
-      "startTimestamp": "2022-02-02T11:12:00.000Z",
-      "endTimestamp": "2022-02-02T20:23:00.000Z"
     }
   ]
 }

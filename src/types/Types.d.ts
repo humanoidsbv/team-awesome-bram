@@ -6,10 +6,14 @@ export type TimeEntryProps = {
 };
 
 export type NewTimeEntryProps = {
-  activity?: string;
-  client?: string;
-  date?: string;
-  from?: string;
-  to?: string;
-  id?: number;
+  activity: string;
+  client: string;
+  date: string;
+  from: string;
+  to: string;
+  id: number;
 };
+
+interface initialTimeEntriesProps {
+  initialTimeEntries: TimeEntryProps[];
+}
