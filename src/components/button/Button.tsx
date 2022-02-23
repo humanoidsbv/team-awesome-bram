@@ -13,10 +13,10 @@ interface ButtonProps {
 
 export const Button = ({
   disabled,
-  icon = false,
+  icon,
   label,
   onClick,
-  secondary = false,
+  secondary,
   type = "button",
 }: ButtonProps) => {
   return (
