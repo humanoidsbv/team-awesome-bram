@@ -8,6 +8,7 @@ import { Input } from "../input/Input";
 import { Modal } from "../modal/Modal";
 
 interface TimeEntryModalProps {
+  duration: string;
   handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: any) => void;
   isModalActive: boolean;
@@ -16,6 +17,7 @@ interface TimeEntryModalProps {
 }
 
 export const TimeEntryModal = ({
+  duration,
   handleChange,
   handleSubmit,
   isModalActive,
@@ -89,7 +91,7 @@ export const TimeEntryModal = ({
               </Styled.TimeInputContainer>
               <Styled.TotalTimeWrapper>
                 <Styled.Label>Total</Styled.Label>
-                <Styled.TotalTime>--:--</Styled.TotalTime>
+                <Styled.TotalTime>{duration}</Styled.TotalTime>
               </Styled.TotalTimeWrapper>
             </Styled.TimeContainer>
           </Styled.DateTimeContainer>

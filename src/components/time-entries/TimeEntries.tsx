@@ -23,12 +23,27 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     year: "2-digit",
   };
 
+  const timestampOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit" };
+
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
+  const [duration, setDuration] = useState("--:--");
 
   useEffect(() => {
     setTimeEntries(initialTimeEntries);
   }, []);
+
+  useEffect(() => {
+    if (newTimeEntry.from && newTimeEntry.to && newTimeEntry.date) {
+      const date = new Date(`${newTimeEntry.date}`).toDateString();
+      const startTime = new Date(date + " " + newTimeEntry.from);
+      const endTime = new Date(date + " " + newTimeEntry.to);
+
+      const durationDate = new Date(endTime.getTime() - startTime.getTime() - 3600000);
+
+      setDuration(durationDate.toLocaleTimeString("nl-NL", timestampOptions));
+    }
+  }, [newTimeEntry.from, newTimeEntry.to, newTimeEntry.date]);
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
@@ -68,7 +83,9 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   return (
     <>
       <Subheader {...{ buttonLabel, buttonCallback, subtitle, title }} />
-      <TimeEntryModal {...{ handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }} />
+      <TimeEntryModal
+        {...{ duration, handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }}
+      />
       <Styled.TimeEntries>
         {timeEntries
           .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))

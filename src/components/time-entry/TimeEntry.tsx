@@ -3,7 +3,7 @@ import { TimeEntryProps } from "../../types/Types";
 
 import TrashBin from "../../../public/images/trash-bin.svg";
 
-export const TimeEntry = ({ id, client, startTimestamp, endTimestamp }: TimeEntryProps) => {
+export const TimeEntry = ({ client, startTimestamp, endTimestamp }: TimeEntryProps) => {
   const startTimestampDate: Date = new Date(startTimestamp);
   const endTimestampDate: Date = new Date(endTimestamp);
 

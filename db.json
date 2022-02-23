@@ -35,6 +35,30 @@
       "client": "Rabobank",
       "startTimestamp": "2022-09-24T10:00:00.000Z",
       "endTimestamp": "2022-09-24T22:00:00.000Z"
+    },
+    {
+      "id": 274.62629275086925,
+      "client": "ABN AMRO",
+      "startTimestamp": "2022-05-21T15:00:00.000Z",
+      "endTimestamp": "2022-05-21T20:15:00.000Z"
+    },
+    {
+      "id": 705.275338536172,
+      "client": "sdfsd",
+      "startTimestamp": "2022-02-20T08:00:00.000Z",
+      "endTimestamp": "2022-02-20T11:00:00.000Z"
+    },
+    {
+      "id": 283.00642598661585,
+      "client": "Jisda",
+      "startTimestamp": "2022-02-09T08:01:00.000Z",
+      "endTimestamp": "2022-02-09T11:00:00.000Z"
+    },
+    {
+      "id": 472.6549348230649,
+      "client": "dasasd",
+      "startTimestamp": "1997-12-02T00:00:00.000Z",
+      "endTimestamp": "1997-12-02T22:23:00.000Z"
     }
   ]
 }
