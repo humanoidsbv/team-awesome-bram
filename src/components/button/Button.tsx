@@ -8,6 +8,7 @@ interface ButtonProps {
   label: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   secondary?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 export const Button = ({
@@ -16,9 +17,10 @@ export const Button = ({
   label,
   onClick,
   secondary = false,
+  type = "button",
 }: ButtonProps) => {
   return (
-    <Styled.Button {...{ disabled, onClick, secondary }}>
+    <Styled.Button {...{ disabled, onClick, secondary, type }}>
       {icon && <PlusIcon />}
       {label}
     </Styled.Button>

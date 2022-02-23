@@ -1,4 +1,5 @@
 import * as Styled from "./TimeEntryModal.styled";
+import { newTimeEntryProps } from "../../types/Types";
 
 import CloseButtonIcon from "../../../public/images/close.svg";
 
@@ -6,12 +7,22 @@ import { Button } from "../button/Button";
 import { Input } from "../input/Input";
 import { Modal } from "../modal/Modal";
 
-interface NewTimeEntryProps {
+interface TimeEntryModalProps {
+  handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
+  // TODO: remove any type
+  handleSubmit: (event: any) => void;
   isModalActive: boolean;
+  newTimeEntry: newTimeEntryProps;
   onClose: () => void;
 }
 
-export const TimeEntryModal = ({ isModalActive, onClose }: NewTimeEntryProps) => {
+export const TimeEntryModal = ({
+  handleChange,
+  handleSubmit,
+  isModalActive,
+  newTimeEntry,
+  onClose,
+}: TimeEntryModalProps) => {
   const buttonLabel = "Add time entry";
   const title = "New time entry";
 
@@ -23,21 +34,58 @@ export const TimeEntryModal = ({ isModalActive, onClose }: NewTimeEntryProps) =>
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>
-      <Styled.Form>
+      <Styled.Form onSubmit={handleSubmit}>
         <Styled.InputContainer>
-          <Input label="Client" inputType="text" />
-          <Input label="Activity" inputType="text" />
+          <Input
+            type="text"
+            value={newTimeEntry.client ?? ""}
+            label="Client"
+            minLength={3}
+            name="client"
+            required
+            onChange={handleChange}
+          />
+          <Input
+            type="text"
+            value={newTimeEntry.activity ?? ""}
+            label="Activity"
+            minLength={3}
+            name="activity"
+            required
+            onChange={handleChange}
+          />
           <Styled.DateTimeContainer>
             <Styled.DateInputWrapper>
-              <Input label="Date" inputType="date" />
+              <Input
+                type="date"
+                value={newTimeEntry.date ?? ""}
+                label="Date"
+                name="date"
+                required
+                onChange={handleChange}
+              />
             </Styled.DateInputWrapper>
             <Styled.TimeContainer>
               <Styled.TimeInputContainer>
                 <Styled.TimeInputWrapper>
-                  <Input label="From" inputType="time" />
+                  <Input
+                    type="time"
+                    value={newTimeEntry.from ?? ""}
+                    label="From"
+                    name="from"
+                    required
+                    onChange={handleChange}
+                  />
                 </Styled.TimeInputWrapper>
                 <Styled.TimeInputWrapper>
-                  <Input label="To" inputType="time" />
+                  <Input
+                    type="time"
+                    value={newTimeEntry.to ?? ""}
+                    label="To"
+                    name="to"
+                    required
+                    onChange={handleChange}
+                  />
                 </Styled.TimeInputWrapper>
               </Styled.TimeInputContainer>
               <Styled.TotalTimeWrapper>
@@ -48,8 +96,8 @@ export const TimeEntryModal = ({ isModalActive, onClose }: NewTimeEntryProps) =>
           </Styled.DateTimeContainer>
         </Styled.InputContainer>
         <Styled.ButtonBar>
-          <Button label={"Cancel"} onClick={onClose} secondary />
-          <Button label={buttonLabel} />
+          <Button label={"Cancel"} onClick={onClose} secondary type="reset" />
+          <Button label={buttonLabel} type="submit" />
         </Styled.ButtonBar>
       </Styled.Form>
     </Modal>

@@ -10,7 +10,6 @@ export const Label = styled.p`
 `;
 
 export const InputField = styled.input<{ isValid: boolean }>`
-  background-color: ${({ isValid }) => (!isValid ? ({ theme }) => theme.redShade300 : "white")};
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.greyShade400};
   box-shadow: none;
@@ -20,4 +19,6 @@ export const InputField = styled.input<{ isValid: boolean }>`
   margin-bottom: 20px;
   padding-left: 15px;
   width: 100%;
+
+  background-color: ${({ isValid }) => (!isValid ? ({ theme }) => theme.redShade300 : "white")};
 `;

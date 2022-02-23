@@ -4,3 +4,11 @@ export type TimeEntryProps = {
   id: number;
   startTimestamp: string;
 };
+
+export type newTimeEntryProps = {
+  activity?: string;
+  client?: string;
+  date?: string;
+  from?: string;
+  to?: string;
+};

@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState, useRef } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import * as Styled from "./TimeEntries.styled";
-import { TimeEntryProps } from "../../types/Types";
+import { newTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
 import { retrieveTimeEntries, timestampToDateString } from "../../services/time-entry-api/";
 import { NotFoundError } from "../../errors/not-found-error/";
@@ -11,6 +11,19 @@ import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
 
 export const TimeEntries = () => {
+  const dateOptionsDisplay: {} = {
+    weekday: "long",
+    day: "numeric",
+    month: "numeric",
+    year: "2-digit",
+  };
+
+  const dateOptionsSort: {} = {
+    day: "numeric",
+    month: "numeric",
+    year: "2-digit",
+  };
+
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
 
   async function fetchTimeEntries() {
@@ -27,30 +40,32 @@ export const TimeEntries = () => {
     fetchTimeEntries();
   }, []);
 
-  function handleClick() {
+  const [newTimeEntry, setNewTimeEntry] = useState<newTimeEntryProps>({});
+
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
+  };
+
+  function handleSubmit(event: Event) {
+    event.preventDefault();
+
+    const date = new Date(`${newTimeEntry.date}`).toDateString();
+    const startTime = new Date(date + " " + newTimeEntry.from);
+    const endTime = new Date(date + " " + newTimeEntry.to);
+
     setTimeEntries([
       ...timeEntries,
       {
-        id: 29138,
-        client: "Belastingdienst",
-        startTimestamp: "2022-09-26T05:00:00.000Z",
-        endTimestamp: "2022-09-26T07:00:00.000Z",
+        id: Math.random() * 1000,
+        client: `${newTimeEntry.client}`,
+        startTimestamp: startTime.toJSON(),
+        endTimestamp: endTime.toJSON(),
       },
     ]);
+
+    setNewTimeEntry({});
+    onClose();
   }
-
-  const dateOptionsDisplay: {} = {
-    weekday: "long",
-    day: "numeric",
-    month: "numeric",
-    year: "2-digit",
-  };
-
-  const dateOptionsSort: {} = {
-    day: "numeric",
-    month: "numeric",
-    year: "2-digit",
-  };
 
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
@@ -64,7 +79,7 @@ export const TimeEntries = () => {
   return (
     <>
       <Subheader {...{ buttonLabel, buttonCallback, isMenuOpen, subtitle, title }} />
-      <TimeEntryModal {...{ isModalActive, onClose }} />
+      <TimeEntryModal {...{ handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }} />
       <Styled.TimeEntries>
         {timeEntries
           .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))
