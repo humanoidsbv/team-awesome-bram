@@ -1,5 +1,5 @@
 import * as Styled from "./TimeEntryModal.styled";
-import { newTimeEntryProps } from "../../types/Types";
+import { NewTimeEntryProps } from "../../types/Types";
 
 import CloseButtonIcon from "../../../public/images/close.svg";
 
@@ -9,10 +9,9 @@ import { Modal } from "../modal/Modal";
 
 interface TimeEntryModalProps {
   handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-  // TODO: remove any type
-  handleSubmit: (event: any) => void;
+  handleSubmit: (event: Event) => void;
   isModalActive: boolean;
-  newTimeEntry: newTimeEntryProps;
+  newTimeEntry: NewTimeEntryProps;
   onClose: () => void;
 }
 
@@ -34,7 +33,7 @@ export const TimeEntryModal = ({
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>
-      <Styled.Form onSubmit={handleSubmit}>
+      <Styled.Form onSubmit={() => handleSubmit}>
         <Styled.InputContainer>
           <Input
             type="text"
@@ -90,7 +89,7 @@ export const TimeEntryModal = ({
               </Styled.TimeInputContainer>
               <Styled.TotalTimeWrapper>
                 <Styled.Label>Total</Styled.Label>
-                <Styled.TotalTime>08:00</Styled.TotalTime>
+                <Styled.TotalTime>--:--</Styled.TotalTime>
               </Styled.TotalTimeWrapper>
             </Styled.TimeContainer>
           </Styled.DateTimeContainer>

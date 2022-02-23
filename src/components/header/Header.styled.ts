@@ -8,9 +8,13 @@ export const Header = styled.div<{ pageOffset: boolean }>`
   gap: 50px;
   height: ${({ theme }) => theme.headerHeight};
   justify-content: space-between;
-  opacity: ${({ pageOffset }) => (pageOffset ? 0.96 : 1)};
+  opacity: 1;
   padding: 0 30px;
   position: fixed;
   width: 100vw;
   z-index: 20;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpointDesktop}) {
+    opacity: ${({ pageOffset }) => (pageOffset ? 0.96 : 1)};
+  }
 `;

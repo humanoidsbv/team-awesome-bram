@@ -1,10 +1,10 @@
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
 
-export const SubheaderBar = styled.div<{ isMenuOpen: boolean }>`
+export const SubheaderBar = styled.div`
   align-items: space-between;
   background-color: white;
   border-bottom: 1px solid #e6eaee;
-  display: ${({ isMenuOpen }) => (isMenuOpen ? "none" : "flex")};
+  display: flex;
   flex-direction: column;
   gap: 20px;
   height: 120px;

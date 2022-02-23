@@ -8,7 +8,7 @@ interface ButtonProps {
   label: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   secondary?: boolean;
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
 }
 
 export const Button = ({

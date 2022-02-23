@@ -1,9 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 
 import * as Styled from "./TimeEntries.styled";
-import { newTimeEntryProps, TimeEntryProps } from "../../types/Types";
+import { NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
-import { retrieveTimeEntries, timestampToDateString } from "../../services/time-entry-api/";
+import {
+  addTimeEntry,
+  retrieveTimeEntries,
+  timestampToDateString,
+} from "../../services/time-entry-api/";
 import { NotFoundError } from "../../errors/not-found-error/";
 
 import { TimeEntryModal } from "../time-entry-modal";
@@ -40,7 +44,7 @@ export const TimeEntries = () => {
     fetchTimeEntries();
   }, []);
 
-  const [newTimeEntry, setNewTimeEntry] = useState<newTimeEntryProps>({});
+  const [newTimeEntry, setNewTimeEntry] = useState<NewTimeEntryProps>({});
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
@@ -53,16 +57,14 @@ export const TimeEntries = () => {
     const startTime = new Date(date + " " + newTimeEntry.from);
     const endTime = new Date(date + " " + newTimeEntry.to);
 
-    setTimeEntries([
-      ...timeEntries,
-      {
-        id: Math.random() * 1000,
-        client: `${newTimeEntry.client}`,
-        startTimestamp: startTime.toJSON(),
-        endTimestamp: endTime.toJSON(),
-      },
-    ]);
+    addTimeEntry({
+      id: Math.random() * 1000,
+      client: `${newTimeEntry.client}`,
+      startTimestamp: startTime.toJSON(),
+      endTimestamp: endTime.toJSON(),
+    });
 
+    fetchTimeEntries();
     setNewTimeEntry({});
     onClose();
   }
@@ -72,13 +74,12 @@ export const TimeEntries = () => {
 
   const buttonCallback = () => setIsModalActive(true);
   const buttonLabel = "New time entry";
-  const isMenuOpen = false;
   const subtitle = "12 Entries";
   const title = "Timesheet";
 
   return (
     <>
-      <Subheader {...{ buttonLabel, buttonCallback, isMenuOpen, subtitle, title }} />
+      <Subheader {...{ buttonLabel, buttonCallback, subtitle, title }} />
       <TimeEntryModal {...{ handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }} />
       <Styled.TimeEntries>
         {timeEntries

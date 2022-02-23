@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const Input = styled.div``;
-
 export const Label = styled.p`
   color: ${({ theme }) => theme.greyShade600};
   font-size: 14px;
