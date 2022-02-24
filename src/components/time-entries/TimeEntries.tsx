@@ -69,7 +69,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   }
 
   const handleDelete = (client: string, id: number) => {
-    if (window.confirm("Are you sure you want to delete the " + client + " entry?")) {
+    if (window.confirm(`Are you sure you want to delete the ${client} entry?`)) {
       setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id != id));
       deleteTimeEntry(id);
     }
