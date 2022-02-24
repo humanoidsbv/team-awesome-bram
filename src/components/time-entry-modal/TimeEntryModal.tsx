@@ -38,54 +38,54 @@ export const TimeEntryModal = ({
       <Styled.Form onSubmit={handleSubmit}>
         <Styled.InputContainer>
           <Input
-            type="text"
-            value={newTimeEntry.client ?? ""}
             label="Client"
             minLength={3}
             name="client"
-            required
             onChange={handleChange}
+            required
+            type="text"
+            value={newTimeEntry.client ?? ""}
           />
           <Input
-            type="text"
-            value={newTimeEntry.activity ?? ""}
             label="Activity"
             minLength={3}
             name="activity"
-            required
             onChange={handleChange}
+            required
+            type="text"
+            value={newTimeEntry.activity ?? ""}
           />
           <Styled.DateTimeContainer>
             <Styled.DateInputWrapper>
               <Input
-                type="date"
-                value={newTimeEntry.date ?? ""}
                 label="Date"
                 name="date"
-                required
                 onChange={handleChange}
+                required
+                type="date"
+                value={newTimeEntry.date ?? ""}
               />
             </Styled.DateInputWrapper>
             <Styled.TimeContainer>
               <Styled.TimeInputContainer>
                 <Styled.TimeInputWrapper>
                   <Input
-                    type="time"
-                    value={newTimeEntry.from ?? ""}
                     label="From"
                     name="from"
-                    required
                     onChange={handleChange}
+                    required
+                    type="time"
+                    value={newTimeEntry.from ?? ""}
                   />
                 </Styled.TimeInputWrapper>
                 <Styled.TimeInputWrapper>
                   <Input
-                    type="time"
-                    value={newTimeEntry.to ?? ""}
                     label="To"
                     name="to"
-                    required
                     onChange={handleChange}
+                    required
+                    type="time"
+                    value={newTimeEntry.to ?? ""}
                   />
                 </Styled.TimeInputWrapper>
               </Styled.TimeInputContainer>

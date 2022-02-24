@@ -12,15 +12,7 @@ interface InputProps {
   value?: string;
 }
 
-export const Input = ({
-  label,
-  minLength,
-  name,
-  onChange,
-  required = false,
-  type,
-  value,
-}: InputProps) => {
+export const Input = ({ label, minLength, name, onChange, required, type, value }: InputProps) => {
   const [isValid, setIsValid] = useState(true);
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
