@@ -35,6 +35,12 @@
       "client": "Rabobank",
       "startTimestamp": "2022-09-24T10:00:00.000Z",
       "endTimestamp": "2022-09-24T22:00:00.000Z"
+    },
+    {
+      "id": 274.62629275086925,
+      "client": "ABN AMRO",
+      "startTimestamp": "2022-05-21T15:00:00.000Z",
+      "endTimestamp": "2022-05-21T20:15:00.000Z"
     }
   ]
 }

@@ -22,6 +22,8 @@ export const defaultTheme = {
   greyShade600: "#7F8FA4",
   greyShade700: "#4B5464",
 
+  headerHeight: "70px",
+
   pagePaddingMobile: "230px",
   pagePaddingTablet: "180px",
 

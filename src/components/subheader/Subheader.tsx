@@ -1,18 +1,24 @@
+import { ReactNode } from "react";
+
 import * as Styled from "./Subheader.styled";
+
 import { Button } from "../button/Button";
 
 interface SubheaderProp {
-  isMenuOpen: boolean;
+  buttonCallback: () => void;
+  buttonLabel: string;
+  subtitle: string;
+  title: string;
 }
 
-export const Subheader = ({ isMenuOpen }: SubheaderProp) => {
+export const Subheader = ({ title, subtitle, buttonLabel, buttonCallback }: SubheaderProp) => {
   return (
-    <Styled.SubheaderBar {...{ isMenuOpen }}>
+    <Styled.SubheaderBar>
       <Styled.Label>
-        <Styled.Title>Timesheets</Styled.Title>
-        <Styled.Counter>12 Entries</Styled.Counter>
+        <Styled.Title>{title}</Styled.Title>
+        <Styled.Subtitle>{subtitle}</Styled.Subtitle>
       </Styled.Label>
-      <Button label="New time entry" icon />
+      <Button label={buttonLabel} icon onClick={buttonCallback} />
     </Styled.SubheaderBar>
   );
 };

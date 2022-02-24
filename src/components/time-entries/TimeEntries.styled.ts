@@ -5,7 +5,7 @@ export const TimeEntries = styled.div`
   flex-direction: column;
 `;
 
-export const TimeEntryHeader = styled.p`
+export const TimeEntryHeader = styled.h2`
   color: ${({ theme }) => theme.greyShade600};
   display: flex;
   flex-direction: row;

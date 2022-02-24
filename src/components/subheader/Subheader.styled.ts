@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
-export const SubheaderBar = styled.div<{ isMenuOpen: boolean }>`
+export const SubheaderBar = styled.div`
   align-items: space-between;
   background-color: white;
   border-bottom: 1px solid #e6eaee;
-  display: ${({ isMenuOpen }) => (isMenuOpen ? "none" : "flex")};
+  display: flex;
   flex-direction: column;
   gap: 20px;
   height: 120px;
   justify-content: center;
+  left: 0;
   padding: 0 20px;
+  position: fixed;
+  top: ${({ theme }) => theme.headerHeight};
+  width: 100vw;
+  z-index: 10;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     align-items: center;
@@ -31,7 +36,7 @@ export const Label = styled.div`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   color: ${({ theme }) => theme.greyShade700};
   flex: 1 0 auto;
   font-size: 18px;
@@ -42,7 +47,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const Counter = styled.p`
+export const Subtitle = styled.h2`
   color: ${({ theme }) => theme.colorSecondary300};
   flex: 1 0 auto;
   font-size: 14px;
