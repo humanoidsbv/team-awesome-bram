@@ -6,7 +6,7 @@ import { calculateDuration } from "../../services/time-entry-api/";
 import TrashBin from "../../../public/images/trash-bin.svg";
 
 interface TimeEntryComponentProps extends TimeEntryProps {
-  handleDelete: (id: number) => void;
+  handleDelete: (client: string, id: number) => void;
 }
 export const TimeEntry = ({
   client,
@@ -38,7 +38,7 @@ export const TimeEntry = ({
           </Styled.TotalHours>
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
-      <Styled.DeleteButton onClick={() => handleDelete(id)}>
+      <Styled.DeleteButton onClick={() => handleDelete(client, id)}>
         <TrashBin />
       </Styled.DeleteButton>
     </Styled.TimeEntryWrapper>

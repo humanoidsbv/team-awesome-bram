@@ -37,7 +37,6 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
       const date = new Date(`${newTimeEntry.date}`).toDateString();
       const startTime = new Date(date + " " + newTimeEntry.from);
       const endTime = new Date(date + " " + newTimeEntry.to);
-
       const durationDate = new Date(endTime.getTime() - startTime.getTime() - 3600000);
 
       setDuration(durationDate.toLocaleTimeString("nl-NL", timestampOptions));
@@ -69,9 +68,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     onClose();
   }
 
-  const handleDelete = (id: number) => {
-    setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id != id));
-    deleteTimeEntry(id);
+  const handleDelete = (client: string, id: number) => {
+    if (window.confirm("Are you sure you want to delete the " + client + " entry?")) {
+      setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id != id));
+      deleteTimeEntry(id);
+    }
   };
 
   const [isModalActive, setIsModalActive] = useState(false);
