@@ -113,6 +113,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
             new Date(-3600000),
           );
 
+          // const currentDay = 0;
+          // const totalDur = timeEntriesDatesArray.reduce((acc, date) => {
+          //   date;
+          // }, 0);
+
           return (
             <Fragment key={timeEntriesDates[i]}>
               <Styled.TimeEntryHeader>
