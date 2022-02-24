@@ -3,21 +3,19 @@ import React, { Fragment, useEffect, useState } from "react";
 import * as Styled from "./TimeEntries.styled";
 import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
-import { addTimeEntry, timestampToDateString } from "../../services/time-entry-api/";
+import {
+  addTimeEntry,
+  calculateDuration,
+  timestampToDateString,
+} from "../../services/time-entry-api/";
 
 import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
 
 export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => {
-  const dateOptionsDisplay: {} = {
+  const dateOptions: {} = {
     weekday: "long",
-    day: "numeric",
-    month: "numeric",
-    year: "2-digit",
-  };
-
-  const dateOptionsSort: {} = {
     day: "numeric",
     month: "numeric",
     year: "2-digit",
@@ -63,8 +61,6 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
       endTimestamp: endTime.toJSON(),
     };
 
-    console.log(formattedNewTimeEntry);
-
     addTimeEntry(formattedNewTimeEntry);
     setTimeEntries([...timeEntries, formattedNewTimeEntry]);
 
@@ -77,9 +73,25 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   const buttonCallback = () => setIsModalActive(true);
   const buttonLabel = "New time entry";
-  const subtitle = "12 Entries";
+  const subtitle = timeEntries.length + " Entries";
   const title = "Timesheet";
 
+  const timeEntriesDates = Array.from(
+    timeEntries.reduce(
+      (dates, timeEntry) => dates.add(timestampToDateString(timeEntry.startTimestamp, dateOptions)),
+      new Set(),
+    ),
+  ) as string[];
+
+  console.log(timeEntriesDates);
+
+  const timeEntriesDatesArray = timeEntriesDates.map((timeEntryDate) =>
+    timeEntries.filter(
+      (timeEntry) => timestampToDateString(timeEntry.startTimestamp, dateOptions) == timeEntryDate,
+    ),
+  );
+
+  console.log(timeEntriesDatesArray);
   return (
     <>
       <Subheader {...{ buttonLabel, buttonCallback, subtitle, title }} />
@@ -87,30 +99,36 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
         {...{ duration, handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }}
       />
       <Styled.TimeEntries>
-        {timeEntries
-          .sort((a, b) => (new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1))
-          .map((timeEntry, i, entries) => {
-            const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
+        {timeEntriesDatesArray.map((timeEntries, i) => {
+          const timeEntriesDuration = timeEntries.map(
+            (timeEntry) =>
+              new Date(
+                calculateDuration(timeEntry.startTimestamp, timeEntry.endTimestamp)[0].getTime(),
+              ),
+          );
 
-            const isDateDifferent =
-              i > 0
-                ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) <
-                  currentDate
-                : true;
+          const totalDuration = timeEntriesDuration.reduce(
+            (previousValue, currentValue) =>
+              new Date(previousValue.getTime() + currentValue.getTime() + 3600000),
+            new Date(-3600000),
+          );
 
-            return (
-              <Fragment key={timeEntry.id}>
-                {isDateDifferent && (
-                  <Styled.TimeEntryHeader>
-                    {timestampToDateString(timeEntry.startTimestamp, dateOptionsDisplay)}
-                  </Styled.TimeEntryHeader>
-                )}
-                <Styled.TimeEntryContainer>
+          return (
+            <Fragment key={timeEntriesDates[i]}>
+              <Styled.TimeEntryHeader>
+                <Styled.Date>{timeEntriesDates[i]}</Styled.Date>
+                <Styled.Duration>
+                  {totalDuration.toLocaleTimeString("nl-NL", timestampOptions)}
+                </Styled.Duration>
+              </Styled.TimeEntryHeader>
+              <Styled.TimeEntryContainer>
+                {timeEntries.map((timeEntry) => (
                   <TimeEntry {...timeEntry} />
-                </Styled.TimeEntryContainer>
-              </Fragment>
-            );
-          })}
+                ))}
+              </Styled.TimeEntryContainer>
+            </Fragment>
+          );
+        })}
       </Styled.TimeEntries>
     </>
   );

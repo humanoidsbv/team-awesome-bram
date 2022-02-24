@@ -34,34 +34,3 @@ export const Modal = styled.dialog`
     position: relative;
   }
 `;
-
-export const TitleBar = styled.div`
-  align-items: baseline;
-  display: flex;
-  font-size: 18px;
-  justify-content: space-between;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
-    font-size: 24px;
-  }
-`;
-
-export const Title = styled.h2`
-  color: ${({ theme }) => theme.greyShade600};
-`;
-
-export const CloseButton = styled.button`
-  background-color: white;
-  border: 0;
-`;
-
-export const ButtonBar = styled.div`
-  display: flex;
-  gap: 30px;
-  justify-content: space-between;
-  margin-top: auto;
-
-  button {
-    width: 100%;
-  }
-`;
