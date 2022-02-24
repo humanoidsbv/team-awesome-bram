@@ -6,6 +6,7 @@ import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../.
 import {
   addTimeEntry,
   calculateDuration,
+  deleteTimeEntry,
   timestampToDateString,
 } from "../../services/time-entry-api/";
 
@@ -68,6 +69,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     onClose();
   }
 
+  const handleDelete = (id: number) => {
+    setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id != id));
+    deleteTimeEntry(id);
+  };
+
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
 
@@ -83,15 +89,12 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     ),
   ) as string[];
 
-  console.log(timeEntriesDates);
-
   const timeEntriesDatesArray = timeEntriesDates.map((timeEntryDate) =>
     timeEntries.filter(
       (timeEntry) => timestampToDateString(timeEntry.startTimestamp, dateOptions) == timeEntryDate,
     ),
   );
 
-  console.log(timeEntriesDatesArray);
   return (
     <>
       <Subheader {...{ buttonLabel, buttonCallback, subtitle, title }} />
@@ -113,11 +116,6 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
             new Date(-3600000),
           );
 
-          // const currentDay = 0;
-          // const totalDur = timeEntriesDatesArray.reduce((acc, date) => {
-          //   date;
-          // }, 0);
-
           return (
             <Fragment key={timeEntriesDates[i]}>
               <Styled.TimeEntryHeader>
@@ -128,7 +126,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
               </Styled.TimeEntryHeader>
               <Styled.TimeEntryContainer>
                 {timeEntries.map((timeEntry) => (
-                  <TimeEntry {...timeEntry} />
+                  <TimeEntry {...timeEntry} handleDelete={handleDelete} />
                 ))}
               </Styled.TimeEntryContainer>
             </Fragment>

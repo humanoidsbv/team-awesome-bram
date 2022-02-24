@@ -5,7 +5,16 @@ import { calculateDuration } from "../../services/time-entry-api/";
 
 import TrashBin from "../../../public/images/trash-bin.svg";
 
-export const TimeEntry = ({ client, startTimestamp, endTimestamp }: TimeEntryProps) => {
+interface TimeEntryComponentProps extends TimeEntryProps {
+  handleDelete: (id: number) => void;
+}
+export const TimeEntry = ({
+  client,
+  endTimestamp,
+  id,
+  startTimestamp,
+  handleDelete,
+}: TimeEntryComponentProps) => {
   const [duration, startTimestampDate, endTimestampDate] = calculateDuration(
     startTimestamp,
     endTimestamp,
@@ -29,7 +38,7 @@ export const TimeEntry = ({ client, startTimestamp, endTimestamp }: TimeEntryPro
           </Styled.TotalHours>
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
-      <Styled.DeleteButton>
+      <Styled.DeleteButton onClick={() => handleDelete(id)}>
         <TrashBin />
       </Styled.DeleteButton>
     </Styled.TimeEntryWrapper>
