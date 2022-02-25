@@ -1,7 +1,7 @@
 import * as Styled from "./TimeEntry.styled";
 import { TimeEntryProps } from "../../types/Types";
 
-import { calculateDuration } from "../../services/time-entry-api/";
+import { calculateDuration } from "../../helpers/time-entry-helpers/calculate-duration";
 
 import TrashBin from "../../../public/images/trash-bin.svg";
 

@@ -3,12 +3,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import * as Styled from "./TimeEntries.styled";
 import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
-import {
-  addTimeEntry,
-  calculateDuration,
-  deleteTimeEntry,
-  timestampToDateString,
-} from "../../services/time-entry-api/";
+import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api/";
+import { calculateDuration, timestampToDateString } from "../../helpers/time-entry-helpers";
 
 import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
@@ -78,11 +74,6 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
 
-  const buttonCallback = () => setIsModalActive(true);
-  const buttonLabel = "New time entry";
-  const subtitle = timeEntries.length + " Entries";
-  const title = "Timesheet";
-
   const timeEntriesDates = Array.from(
     timeEntries.reduce(
       (dates, timeEntry) => dates.add(timestampToDateString(timeEntry.startTimestamp, dateOptions)),
@@ -98,7 +89,12 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   return (
     <>
-      <Subheader {...{ buttonLabel, buttonCallback, subtitle, title }} />
+      <Subheader
+        buttonLabel="New time entry"
+        buttonCallback={() => setIsModalActive(true)}
+        subtitle={`${timeEntries.length}  Entries`}
+        title="Timesheets"
+      />
       <TimeEntryModal
         {...{ duration, handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }}
       />
