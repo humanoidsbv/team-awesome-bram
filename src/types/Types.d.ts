@@ -5,10 +5,6 @@ export type TimeEntryProps = {
   startTimestamp: string;
 };
 
-export interface TimeEntryComponentProps extends TimeEntryProps {
-  handleDelete: (id: number) => void;
-}
-
 export type NewTimeEntryProps = {
   activity: string;
   client: string;

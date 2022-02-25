@@ -35,24 +35,6 @@
       "client": "ASML",
       "startTimestamp": "2022-09-24T06:00:00.000Z",
       "endTimestamp": "2022-09-24T12:00:00.000Z"
-    },
-    {
-      "id": 2332111,
-      "client": "Rabobank",
-      "startTimestamp": "2022-09-24T10:00:00.000Z",
-      "endTimestamp": "2022-09-24T22:00:00.000Z"
-    },
-    {
-      "id": 21121121229,
-      "client": "ASML",
-      "startTimestamp": "2022-09-24T06:00:00.000Z",
-      "endTimestamp": "2022-09-24T12:00:00.000Z"
-    },
-    {
-      "id": 23321212111,
-      "client": "Rabobank",
-      "startTimestamp": "2022-09-24T10:00:00.000Z",
-      "endTimestamp": "2022-09-24T22:00:00.000Z"
     }
   ]
 }
