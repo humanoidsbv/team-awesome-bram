@@ -18,6 +18,12 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     year: "2-digit",
   };
 
+  const dateOptionsSort: {} = {
+    day: "numeric",
+    month: "numeric",
+    year: "2-digit",
+  };
+
   const timestampOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit" };
 
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
@@ -74,11 +80,38 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
 
-   const sortedTimeEntries = timeEntries.sort((a, b) =>
+  const sortedTimeEntries = timeEntries.sort((a, b) =>
     new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1,
   );
 
-  const timeEntriesDuration = sortedTimeEntries.reduce((previousEntry, currentEntry) => , new Date(0));
+  let totalDuration = new Date(-3600000);
+
+  const totalDurationsPerDate = sortedTimeEntries
+    .map((timeEntry, i, entries) => {
+      const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
+
+      const isDateDifferent =
+        i < entries.length - 1
+          ? timestampToDateString(entries[i + 1].startTimestamp, dateOptionsSort) > currentDate
+          : true;
+
+      const currentDuration = calculateDuration(
+        timeEntry.startTimestamp,
+        timeEntry.endTimestamp,
+      )[0];
+
+      totalDuration = new Date(totalDuration.getTime() + currentDuration.getTime() + 3600000);
+
+      if (isDateDifferent) {
+        const totalDurationOfThisDate = totalDuration;
+        totalDuration = new Date(-3600000);
+
+        return totalDurationOfThisDate.toLocaleTimeString("nl-NL", timestampOptions);
+      } else {
+        return "";
+      }
+    })
+    .filter((timeEntryDuration) => timeEntryDuration != "");
 
   return (
     <>
@@ -93,11 +126,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
       />
       <Styled.TimeEntries>
         {sortedTimeEntries.map((timeEntry, i, entries) => {
-          const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptions);
+          const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
 
           const isDateDifferent =
             i > 0
-              ? timestampToDateString(entries[i - 1].startTimestamp, dateOptions) < currentDate
+              ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) < currentDate
               : true;
 
           return (
@@ -107,6 +140,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
                   <Styled.Date>
                     {timestampToDateString(timeEntry.startTimestamp, dateOptions)}
                   </Styled.Date>
+                  <Styled.Duration>{totalDurationsPerDate.shift()}</Styled.Duration>
                 </Styled.TimeEntryHeader>
               )}
               <Styled.TimeEntryContainer>
