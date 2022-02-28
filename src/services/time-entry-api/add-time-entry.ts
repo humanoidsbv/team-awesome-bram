@@ -1,7 +1,7 @@
 import { TimeEntryProps } from "../../types/Types";
 import { NotFoundError } from "../../errors/not-found-error";
 
-export const addTimeEntry = async (newTimeEntry: TimeEntryProps) => {
+export const addTimeEntry = async (newTimeEntry: Partial<TimeEntryProps>) => {
   return fetch("http://localhost:3004/time-entries", {
     method: "POST",
     headers: {

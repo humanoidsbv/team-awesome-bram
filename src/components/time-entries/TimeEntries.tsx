@@ -24,6 +24,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     year: "2-digit",
   };
 
+  const timezoneOffset = new Date().getTimezoneOffset() * 60000;
   const timestampOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit" };
 
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
@@ -39,7 +40,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
       const date = new Date(`${newTimeEntry.date}`).toDateString();
       const startTime = new Date(`${date} ${newTimeEntry.from}`);
       const endTime = new Date(`${date} ${newTimeEntry.to}`);
-      const durationDate = new Date(endTime.getTime() - startTime.getTime() - 3600000);
+      const durationDate = new Date(endTime.getTime() - startTime.getTime() + timezoneOffset);
 
       setDuration(durationDate.toLocaleTimeString("nl-NL", timestampOptions));
     }
@@ -49,7 +50,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
   };
 
-  function handleSubmit(event: Event) {
+  const handleSubmit = async (event: Event) => {
     event.preventDefault();
 
     const date = new Date(`${newTimeEntry.date}`).toDateString();
@@ -62,12 +63,12 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
       endTimestamp: endTime.toJSON(),
     };
 
-    addTimeEntry(formattedNewTimeEntry);
-    setTimeEntries([...timeEntries, formattedNewTimeEntry]);
+    const addedTimeEntry = await addTimeEntry(formattedNewTimeEntry);
+    if (addedTimeEntry) setTimeEntries([...timeEntries, addedTimeEntry]);
 
     setNewTimeEntry({});
     onClose();
-  }
+  };
 
   const handleDelete = (client: string, id: number) => {
     if (window.confirm(`Are you sure you want to delete the ${client} entry?`)) {
@@ -79,11 +80,12 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
 
-  const sortedTimeEntries = timeEntries.sort((a, b) =>
-    new Date(a.startTimestamp) < new Date(b.startTimestamp) ? -1 : 1,
+  const sortedTimeEntries = timeEntries.sort(
+    (a, b) =>
+      new Date(a.startTimestamp).getTime() - new Date(b.startTimestamp).getTime() + timezoneOffset,
   );
 
-  let totalDuration = new Date(-3600000);
+  let totalDuration = new Date(timezoneOffset);
 
   const totalDurationPerDate = sortedTimeEntries
     .map((timeEntry, i, entries) => {
@@ -99,11 +101,13 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
         timeEntry.endTimestamp,
       )[0];
 
-      totalDuration = new Date(totalDuration.getTime() + currentDuration.getTime() + 3600000);
+      totalDuration = new Date(
+        totalDuration.getTime() + currentDuration.getTime() - timezoneOffset,
+      );
 
       if (isDateDifferent) {
         const totalDurationOfThisDate = totalDuration;
-        totalDuration = new Date(-3600000);
+        totalDuration = new Date(timezoneOffset);
 
         return totalDurationOfThisDate.toLocaleTimeString("nl-NL", timestampOptions);
       } else {
@@ -129,7 +133,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
           const isDateDifferent =
             i > 0
-              ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) < currentDate
+              ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) != currentDate
               : true;
 
           return (
