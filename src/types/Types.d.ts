@@ -10,8 +10,8 @@ export type NewTimeEntryProps = {
   client: string;
   date: string;
   from: string;
-  to: string;
   id: number;
+  to: string;
 };
 
 interface initialTimeEntriesProps {

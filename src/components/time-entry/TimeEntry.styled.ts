@@ -25,12 +25,14 @@ export const DeleteButton = styled.button`
   flex: 0 0 auto;
   height: 100%;
   width: 40px;
+  svg {
+    transition: fill 0.2s;
+  }
 
   :hover {
-    border: 1px dashed rgba(0, 0, 0, 0.2);
-
     svg {
       fill: ${({ theme }) => theme.redShade300};
+      font-size: 50px;
     }
   }
 `;

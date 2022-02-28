@@ -1,20 +1,29 @@
 import * as Styled from "./TimeEntry.styled";
 import { TimeEntryProps } from "../../types/Types";
 
+import { calculateDuration } from "../../helpers/time-entry-helpers";
+
 import TrashBin from "../../../public/images/trash-bin.svg";
 
-export const TimeEntry = ({ client, startTimestamp, endTimestamp }: TimeEntryProps) => {
-  const startTimestampDate: Date = new Date(startTimestamp);
-  const endTimestampDate: Date = new Date(endTimestamp);
+interface TimeEntryComponentProps extends TimeEntryProps {
+  handleDelete: (client: string, id: number) => void;
+}
+export const TimeEntry = ({
+  client,
+  endTimestamp,
+  id,
+  startTimestamp,
+  handleDelete,
+}: TimeEntryComponentProps) => {
+  const [duration, startTimestampDate, endTimestampDate] = calculateDuration(
+    startTimestamp,
+    endTimestamp,
+  );
 
   const timestampOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit" };
 
   const formattedStartTimestamp = startTimestampDate.toLocaleTimeString("nl-NL", timestampOptions);
   const formattedEndTimestamp = endTimestampDate.toLocaleTimeString("nl-NL", timestampOptions);
-
-  const duration: Date = new Date(
-    endTimestampDate.getTime() - startTimestampDate.getTime() - 3600000,
-  );
 
   return (
     <Styled.TimeEntryWrapper>
@@ -29,7 +38,7 @@ export const TimeEntry = ({ client, startTimestamp, endTimestamp }: TimeEntryPro
           </Styled.TotalHours>
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
-      <Styled.DeleteButton>
+      <Styled.DeleteButton onClick={() => handleDelete(client, id)}>
         <TrashBin />
       </Styled.DeleteButton>
     </Styled.TimeEntryWrapper>

@@ -1,13 +1,9 @@
 import { TimeEntryProps } from "../../types/Types";
 import { NotFoundError } from "../../errors/not-found-error";
 
-export const addTimeEntry = async (newTimeEntry: Partial<TimeEntryProps>) => {
-  return fetch("http://localhost:3004/time-entries", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newTimeEntry),
+export const deleteTimeEntry = async (id: number) => {
+  return fetch(`http://localhost:3004/time-entries/${id}`, {
+    method: "DELETE",
   })
     .then((response) => {
       if (response.status === 404) {
