@@ -1,7 +1,7 @@
 export type TimeEntryProps = {
   client: string;
   endTimestamp: string;
-  id: number;
+  id?: number;
   startTimestamp: string;
 };
 

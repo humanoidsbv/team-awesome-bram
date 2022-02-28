@@ -11,14 +11,14 @@ import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
 
 export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => {
-  const dateOptions: {} = {
+  const dateOptions = {
     weekday: "long",
     day: "numeric",
     month: "numeric",
     year: "2-digit",
   };
 
-  const dateOptionsSort: {} = {
+  const dateOptionsSort = {
     day: "numeric",
     month: "numeric",
     year: "2-digit",
@@ -57,7 +57,6 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     const endTime = new Date(`${date}  ${newTimeEntry.to}`);
 
     const formattedNewTimeEntry = {
-      id: Math.random() * 1000,
       client: `${newTimeEntry.client}`,
       startTimestamp: startTime.toJSON(),
       endTimestamp: endTime.toJSON(),
