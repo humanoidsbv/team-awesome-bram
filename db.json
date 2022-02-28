@@ -41,6 +41,12 @@
       "client": "ASML",
       "startTimestamp": "2022-09-24T06:00:00.000Z",
       "endTimestamp": "2022-09-24T12:00:00.000Z"
+    },
+    {
+      "id": 237.06859083961652,
+      "client": "Peugeot",
+      "startTimestamp": "2022-09-29T10:30:00.000Z",
+      "endTimestamp": "2022-09-29T16:45:00.000Z"
     }
   ]
 }

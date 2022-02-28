@@ -37,8 +37,8 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   useEffect(() => {
     if (newTimeEntry.from && newTimeEntry.to && newTimeEntry.date) {
       const date = new Date(`${newTimeEntry.date}`).toDateString();
-      const startTime = new Date(date + " " + newTimeEntry.from);
-      const endTime = new Date(date + " " + newTimeEntry.to);
+      const startTime = new Date(`${date} ${newTimeEntry.from}`);
+      const endTime = new Date(`${date} ${newTimeEntry.to}`);
       const durationDate = new Date(endTime.getTime() - startTime.getTime() - 3600000);
 
       setDuration(durationDate.toLocaleTimeString("nl-NL", timestampOptions));
@@ -86,7 +86,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   let totalDuration = new Date(-3600000);
 
-  const totalDurationsPerDate = sortedTimeEntries
+  const totalDurationPerDate = sortedTimeEntries
     .map((timeEntry, i, entries) => {
       const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
 
@@ -140,7 +140,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
                   <Styled.Date>
                     {timestampToDateString(timeEntry.startTimestamp, dateOptions)}
                   </Styled.Date>
-                  <Styled.Duration>{totalDurationsPerDate.shift()}</Styled.Duration>
+                  <Styled.Duration>{totalDurationPerDate.shift()}</Styled.Duration>
                 </Styled.TimeEntryHeader>
               )}
               <Styled.TimeEntryContainer>
