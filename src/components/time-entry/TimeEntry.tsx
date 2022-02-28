@@ -1,7 +1,7 @@
 import * as Styled from "./TimeEntry.styled";
 import { TimeEntryProps } from "../../types/Types";
 
-import { calculateDuration } from "../../helpers/time-entry-helpers";
+import { calculateDuration, formatDuration } from "../../helpers/time-entry-helpers";
 
 import TrashBin from "../../../public/images/trash-bin.svg";
 
@@ -33,9 +33,7 @@ export const TimeEntry = ({
           <Styled.Hours>
             {formattedStartTimestamp} - {formattedEndTimestamp}
           </Styled.Hours>
-          <Styled.TotalHours>
-            {duration.toLocaleTimeString("nl-NL", timestampOptions)}
-          </Styled.TotalHours>
+          <Styled.TotalHours>{formatDuration(duration.getTime())}</Styled.TotalHours>
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
       <Styled.DeleteButton onClick={() => handleDelete(client, id)}>

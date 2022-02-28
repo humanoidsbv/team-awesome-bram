@@ -49,12 +49,6 @@
       "endTimestamp": "2022-09-29T16:45:00.000Z"
     },
     {
-      "client": "ING",
-      "startTimestamp": "2022-09-10T08:10:00.000Z",
-      "endTimestamp": "2022-09-10T08:50:00.000Z",
-      "id": 9302126
-    },
-    {
       "client": "Bic",
       "startTimestamp": "2022-09-27T10:40:00.000Z",
       "endTimestamp": "2022-09-27T17:00:00.000Z",
@@ -83,6 +77,18 @@
       "startTimestamp": "2022-09-29T22:20:00.000Z",
       "endTimestamp": "2022-09-30T17:00:00.000Z",
       "id": 9302131
+    },
+    {
+      "client": "Mepal",
+      "startTimestamp": "2022-09-27T06:00:00.000Z",
+      "endTimestamp": "2022-09-27T17:00:00.000Z",
+      "id": 9302132
+    },
+    {
+      "client": "ING",
+      "startTimestamp": "2022-09-20T07:00:00.000Z",
+      "endTimestamp": "2022-09-20T10:00:00.000Z",
+      "id": 9302133
     }
   ]
 }
