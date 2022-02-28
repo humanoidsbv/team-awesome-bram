@@ -28,9 +28,6 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     year: "2-digit",
   };
 
-  const timezoneOffset = new Date().getTimezoneOffset() * 60000;
-  const timestampOptions: Intl.DateTimeFormatOptions = { hour: "2-digit", minute: "2-digit" };
-
   const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
@@ -84,7 +81,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
 
-  const getDurationByDay = (date: Date, timeEntries: TimeEntryProps[]) => {
+  const getDurationByDay = (date: string, timeEntries: TimeEntryProps[]) => {
     const duration = new Date(
       timeEntries
         .filter(
@@ -133,7 +130,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
                       {timestampToDateString(timeEntry.startTimestamp, dateOptions)}
                     </Styled.Date>
                     <Styled.Duration>
-                      {getDurationByDay(new Date(timeEntry.startTimestamp), timeEntries)}
+                      {getDurationByDay(timeEntry.startTimestamp, timeEntries)}
                     </Styled.Duration>
                   </Styled.TimeEntryHeader>
                 )}

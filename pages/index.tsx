@@ -1,5 +1,7 @@
 import { ThemeProvider } from "styled-components";
 
+import { StoreProvider } from "../src/providers";
+
 import GlobalStyle from "../styles/global";
 import { defaultTheme } from "../styles/theme";
 import { initialTimeEntriesProps } from "../src/types/Types";
@@ -13,7 +15,7 @@ import { retrieveTimeEntries } from "../src/services/time-entry-api";
 
 export const Homepage = ({ initialTimeEntries }: initialTimeEntriesProps) => {
   return (
-    <>
+    <StoreProvider>
       <GlobalStyle />
       <ThemeProvider theme={defaultTheme}>
         <Header />
@@ -21,7 +23,7 @@ export const Homepage = ({ initialTimeEntries }: initialTimeEntriesProps) => {
           <TimeEntries {...{ initialTimeEntries }} />
         </PageContainer>
       </ThemeProvider>
-    </>
+    </StoreProvider>
   );
 };
 

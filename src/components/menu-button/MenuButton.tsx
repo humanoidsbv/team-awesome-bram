@@ -1,13 +1,20 @@
+import { useContext } from "react";
+
+import { StoreContext } from "../../providers/storeProvider";
+
 import * as Styled from "./MenuButton.styled";
+
 import CrossIcon from "../../../public/images/close.svg";
 import HamburgerIcon from "../../../public/images/hamburger.svg";
 
 interface MenuButtonProps {
-  isMenuOpen: boolean;
   toggleMenu: () => void;
 }
 
-export const MenuButton = ({ isMenuOpen, toggleMenu }: MenuButtonProps) => {
+export const MenuButton = ({ toggleMenu }: MenuButtonProps) => {
+  const state = useContext(StoreContext);
+  const [isMenuOpen] = state.isMenuOpen;
+
   const icon = isMenuOpen ? <CrossIcon fill="#fff" width="14px" /> : <HamburgerIcon />;
 
   return <Styled.MenuButton onClick={toggleMenu}>{icon}</Styled.MenuButton>;

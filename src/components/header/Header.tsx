@@ -1,6 +1,8 @@
-import * as Styled from "./Header.styled";
+import { useContext, useEffect, useState } from "react";
 
-import { useEffect, useState } from "react";
+import { StoreContext } from "../../providers/storeProvider";
+
+import * as Styled from "./Header.styled";
 
 import { Navigation } from "../navigation";
 import { Logo } from "../logo";
@@ -8,7 +10,9 @@ import { MenuButton } from "../menu-button";
 import { Profile } from "../profile";
 
 export const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const state = useContext(StoreContext);
+  const [isMenuOpen, setIsMenuOpen] = state.isMenuOpen;
+
   const [pageOffset, setPageOffset] = useState(false);
 
   const userPictureSrc: string = "images/amijs.jpg";
@@ -28,9 +32,9 @@ export const Header = () => {
   return (
     <Styled.Header {...{ pageOffset }}>
       <Logo />
-      <Navigation {...{ isMenuOpen }} />
+      <Navigation />
       <Profile {...{ userPictureSrc }} />
-      <MenuButton {...{ isMenuOpen, toggleMenu }} />
+      <MenuButton {...{ toggleMenu }} />
     </Styled.Header>
   );
 };
