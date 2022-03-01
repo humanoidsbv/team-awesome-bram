@@ -1,4 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
+
+import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
 import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
@@ -28,7 +30,9 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     year: "2-digit",
   };
 
-  const [timeEntries, setTimeEntries] = useState<TimeEntryProps[]>([]);
+  const state = useContext(StoreContext);
+  const [timeEntries, setTimeEntries] = state.timeEntries;
+
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
 

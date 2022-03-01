@@ -11,9 +11,9 @@ interface TimeEntryComponentProps extends TimeEntryProps {
 export const TimeEntry = ({
   client,
   endTimestamp,
+  handleDelete,
   id,
   startTimestamp,
-  handleDelete,
 }: TimeEntryComponentProps) => {
   const [duration, startTimestampDate, endTimestampDate] = calculateDuration(
     startTimestamp,
