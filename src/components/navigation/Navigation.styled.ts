@@ -69,12 +69,15 @@ export const UnorderList = styled.ul`
   }
 `;
 
-export const Link = styled.a`
-  border-radius: 3px;
+export const Link = styled.a<{ pathName: string; currentPathName: string }>`
+  border-radius: 3px 3px
+    ${({ pathName, currentPathName }) => (pathName == currentPathName ? "0 0" : "3px")};
   color: white;
   font-size: 24px;
   padding: 5px;
   text-decoration: none;
+  border-bottom: ${({ pathName, currentPathName }) =>
+    pathName == currentPathName ? "2px solid white" : "none"};
 
   :hover {
     background-color: ${({ theme }) => theme.blueShade500};

@@ -1,4 +1,5 @@
 import * as Styled from "./TimeEntryModal.styled";
+
 import { NewTimeEntryProps } from "../../types/Types";
 
 import CloseButtonIcon from "../../../public/images/close.svg";
@@ -24,13 +25,10 @@ export const TimeEntryModal = ({
   newTimeEntry,
   onClose,
 }: TimeEntryModalProps) => {
-  const buttonLabel = "Add time entry";
-  const title = "New time entry";
-
   return (
     <Modal {...{ isModalActive, onClose }}>
       <Styled.TitleBar>
-        <Styled.Title>{title}</Styled.Title>
+        <Styled.Title>New time entry</Styled.Title>
         <Styled.CloseButton onClick={onClose}>
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
@@ -98,7 +96,7 @@ export const TimeEntryModal = ({
         </Styled.InputContainer>
         <Styled.ButtonBar>
           <Button label={"Cancel"} onClick={onClose} secondary type="reset" />
-          <Button label={buttonLabel} type="submit" />
+          <Button label="Add time entry" type="submit" />
         </Styled.ButtonBar>
       </Styled.Form>
     </Modal>

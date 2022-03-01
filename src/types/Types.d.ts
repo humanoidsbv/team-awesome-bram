@@ -14,6 +14,22 @@ export type NewTimeEntryProps = {
   to: string;
 };
 
-interface initialTimeEntriesProps {
+export interface initialTimeEntriesProps {
   initialTimeEntries: TimeEntryProps[];
+}
+
+export type TeamMemberProps = {
+  avatar: string;
+  emailAddress: string;
+  employer: string;
+  firstName: string;
+  id?: number;
+  label: string;
+  lastName: string;
+  role: string;
+  startingDate: string;
+};
+
+export interface initialTeamMembersProps {
+  initialTeamMembers: TeamMemberProps[];
 }

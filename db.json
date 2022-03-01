@@ -90,5 +90,51 @@
       "endTimestamp": "2022-09-20T10:00:00.000Z",
       "id": 9302133
     }
+  ],
+  "team-members": [
+    {
+      "firstName": "Kees",
+      "lastName": "de Jager",
+      "role": "Fron-end Developer",
+      "employer": "ING",
+      "startingDate": "2022-02-01",
+      "id": 19028018
+    },
+    {
+      "firstName": "Barry",
+      "lastName": "de Wit",
+      "role": "Fron-end Developer",
+      "employer": "ABN Amro",
+      "startingDate": "2022-03-01",
+      "id": 2111212
+    },
+    {
+      "firstName": "Henk",
+      "lastName": "de Visser",
+      "role": "Fron-end Developer",
+      "employer": "Rabobank",
+      "startingDate": "2022-05-01",
+      "id": 221122121
+    },
+    {
+      "firstName": "Firstasddas",
+      "lastName": "Lastsadads",
+      "emailAddress": "test@test.comdsadas",
+      "label": "asdsaddas",
+      "employer": "Test Employerdsadas",
+      "role": "Nothingsdadas",
+      "startingDate": "2022-09-01",
+      "id": 221122122
+    },
+    {
+      "firstName": "Bram",
+      "lastName": "Brink",
+      "emailAddress": "bram@brink.email",
+      "label": "test",
+      "employer": "Humanoids",
+      "role": "Trainee",
+      "startingDate": "2022-01-01",
+      "id": 221122123
+    }
   ]
 }
