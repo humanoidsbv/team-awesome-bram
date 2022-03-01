@@ -98,7 +98,7 @@ export const TeamMemberModal = ({
             onChange={handleChange}
             required
             type="date"
-            value={newTeamMember.startingDate ?? "lo"}
+            value={newTeamMember.startingDate ?? ""}
           />
         </Styled.InputContainer>
         <Styled.ButtonBar>
