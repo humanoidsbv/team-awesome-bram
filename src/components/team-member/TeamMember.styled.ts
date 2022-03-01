@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const TeamMember = styled.div`
   background-color: white;
-  border: 1px solid ${({ theme }) => theme.greyShade300};
   border-left: 4px solid ${({ theme }) => theme.blueShade300};
   border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.greyShade300};
   display: flex;
   flex-direction: column;
   height: 160px;
@@ -32,7 +32,11 @@ export const Wrapper = styled.div<{ width: string; alignRight?: true }>`
   flex-direction: column;
   justify-content: center;
   width: ${({ width }) => width};
-  text-align: ${({ alignRight }) => (alignRight ? "right" : "left")};
+  text-align: left;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpointDesktop}) {
+    text-align: ${({ alignRight }) => (alignRight ? "right" : "left")};
+  }
 `;
 
 export const Avatar = styled.img`
@@ -51,6 +55,7 @@ export const Label = styled.label`
   color: ${({ theme }) => theme.greyShade500};
   font-size: 14px;
 `;
+
 export const Employment = styled.div`
   display: flex;
   gap: 40px;

@@ -43,30 +43,6 @@ export const Form = styled.form`
   justify-content: space-between;
 `;
 
-export const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-export const Label = styled.p`
-  color: ${({ theme }) => theme.greyShade600};
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 10px;
-`;
-
-export const Input = styled.input<{ moreHeight?: true }>`
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.greyShade400};
-  box-shadow: none;
-  flex: 1 0 auto;
-  font-size: 14px;
-  height: ${({ moreHeight }) => (moreHeight ? "70px" : "40px")};
-  padding-left: 15px;
-  width: 100%;
-`;
-
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -89,5 +65,9 @@ export const ButtonBar = styled.div`
 
   button {
     width: 100%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
+    margin-top: 40px;
   }
 `;

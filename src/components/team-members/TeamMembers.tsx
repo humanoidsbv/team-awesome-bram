@@ -11,8 +11,7 @@ import { TeamMemberModal } from "../team-member-modal";
 
 export const TeamMembers = ({ initialTeamMembers }: initialTeamMembersProps) => {
   const [teamMembers, setTeamMembers] = useState<TeamMemberProps[]>([]);
-  const [newTeamMember, setNewTeamMember] = useState<TeamMemberProps>({});
-
+  const [newTeamMember, setNewTeamMember] = useState<TeamMemberProps>({} as TeamMemberProps);
   const [isModalActive, setIsModalActive] = useState(false);
   const onClose = () => setIsModalActive(false);
 
@@ -28,7 +27,7 @@ export const TeamMembers = ({ initialTeamMembers }: initialTeamMembersProps) => 
     console.log(newTeamMember);
 
     const addedTeamMember: TeamMemberProps = await addTeamMember(newTeamMember);
-    if (addedTeamMember) setNewTeamMember([...teamMembers, addedTeamMember]);
+    if (addedTeamMember) setTeamMembers([...teamMembers, addedTeamMember]);
 
     setNewTeamMember({} as TeamMemberProps);
     onClose();

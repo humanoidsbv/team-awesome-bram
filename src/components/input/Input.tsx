@@ -5,6 +5,7 @@ import * as Styled from "./Input.styled";
 interface InputProps {
   label: string;
   minLength?: number;
+  moreHeight?: true;
   name: string;
   onChange?: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
@@ -12,7 +13,16 @@ interface InputProps {
   value?: string;
 }
 
-export const Input = ({ label, minLength, name, onChange, required, type, value }: InputProps) => {
+export const Input = ({
+  label,
+  minLength,
+  moreHeight,
+  name,
+  onChange,
+  required,
+  type,
+  value,
+}: InputProps) => {
   const [isValid, setIsValid] = useState(true);
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
@@ -20,12 +30,12 @@ export const Input = ({ label, minLength, name, onChange, required, type, value 
   };
 
   return (
-    <>
+    <Styled.Input>
       <Styled.Label>{label}</Styled.Label>
       <Styled.InputField
         onBlur={handleBlur}
-        {...{ isValid, label, minLength, name, onChange, required, type, value }}
+        {...{ isValid, label, minLength, moreHeight, name, onChange, required, type, value }}
       />
-    </>
+    </Styled.Input>
   );
 };

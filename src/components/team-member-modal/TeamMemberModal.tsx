@@ -2,9 +2,11 @@ import * as Styled from "./TeamMemberModal.styled";
 
 import CloseButtonIcon from "../../../public/images/close.svg";
 
-import { Button } from "../button";
-import { Modal } from "../modal";
 import { TeamMemberProps } from "../../types/Types";
+
+import { Button } from "../button";
+import { Input } from "../input";
+import { Modal } from "../modal";
 
 interface TeamMemberModal {
   handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
@@ -35,83 +37,69 @@ export const TeamMemberModal = ({
           <Styled.AvatarLabel>Edit Avatar</Styled.AvatarLabel>
         </Styled.AvatarWrapper>
         <Styled.InputContainer>
-          <Styled.InputWrapper>
-            <Styled.Label>First name</Styled.Label>
-            <Styled.Input
-              minLength={3}
-              name="firstName"
-              onChange={handleChange}
-              required
-              type="text"
-              value={newTeamMember.firstName ?? ""}
-            />
-          </Styled.InputWrapper>
-          <Styled.InputWrapper>
-            <Styled.Label>Last name</Styled.Label>
-            <Styled.Input
-              minLength={3}
-              name="lastName"
-              onChange={handleChange}
-              required
-              type="text"
-              value={newTeamMember.lastName ?? ""}
-            />
-          </Styled.InputWrapper>
+          <Input
+            minLength={3}
+            name="firstName"
+            label="First Name"
+            onChange={handleChange}
+            required
+            type="text"
+            value={newTeamMember.firstName ?? ""}
+          />
+          <Input
+            minLength={3}
+            name="lastName"
+            label="Last name"
+            onChange={handleChange}
+            required
+            type="text"
+            value={newTeamMember.lastName ?? ""}
+          />
         </Styled.InputContainer>
-        <Styled.InputWrapper>
-          <Styled.Label>E-mail address</Styled.Label>
-          <Styled.Input
-            name="emailAddress"
-            onChange={handleChange}
-            required
-            type="email"
-            value={newTeamMember.emailAddress ?? ""}
-          />
-        </Styled.InputWrapper>
-        <Styled.InputWrapper>
-          <Styled.Label>Label</Styled.Label>
-          <Styled.Input
-            minLength={3}
-            name="label"
-            moreHeight
-            onChange={handleChange}
-            type="text"
-            value={newTeamMember.label ?? ""}
-          />
-        </Styled.InputWrapper>
-        <Styled.InputWrapper>
-          <Styled.Label>Employer</Styled.Label>
-          <Styled.Input
-            minLength={3}
-            name="employer"
-            onChange={handleChange}
-            required
-            type="text"
-            value={newTeamMember.employer ?? ""}
-          />
-        </Styled.InputWrapper>
+        <Input
+          name="emailAddress"
+          label="E-mail-address"
+          onChange={handleChange}
+          required
+          type="email"
+          value={newTeamMember.emailAddress ?? ""}
+        />
+        <Input
+          minLength={3}
+          name="label"
+          label="Label"
+          moreHeight
+          onChange={handleChange}
+          type="text"
+          value={newTeamMember.label ?? ""}
+        />
+        <Input
+          minLength={3}
+          name="employer"
+          label="Employer"
+          onChange={handleChange}
+          required
+          type="text"
+          value={newTeamMember.employer ?? ""}
+        />
         <Styled.InputContainer>
-          <Styled.InputWrapper>
-            <Styled.Label>Role</Styled.Label>
-            <Styled.Input
-              minLength={3}
-              name="role"
-              onChange={handleChange}
-              required
-              type="text"
-              value={newTeamMember.role ?? ""}
-            />
-          </Styled.InputWrapper>
-          <Styled.InputWrapper>
-            <Styled.Label>Starting date</Styled.Label>
-            <Styled.Input
-              name="startingDate"
-              onChange={handleChange}
-              required
-              type="date"
-              value={newTeamMember.startingDate ?? "lo"}
-            />
-          </Styled.InputWrapper>
+          <Input
+            minLength={3}
+            name="role"
+            label="Role"
+            onChange={handleChange}
+            required
+            type="text"
+            value={newTeamMember.role ?? ""}
+          />
+          <Input
+            name="startingDate"
+            label="Starting date"
+            onChange={handleChange}
+            required
+            type="date"
+            value={newTeamMember.startingDate ?? "lo"}
+          />
         </Styled.InputContainer>
         <Styled.ButtonBar>
           <Button label={"Cancel"} onClick={onClose} secondary type="reset" />
