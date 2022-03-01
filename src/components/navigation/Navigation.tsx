@@ -1,12 +1,15 @@
 import Link from "next/link";
 
+import { useContext } from "react";
+
+import { StoreContext } from "../../providers/storeProvider";
+
 import * as Styled from "./Navigation.styled";
 
-interface NavigationProps {
-  isMenuOpen: boolean;
-}
+export const Navigation = () => {
+  const state = useContext(StoreContext);
+  const [isMenuOpen] = state.isMenuOpen;
 
-export const Navigation = ({ isMenuOpen }: NavigationProps) => {
   return (
     <Styled.Container isMenuOpen={isMenuOpen}>
       <Styled.UnorderList>
