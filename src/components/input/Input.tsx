@@ -8,11 +8,21 @@ interface InputProps {
   name: string;
   onChange?: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  fieldSize?: string;
   type: string;
   value?: string;
 }
 
-export const Input = ({ label, minLength, name, onChange, required, type, value }: InputProps) => {
+export const Input = ({
+  label,
+  minLength,
+  name,
+  onChange,
+  required,
+  fieldSize,
+  type,
+  value,
+}: InputProps) => {
   const [isValid, setIsValid] = useState(true);
 
   const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
@@ -20,12 +30,12 @@ export const Input = ({ label, minLength, name, onChange, required, type, value 
   };
 
   return (
-    <>
+    <Styled.InputContainer>
       <Styled.Label>{label}</Styled.Label>
-      <Styled.InputField
+      <Styled.Input
         onBlur={handleBlur}
-        {...{ isValid, label, minLength, name, onChange, required, type, value }}
+        {...{ isValid, label, minLength, name, onChange, required, fieldSize, type, value }}
       />
-    </>
+    </Styled.InputContainer>
   );
 };
