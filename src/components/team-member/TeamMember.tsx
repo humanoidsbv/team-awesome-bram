@@ -19,7 +19,7 @@ export const TeamMember = ({
   return (
     <Styled.TeamMember>
       <Styled.Profile>
-        <Styled.Avatar src="/images/amijs.jpg" />
+        <Styled.Avatar alt="" src="/images/amijs.jpg" />
         <Styled.Wrapper width="auto">
           <Styled.Title>{`${firstName} ${lastName}`}</Styled.Title>
           <Styled.Label>{role}</Styled.Label>

@@ -37,7 +37,7 @@ export const TimeEntry = ({
         </Styled.HoursWrapper>
       </Styled.TimeEntry>
       <Styled.DeleteButton onClick={() => handleDelete(client, id)}>
-        <TrashBin />
+        <TrashBin alt="Delete time entry" />
       </Styled.DeleteButton>
     </Styled.TimeEntryWrapper>
   );

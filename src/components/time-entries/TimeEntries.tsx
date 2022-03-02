@@ -32,7 +32,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   const state = useContext(StoreContext);
   const [timeEntries, setTimeEntries] = state.timeEntries;
-  const [isModalOpen, setIsModalOpen] = state.isModalOpen;
+  const [, setIsModalOpen] = state.isModalOpen;
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
