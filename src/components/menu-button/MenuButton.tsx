@@ -16,9 +16,9 @@ export const MenuButton = ({ toggleMenu }: MenuButtonProps) => {
   const [isMenuOpen] = state.isMenuOpen;
 
   const icon = isMenuOpen ? (
-    <CrossIcon alt="close" fill="#fff" width="14px" />
+    <CrossIcon arial-label="close" fill="#fff" width="14px" />
   ) : (
-    <HamburgerIcon alt="menu" />
+    <HamburgerIcon arial-label="menu" />
   );
 
   return <Styled.MenuButton onClick={toggleMenu}>{icon}</Styled.MenuButton>;
