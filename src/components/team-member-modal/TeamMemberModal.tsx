@@ -11,7 +11,6 @@ import { Modal } from "../modal";
 interface TeamMemberModal {
   handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: any) => void;
-  isModalActive: boolean;
   newTeamMember: TeamMemberProps;
   onClose: () => void;
 }
@@ -20,11 +19,10 @@ export const TeamMemberModal = ({
   handleChange,
   handleSubmit,
   newTeamMember,
-  isModalActive,
   onClose,
 }: TeamMemberModal) => {
   return (
-    <Modal {...{ isModalActive, onClose }}>
+    <Modal {...{ onClose }}>
       <Styled.TitleBar>
         <Styled.Title>New Humanoid</Styled.Title>
         <Styled.CloseButton onClick={onClose}>
@@ -68,7 +66,7 @@ export const TeamMemberModal = ({
           minLength={3}
           name="label"
           label="Label"
-          moreHeight
+          fieldSize="large"
           onChange={handleChange}
           type="text"
           value={newTeamMember.label ?? ""}
@@ -102,7 +100,7 @@ export const TeamMemberModal = ({
           />
         </Styled.InputContainer>
         <Styled.ButtonBar>
-          <Button label={"Cancel"} onClick={onClose} secondary type="reset" />
+          <Button label="Cancel" onClick={onClose} secondary type="reset" />
           <Button label="Add Humanoid" type="submit" />
         </Styled.ButtonBar>
       </Styled.Form>

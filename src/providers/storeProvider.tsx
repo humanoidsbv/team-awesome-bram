@@ -4,6 +4,7 @@ import { TimeEntryProps } from "../types/Types";
 
 interface StoreContextProps {
   isMenuOpen: [isMenuOpen: boolean, setIsMenuOpen: Dispatch<SetStateAction<boolean>>];
+  isModalOpen: [isModalOpen: boolean, setIsModalOpen: Dispatch<SetStateAction<boolean>>];
   timeEntries: [
     timeEntries: TimeEntryProps[],
     setTimeEntries: Dispatch<SetStateAction<TimeEntryProps[]>>,
@@ -19,6 +20,7 @@ interface StoreProviderProps {
 export const StoreProvider: FC<StoreProviderProps> = ({ children }) => {
   const store = {
     isMenuOpen: useState(false),
+    isModalOpen: useState(false),
     timeEntries: useState<TimeEntryProps[]>([]),
   };
 

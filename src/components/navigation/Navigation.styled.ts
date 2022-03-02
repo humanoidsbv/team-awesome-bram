@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.nav<{ isMenuOpen: boolean }>`
   background-color: ${({ theme }) => theme.blueShade300};
+  bottom: 0;
   display: ${({ isMenuOpen }) => (isMenuOpen ? "flex" : "none")};
   flex-direction: column;
   height: 100vh;
   left: 0;
   padding-top: 110px;
-  position: absolute;
+  position: fixed;
+  right: 0;
   top: 0;
   width: 100vw;
   z-index: -1;

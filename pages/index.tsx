@@ -11,7 +11,7 @@ import { Header } from "../src/components/header/Header";
 import { PageContainer } from "../src/components/page-container";
 import { TimeEntries } from "../src/components/time-entries/TimeEntries";
 
-import { retrieveTimeEntries } from "../src/services/time-entry-api";
+import { getTimeEntries } from "../src/services/time-entry-api";
 
 export const Homepage = ({ initialTimeEntries }: initialTimeEntriesProps) => {
   return (
@@ -28,7 +28,7 @@ export const Homepage = ({ initialTimeEntries }: initialTimeEntriesProps) => {
 };
 
 export const getServerSideProps = async () => {
-  const initialTimeEntries = await retrieveTimeEntries();
+  const initialTimeEntries = await getTimeEntries();
 
   if (initialTimeEntries instanceof NotFoundError) {
     console.log("404: Not found!");

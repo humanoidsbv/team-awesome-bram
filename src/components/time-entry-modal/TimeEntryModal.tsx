@@ -12,7 +12,7 @@ interface TimeEntryModalProps {
   duration: string;
   handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: any) => void;
-  isModalActive: boolean;
+
   newTimeEntry: Partial<NewTimeEntryProps>;
   onClose: () => void;
 }
@@ -21,12 +21,12 @@ export const TimeEntryModal = ({
   duration,
   handleChange,
   handleSubmit,
-  isModalActive,
+
   newTimeEntry,
   onClose,
 }: TimeEntryModalProps) => {
   return (
-    <Modal {...{ isModalActive, onClose }}>
+    <Modal {...{ onClose }}>
       <Styled.TitleBar>
         <Styled.Title>New time entry</Styled.Title>
         <Styled.CloseButton onClick={onClose}>
@@ -95,7 +95,7 @@ export const TimeEntryModal = ({
           </Styled.DateTimeContainer>
         </Styled.InputContainer>
         <Styled.ButtonBar>
-          <Button label={"Cancel"} onClick={onClose} secondary type="reset" />
+          <Button label="Cancel" onClick={onClose} secondary type="reset" />
           <Button label="Add time entry" type="submit" />
         </Styled.ButtonBar>
       </Styled.Form>

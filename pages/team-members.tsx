@@ -11,7 +11,7 @@ import { Header } from "../src/components/header/Header";
 import { PageContainer } from "../src/components/page-container";
 import { TeamMembers } from "../src/components/team-members";
 
-import { retrieveTeamMembers } from "../src/services/team-member-api";
+import { getTeamMembers } from "../src/services/team-member-api";
 import { initialTeamMembersProps } from "../src/types/Types";
 
 export const Homepage = ({ initialTeamMembers }: initialTeamMembersProps) => {
@@ -29,7 +29,7 @@ export const Homepage = ({ initialTeamMembers }: initialTeamMembersProps) => {
 };
 
 export const getServerSideProps = async () => {
-  const initialTeamMembers = await retrieveTeamMembers();
+  const initialTeamMembers = await getTeamMembers();
 
   if (initialTeamMembers instanceof NotFoundError) {
     console.log("404: Not found!");

@@ -32,6 +32,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   const state = useContext(StoreContext);
   const [timeEntries, setTimeEntries] = state.timeEntries;
+  const [isModalOpen, setIsModalOpen] = state.isModalOpen;
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
@@ -82,8 +83,7 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     }
   };
 
-  const [isModalActive, setIsModalActive] = useState(false);
-  const onClose = () => setIsModalActive(false);
+  const onClose = () => setIsModalOpen(false);
 
   const getDurationByDay = (date: string, timeEntries: TimeEntryProps[]) => {
     const duration = new Date(
@@ -105,13 +105,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     <>
       <Subheader
         buttonLabel="New time entry"
-        buttonCallback={() => setIsModalActive(true)}
+        buttonCallback={() => setIsModalOpen(true)}
         subtitle={`${timeEntries.length}  Entries`}
         title="Timesheets"
       />
-      <TimeEntryModal
-        {...{ duration, handleSubmit, handleChange, isModalActive, newTimeEntry, onClose }}
-      />
+      <TimeEntryModal {...{ duration, handleSubmit, handleChange, newTimeEntry, onClose }} />
       <Styled.TimeEntries>
         {timeEntries
           .sort(

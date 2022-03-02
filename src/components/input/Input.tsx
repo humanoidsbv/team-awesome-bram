@@ -5,10 +5,10 @@ import * as Styled from "./Input.styled";
 interface InputProps {
   label: string;
   minLength?: number;
-  moreHeight?: true;
   name: string;
   onChange?: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  fieldSize?: string;
   type: string;
   value?: string;
 }
@@ -16,10 +16,10 @@ interface InputProps {
 export const Input = ({
   label,
   minLength,
-  moreHeight,
   name,
   onChange,
   required,
+  fieldSize,
   type,
   value,
 }: InputProps) => {
@@ -30,12 +30,12 @@ export const Input = ({
   };
 
   return (
-    <Styled.Input>
+    <Styled.InputContainer>
       <Styled.Label>{label}</Styled.Label>
-      <Styled.InputField
+      <Styled.Input
         onBlur={handleBlur}
-        {...{ isValid, label, minLength, moreHeight, name, onChange, required, type, value }}
+        {...{ isValid, label, minLength, name, onChange, required, fieldSize, type, value }}
       />
-    </Styled.Input>
+    </Styled.InputContainer>
   );
 };

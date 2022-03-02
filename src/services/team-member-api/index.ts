@@ -1,2 +1,2 @@
 export { addTeamMember } from "./add-team-member";
-export { retrieveTeamMembers } from "./retrieve-team-members";
+export { getTeamMembers } from "./get-team-members";
