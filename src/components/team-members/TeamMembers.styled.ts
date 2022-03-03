@@ -5,3 +5,13 @@ export const TeamMembers = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
+
+export const SelectorBar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+`;
+
+export const Select = styled.select`
+  font-size: 18px;
+`;

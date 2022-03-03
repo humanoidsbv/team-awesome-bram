@@ -36,6 +36,16 @@ export const TeamMembers = ({ initialTeamMembers }: initialTeamMembersProps) => 
     onClose();
   };
 
+  const sortOptions = [
+    { value: "firstName", label: "First name" },
+    { value: "lastName", label: "Last name" },
+    { value: "startingDate", label: "Date" },
+    { value: "employer", label: "Employer" },
+    { value: "role", label: "Role" },
+  ];
+  type sortOptionValues = "firstName" | "lastName" | "startingDate" | "employer" | "role";
+  const [sortOption, setSortOption] = useState<sortOptionValues>("firstName");
+
   return (
     <>
       <Subheader
@@ -45,10 +55,20 @@ export const TeamMembers = ({ initialTeamMembers }: initialTeamMembersProps) => 
         title="Team members"
       />
       <TeamMemberModal {...{ handleChange, handleSubmit, newTeamMember, onClose }} />
+      <Styled.SelectorBar>
+        <Styled.Select onChange={(e) => setSortOption(e.target.value as sortOptionValues)}>
+          <option value={"firstName"}>Sort by: </option>
+          {sortOptions.map(({ value, label }) => (
+            <option value={value}>{label}</option>
+          ))}
+        </Styled.Select>
+      </Styled.SelectorBar>
       <Styled.TeamMembers>
-        {teamMembers.map((teamMember) => (
-          <TeamMember key={teamMember.id} {...teamMember} />
-        ))}
+        {teamMembers
+          .sort((a, b) => a[sortOption].localeCompare(b[sortOption]))
+          .map((teamMember) => (
+            <TeamMember key={teamMember.id} {...teamMember} />
+          ))}
       </Styled.TeamMembers>
     </>
   );

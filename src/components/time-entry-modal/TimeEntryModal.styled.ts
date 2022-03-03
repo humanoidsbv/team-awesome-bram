@@ -91,7 +91,7 @@ export const Label = styled.p`
   color: ${({ theme }) => theme.greyShade600};
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: auto;
 `;
 
 export const Input = styled.input`
@@ -118,4 +118,8 @@ export const TotalTime = styled.p`
   display: flex;
   font-size: 24px;
   height: 40px;
+`;
+
+export const Select = styled.select`
+  font-size: 24px;
 `;

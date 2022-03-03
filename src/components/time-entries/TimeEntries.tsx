@@ -3,7 +3,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
-import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
+import { initialProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
 import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api/";
 import {
@@ -15,8 +15,9 @@ import {
 import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
+import { time } from "console";
 
-export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => {
+export const TimeEntries = ({ initialTimeEntries, clients }: initialProps) => {
   const dateOptions = {
     weekday: "long",
     day: "numeric",
@@ -36,6 +37,8 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
+
+  const [clientFilter, setClientFilter] = useState("");
 
   useEffect(() => {
     setTimeEntries(initialTimeEntries);
@@ -88,9 +91,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   const getDurationByDay = (date: string, timeEntries: TimeEntryProps[]) => {
     const duration = new Date(
       timeEntries
-        .filter(
-          ({ startTimestamp }) =>
-            new Date(startTimestamp).toDateString() === new Date(date).toDateString(),
+        .filter(({ client, startTimestamp }) =>
+          new Date(startTimestamp).toDateString() === new Date(date).toDateString() &&
+          clientFilter === ""
+            ? true
+            : client === clientFilter,
         )
         .reduce(
           (acc, { startTimestamp, endTimestamp }) =>
@@ -109,9 +114,20 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
         subtitle={`${timeEntries.length}  Entries`}
         title="Timesheets"
       />
-      <TimeEntryModal {...{ duration, handleSubmit, handleChange, newTimeEntry, onClose }} />
+      <TimeEntryModal
+        {...{ clients, duration, handleSubmit, handleChange, newTimeEntry, onClose }}
+      />
+      <Styled.SelectorBar>
+        <Styled.Select onChange={(e) => setClientFilter(e.target.value)}>
+          <option value={""}>Select client</option>
+          {clients.map(({ name }) => (
+            <option value={name}>{name}</option>
+          ))}
+        </Styled.Select>
+      </Styled.SelectorBar>
       <Styled.TimeEntries>
         {timeEntries
+          .filter((timeEntry) => (clientFilter !== "" ? timeEntry.client === clientFilter : true))
           .sort(
             (a, b) => new Date(a.startTimestamp).getTime() - new Date(b.startTimestamp).getTime(),
           )
