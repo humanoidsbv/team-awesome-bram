@@ -11,7 +11,9 @@ import { Modal } from "../modal/Modal";
 interface TimeEntryModalProps {
   clients: { id: number; name: string }[];
   duration: string;
-  handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
   handleSubmit: (event: any) => void;
   newTimeEntry: Partial<NewTimeEntryProps>;
   onClose: () => void;
@@ -36,9 +38,11 @@ export const TimeEntryModal = ({
       <Styled.Form onSubmit={handleSubmit}>
         <Styled.InputContainer>
           <Styled.Label>Client</Styled.Label>
-          <Styled.Select name="client" required>
-            {clients.map(({ name }) => (
-              <option value={name}>{name}</option>
+          <Styled.Select value={newTimeEntry.client} name="client" onChange={handleChange} required>
+            {clients.map(({ name, id }) => (
+              <option key={id} value={name}>
+                {name}
+              </option>
             ))}
           </Styled.Select>
           <Input

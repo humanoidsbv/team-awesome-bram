@@ -55,7 +55,9 @@ export const TimeEntries = ({ initialTimeEntries, clients }: initialProps) => {
     }
   }, [newTimeEntry.from, newTimeEntry.to, newTimeEntry.date]);
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
   };
 
@@ -65,6 +67,8 @@ export const TimeEntries = ({ initialTimeEntries, clients }: initialProps) => {
     const date = new Date(`${newTimeEntry.date}`).toDateString();
     const startTime = new Date(`${date}  ${newTimeEntry.from}`);
     const endTime = new Date(`${date}  ${newTimeEntry.to}`);
+
+    console.log(event);
 
     const formattedNewTimeEntry = {
       client: `${newTimeEntry.client}`,
