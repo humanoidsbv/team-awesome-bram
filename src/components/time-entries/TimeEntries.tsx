@@ -36,7 +36,6 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
-
   const [clientFilter, setClientFilter] = useState("");
 
   useEffect(() => {

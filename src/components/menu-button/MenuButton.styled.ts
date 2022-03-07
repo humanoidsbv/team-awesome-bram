@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import ImportedCrossIcon from "../../../public/images/close.svg";
+import _CrossIcon from "../../../public/images/close.svg";
 
 export const MenuButton = styled.button`
   background-color: transparent;
@@ -12,7 +12,7 @@ export const MenuButton = styled.button`
   }
 `;
 
-export const CrossIcon = styled(ImportedCrossIcon)`
+export const CrossIcon = styled(_CrossIcon)`
   fill: white;
   width: 14px;
 `;

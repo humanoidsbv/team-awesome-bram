@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import ImportedArrowIcon from "../../../public/images/arrow-down.svg";
+import _ArrowIcon from "../../../public/images/arrow-down.svg";
 
 export const HeaderRight = styled.div`
   display: none;
@@ -36,7 +36,7 @@ export const Avatar = styled.img`
   width: 36px;
 `;
 
-export const ArrowIcon = styled(ImportedArrowIcon)`
+export const ArrowIcon = styled(_ArrowIcon)`
   stroke: white;
   width: 12px;
 `;
