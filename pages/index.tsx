@@ -4,7 +4,7 @@ import { StoreProvider } from "../src/providers";
 
 import GlobalStyle from "../styles/global";
 import { defaultTheme } from "../styles/theme";
-import { initialProps } from "../src/types/Types";
+import { TimeEntriesProps } from "../src/types/Types";
 import { NotFoundError } from "../src/errors/not-found-error";
 
 import { Header } from "../src/components/header/Header";
@@ -13,7 +13,7 @@ import { TimeEntries } from "../src/components/time-entries/TimeEntries";
 
 import { getClients, getTimeEntries } from "../src/services/time-entry-api";
 
-export const Homepage = ({ initialTimeEntries, clients }: initialProps) => {
+export const Homepage = ({ initialTimeEntries, clients }: TimeEntriesProps) => {
   return (
     <StoreProvider>
       <GlobalStyle />

@@ -14,7 +14,7 @@ export type NewTimeEntryProps = {
   to: string;
 };
 
-export interface initialProps {
+export interface TimeEntriesProps {
   initialTimeEntries: TimeEntryProps[];
   clients: { id: number; name: string }[];
 }

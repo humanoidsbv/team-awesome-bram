@@ -4,7 +4,6 @@ import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./MenuButton.styled";
 
-import CrossIcon from "../../../public/images/close.svg";
 import HamburgerIcon from "../../../public/images/hamburger.svg";
 
 interface MenuButtonProps {
@@ -16,7 +15,7 @@ export const MenuButton = ({ toggleMenu }: MenuButtonProps) => {
   const [isMenuOpen] = state.isMenuOpen;
 
   const icon = isMenuOpen ? (
-    <CrossIcon arial-label="close" fill="#fff" width="14px" />
+    <Styled.CrossIcon arial-label="close" />
   ) : (
     <HamburgerIcon arial-label="menu" />
   );

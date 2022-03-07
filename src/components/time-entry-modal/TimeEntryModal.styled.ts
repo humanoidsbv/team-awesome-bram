@@ -121,5 +121,8 @@ export const TotalTime = styled.p`
 `;
 
 export const Select = styled.select`
-  font-size: 24px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.greyShade400};
+  height: 40px;
+  padding-left: 5px;
 `;

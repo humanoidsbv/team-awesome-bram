@@ -13,5 +13,8 @@ export const SelectorBar = styled.div`
 `;
 
 export const Select = styled.select`
-  font-size: 18px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.greyShade400};
+  height: 30px;
+  padding-left: 5px;
 `;

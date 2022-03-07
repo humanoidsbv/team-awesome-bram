@@ -57,9 +57,11 @@ export const TeamMembers = ({ initialTeamMembers }: initialTeamMembersProps) => 
       <TeamMemberModal {...{ handleChange, handleSubmit, newTeamMember, onClose }} />
       <Styled.SelectorBar>
         <Styled.Select onChange={(e) => setSortOption(e.target.value as sortOptionValues)}>
-          <option value={"firstName"}>Sort by: </option>
-          {sortOptions.map(({ value, label }) => (
-            <option value={value}>{label}</option>
+          <option value={sortOptions[0].value}>Sort by: </option>
+          {sortOptions.map(({ label, value }) => (
+            <option key={value} label={label} value={value}>
+              {label}
+            </option>
           ))}
         </Styled.Select>
       </Styled.SelectorBar>

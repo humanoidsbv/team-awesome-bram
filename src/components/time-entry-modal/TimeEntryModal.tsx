@@ -38,9 +38,15 @@ export const TimeEntryModal = ({
       <Styled.Form onSubmit={handleSubmit}>
         <Styled.InputContainer>
           <Styled.Label>Client</Styled.Label>
-          <Styled.Select value={newTimeEntry.client} name="client" onChange={handleChange} required>
-            {clients.map(({ name, id }) => (
-              <option key={id} value={name}>
+          <Styled.Select
+            aria-label="Select client"
+            value={newTimeEntry.client}
+            name="client"
+            onChange={handleChange}
+            required
+          >
+            {clients.map(({ id, name }) => (
+              <option label={name} key={id} value={name}>
                 {name}
               </option>
             ))}

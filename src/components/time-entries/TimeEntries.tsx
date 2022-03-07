@@ -3,7 +3,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
-import { initialProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
+import { TimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
 import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api/";
 import {
@@ -15,9 +15,8 @@ import {
 import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
-import { time } from "console";
 
-export const TimeEntries = ({ initialTimeEntries, clients }: initialProps) => {
+export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) => {
   const dateOptions = {
     weekday: "long",
     day: "numeric",
@@ -122,10 +121,17 @@ export const TimeEntries = ({ initialTimeEntries, clients }: initialProps) => {
         {...{ clients, duration, handleSubmit, handleChange, newTimeEntry, onClose }}
       />
       <Styled.SelectorBar>
-        <Styled.Select onChange={(e) => setClientFilter(e.target.value)}>
-          <option value={""}>Select client</option>
-          {clients.map(({ name }) => (
-            <option value={name}>{name}</option>
+        <Styled.Select
+          aria-label="Filter time entries"
+          onChange={(e) => setClientFilter(e.target.value)}
+        >
+          <option label="Select client" value={""}>
+            Select client
+          </option>
+          {clients.map(({ id, name }) => (
+            <option key={id} label={name} value={name}>
+              {name}
+            </option>
           ))}
         </Styled.Select>
       </Styled.SelectorBar>
