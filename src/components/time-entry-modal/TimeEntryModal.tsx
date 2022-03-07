@@ -1,4 +1,7 @@
+import { useContext, useEffect, useRef } from "react";
+
 import * as Styled from "./TimeEntryModal.styled";
+import { StoreContext } from "../../providers/storeProvider";
 
 import { NewTimeEntryProps } from "../../types/Types";
 
@@ -27,11 +30,21 @@ export const TimeEntryModal = ({
   newTimeEntry,
   onClose,
 }: TimeEntryModalProps) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const [isModalOpen] = useContext(StoreContext).isModalOpen;
+
+  useEffect(() => {
+    if (isModalOpen) {
+      buttonRef.current?.focus();
+    }
+  }, [isModalOpen]);
+
   return (
     <Modal {...{ onClose }}>
       <Styled.TitleBar>
         <Styled.Title>New time entry</Styled.Title>
-        <Styled.CloseButton onClick={onClose}>
+        <Styled.CloseButton ref={buttonRef} onClick={onClose}>
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>

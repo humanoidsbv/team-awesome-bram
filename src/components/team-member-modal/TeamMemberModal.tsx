@@ -1,4 +1,7 @@
+import { useContext, useEffect, useRef } from "react";
+
 import * as Styled from "./TeamMemberModal.styled";
+import { StoreContext } from "../../providers/storeProvider";
 
 import CloseButtonIcon from "../../../public/images/close.svg";
 
@@ -21,11 +24,21 @@ export const TeamMemberModal = ({
   newTeamMember,
   onClose,
 }: TeamMemberModal) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const [isModalOpen] = useContext(StoreContext).isModalOpen;
+
+  useEffect(() => {
+    if (isModalOpen) {
+      buttonRef.current?.focus();
+    }
+  }, [isModalOpen]);
+
   return (
     <Modal {...{ onClose }}>
       <Styled.TitleBar>
         <Styled.Title>New Humanoid</Styled.Title>
-        <Styled.CloseButton onClick={onClose}>
+        <Styled.CloseButton ref={buttonRef} onClick={onClose}>
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>
@@ -36,9 +49,9 @@ export const TeamMemberModal = ({
         </Styled.AvatarWrapper>
         <Styled.InputContainer>
           <Input
+            label="First Name"
             minLength={3}
             name="firstName"
-            label="First Name"
             onChange={handleChange}
             required
             type="text"

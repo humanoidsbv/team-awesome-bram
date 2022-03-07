@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import * as Styled from "./Subheader.styled";
 
 import { Button } from "../button/Button";
