@@ -67,8 +67,6 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
     const startTime = new Date(`${date}  ${newTimeEntry.from}`);
     const endTime = new Date(`${date}  ${newTimeEntry.to}`);
 
-    console.log(event);
-
     const formattedNewTimeEntry = {
       client: `${newTimeEntry.client}`,
       startTimestamp: startTime.toJSON(),
