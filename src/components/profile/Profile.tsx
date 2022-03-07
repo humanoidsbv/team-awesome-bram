@@ -1,5 +1,5 @@
 import * as Styled from "./Profile.styled";
-import ArrowIcon from "../../../public/images/arrow-down.svg";
+
 import CompanyLogo from "../../../public/images/humanoids_logo.svg";
 
 interface AvatarProps {
@@ -11,9 +11,9 @@ export const Profile = ({ userPictureSrc }: AvatarProps) => {
     <Styled.HeaderRight>
       <Styled.Profile>
         <CompanyLogo />
-        <Styled.Avatar src={userPictureSrc} />
+        <Styled.Avatar alt="Profile picture" src={userPictureSrc} />
       </Styled.Profile>
-      <ArrowIcon fill="#fff" stroke="#fff" width="11px" />
+      <Styled.ArrowIcon />
     </Styled.HeaderRight>
   );
 };
