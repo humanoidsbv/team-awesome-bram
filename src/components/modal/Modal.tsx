@@ -15,7 +15,7 @@ export const Modal = ({ children, onClose }: ModalProp) => {
 
   return isModalOpen
     ? createPortal(
-        <Styled.ModalBackdrop onClick={onClose}>
+        <Styled.ModalBackdrop onKeyUp={(e) => e.key === "Escape" && onClose()} onClick={onClose}>
           <Styled.Modal onClick={(e) => e.stopPropagation()}>{children}</Styled.Modal>
         </Styled.ModalBackdrop>,
         document.body,
