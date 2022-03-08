@@ -12,9 +12,9 @@ import { PageContainer } from "../src/components/page-container";
 import { TeamMembers } from "../src/components/team-members";
 
 import { getTeamMembers } from "../src/services/team-member-api";
-import { initialTeamMembersProps } from "../src/types/Types";
+import { InitialTeamMembersProps } from "../src/types/Types";
 
-export const Homepage = ({ initialTeamMembers }: initialTeamMembersProps) => {
+export const Homepage = ({ initialTeamMembers }: InitialTeamMembersProps) => {
   return (
     <StoreProvider>
       <GlobalStyle />

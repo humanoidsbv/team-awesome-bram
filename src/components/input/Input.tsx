@@ -31,10 +31,11 @@ export const Input = ({
 
   return (
     <Styled.InputContainer>
-      <Styled.Label>{label}</Styled.Label>
+      <Styled.Label htmlFor={name}> {label}</Styled.Label>
       <Styled.Input
         onBlur={handleBlur}
         {...{ isValid, label, minLength, name, onChange, required, fieldSize, type, value }}
+        id={name}
       />
     </Styled.InputContainer>
   );

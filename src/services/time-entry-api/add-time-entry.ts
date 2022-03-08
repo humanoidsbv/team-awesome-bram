@@ -2,7 +2,7 @@ import { TimeEntryProps } from "../../types/Types";
 import { NotFoundError } from "../../errors/not-found-error";
 
 export const addTimeEntry = async (newTimeEntry: Partial<TimeEntryProps>) => {
-  return fetch("http://localhost:3004/time-entries", {
+  return fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/time-entries`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
