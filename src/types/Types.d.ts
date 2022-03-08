@@ -31,6 +31,6 @@ export type TeamMemberProps = {
   startingDate: string;
 };
 
-export interface initialTeamMembersProps {
+export interface InitialTeamMembersProps {
   initialTeamMembers: TeamMemberProps[];
 }

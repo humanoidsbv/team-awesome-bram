@@ -2,16 +2,16 @@ import { useContext, useEffect, useState } from "react";
 
 import * as Styled from "./TeamMembers.styled";
 
-import { initialTeamMembersProps, TeamMemberProps } from "../../types/Types";
+import { InitialTeamMembersProps, TeamMemberProps } from "../../types/Types";
 
 import { addTeamMember } from "../../services/team-member-api";
 
+import { StoreContext } from "../../providers/storeProvider";
 import { Subheader } from "../subheader";
 import { TeamMember } from "../team-member";
 import { TeamMemberModal } from "../team-member-modal";
-import { StoreContext } from "../../providers/storeProvider";
 
-export const TeamMembers = ({ initialTeamMembers }: initialTeamMembersProps) => {
+export const TeamMembers = ({ initialTeamMembers }: InitialTeamMembersProps) => {
   const [teamMembers, setTeamMembers] = useState<TeamMemberProps[]>([]);
   const [newTeamMember, setNewTeamMember] = useState<TeamMemberProps>({} as TeamMemberProps);
 
