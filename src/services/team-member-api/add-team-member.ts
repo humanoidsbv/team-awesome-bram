@@ -2,7 +2,7 @@ import { TeamMemberProps } from "../../types/Types";
 import { NotFoundError } from "../../errors/not-found-error";
 
 export const addTeamMember = async (newTeamMember: TeamMemberProps) => {
-  return fetch("http://localhost:3004/team-members", {
+  return fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/team-members`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
