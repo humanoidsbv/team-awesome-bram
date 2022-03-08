@@ -3,7 +3,7 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
-import { initialTimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
+import { TimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
 import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api/";
 import {
@@ -16,7 +16,7 @@ import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
 
-export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => {
+export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) => {
   const dateOptions = {
     weekday: "long",
     day: "numeric",
@@ -32,10 +32,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
 
   const state = useContext(StoreContext);
   const [timeEntries, setTimeEntries] = state.timeEntries;
-  const [isModalOpen, setIsModalOpen] = state.isModalOpen;
+  const [, setIsModalOpen] = state.isModalOpen;
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
+  const [clientFilter, setClientFilter] = useState("");
 
   useEffect(() => {
     setTimeEntries(initialTimeEntries);
@@ -52,7 +53,9 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
     }
   }, [newTimeEntry.from, newTimeEntry.to, newTimeEntry.date]);
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
   };
 
@@ -88,9 +91,11 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
   const getDurationByDay = (date: string, timeEntries: TimeEntryProps[]) => {
     const duration = new Date(
       timeEntries
-        .filter(
-          ({ startTimestamp }) =>
-            new Date(startTimestamp).toDateString() === new Date(date).toDateString(),
+        .filter(({ client, startTimestamp }) =>
+          new Date(startTimestamp).toDateString() === new Date(date).toDateString() &&
+          clientFilter === ""
+            ? true
+            : client === clientFilter,
         )
         .reduce(
           (acc, { startTimestamp, endTimestamp }) =>
@@ -109,9 +114,27 @@ export const TimeEntries = ({ initialTimeEntries }: initialTimeEntriesProps) => 
         subtitle={`${timeEntries.length}  Entries`}
         title="Timesheets"
       />
-      <TimeEntryModal {...{ duration, handleSubmit, handleChange, newTimeEntry, onClose }} />
+      <TimeEntryModal
+        {...{ clients, duration, handleSubmit, handleChange, newTimeEntry, onClose }}
+      />
+      <Styled.SelectorBar>
+        <Styled.Select
+          aria-label="Filter time entries"
+          onChange={(e) => setClientFilter(e.target.value)}
+        >
+          <option label="Select client" value={""}>
+            Select client
+          </option>
+          {clients.map(({ id, name }) => (
+            <option key={id} label={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </Styled.Select>
+      </Styled.SelectorBar>
       <Styled.TimeEntries>
         {timeEntries
+          .filter((timeEntry) => (clientFilter !== "" ? timeEntry.client === clientFilter : true))
           .sort(
             (a, b) => new Date(a.startTimestamp).getTime() - new Date(b.startTimestamp).getTime(),
           )

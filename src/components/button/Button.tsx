@@ -21,7 +21,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <Styled.Button {...{ disabled, onClick, secondary, type }}>
-      {icon && <PlusIcon />}
+      {icon && <PlusIcon aria-hidden="true" />}
       {label}
     </Styled.Button>
   );

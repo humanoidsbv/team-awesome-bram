@@ -8,7 +8,9 @@ export const Logo = () => {
   return (
     <Styled.Logo>
       <Link href="/" passHref>
-        <TeamAwesomeLogo />
+        <a>
+          <TeamAwesomeLogo aria-label="team awesome" />
+        </a>
       </Link>
     </Styled.Logo>
   );

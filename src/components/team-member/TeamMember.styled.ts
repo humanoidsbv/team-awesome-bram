@@ -46,7 +46,7 @@ export const Avatar = styled.img`
   width: 50px;
 `;
 
-export const Title = styled.h4`
+export const Title = styled.h3`
   color: ${({ theme }) => theme.greyShade700};
   font-size: 18px;
 `;

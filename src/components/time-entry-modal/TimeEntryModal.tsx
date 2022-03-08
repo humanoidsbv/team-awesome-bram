@@ -1,4 +1,7 @@
+import { useContext, useEffect, useRef } from "react";
+
 import * as Styled from "./TimeEntryModal.styled";
+import { StoreContext } from "../../providers/storeProvider";
 
 import { NewTimeEntryProps } from "../../types/Types";
 
@@ -9,41 +12,58 @@ import { Input } from "../input/Input";
 import { Modal } from "../modal/Modal";
 
 interface TimeEntryModalProps {
+  clients: { id: number; name: string }[];
   duration: string;
-  handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
   handleSubmit: (event: any) => void;
-
   newTimeEntry: Partial<NewTimeEntryProps>;
   onClose: () => void;
 }
 
 export const TimeEntryModal = ({
+  clients,
   duration,
   handleChange,
   handleSubmit,
-
   newTimeEntry,
   onClose,
 }: TimeEntryModalProps) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const [isModalOpen] = useContext(StoreContext).isModalOpen;
+
+  useEffect(() => {
+    if (isModalOpen) {
+      buttonRef.current?.focus();
+    }
+  }, [isModalOpen]);
+
   return (
     <Modal {...{ onClose }}>
       <Styled.TitleBar>
         <Styled.Title>New time entry</Styled.Title>
-        <Styled.CloseButton onClick={onClose}>
+        <Styled.CloseButton ref={buttonRef} onClick={onClose}>
           <CloseButtonIcon fill="#000" width="14px" />
         </Styled.CloseButton>
       </Styled.TitleBar>
       <Styled.Form onSubmit={handleSubmit}>
         <Styled.InputContainer>
-          <Input
-            label="Client"
-            minLength={3}
+          <Styled.Label>Client</Styled.Label>
+          <Styled.Select
+            aria-label="Select client"
+            value={newTimeEntry.client}
             name="client"
             onChange={handleChange}
             required
-            type="text"
-            value={newTimeEntry.client ?? ""}
-          />
+          >
+            {clients.map(({ id, name }) => (
+              <option label={name} key={id} value={name}>
+                {name}
+              </option>
+            ))}
+          </Styled.Select>
           <Input
             label="Activity"
             minLength={3}

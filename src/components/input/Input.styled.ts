@@ -14,9 +14,9 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input<{ isValid: boolean; fieldSize?: string }>`
-  background-color: ${({ isValid }) => (!isValid ? ({ theme }) => theme.redShade300 : "white")};
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.greyShade400};
+  border: solid
+    ${({ isValid, theme }) => (isValid ? `1px ${theme.greyShade400}` : `2px ${theme.redShade300}`)};
   box-shadow: none;
   flex: 1 0 auto;
   font-size: 14px;
