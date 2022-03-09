@@ -21,9 +21,7 @@ export const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleScroll = (): void => {
-    window.pageYOffset < 50 ? setPageOffset(false) : setPageOffset(true);
-  };
+  const handleScroll = (): void => setPageOffset(window.scrollY < 50);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

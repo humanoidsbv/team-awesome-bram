@@ -1,11 +1,11 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import { ChangeEvent, Fragment, useContext, useEffect, useState } from "react";
 
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
 import { TimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
-import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api/";
+import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api";
 import {
   calculateDuration,
   formatDuration,
@@ -47,17 +47,19 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
       const date = new Date(`${newTimeEntry.date}`).toDateString();
       const startTime = new Date(`${date} ${newTimeEntry.from}`);
       const endTime = new Date(`${date} ${newTimeEntry.to}`);
-      const duration = endTime.getTime() - startTime.getTime();
+      const _duration = endTime.getTime() - startTime.getTime();
 
-      setDuration(formatDuration(duration));
+      setDuration(formatDuration(_duration));
     }
   }, [newTimeEntry.from, newTimeEntry.to, newTimeEntry.date]);
 
   const handleChange = ({
     target,
-  }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+  }: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
     setNewTimeEntry({ ...newTimeEntry, [target.name]: target.value });
   };
+
+  const onClose = () => setIsModalOpen(false);
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
@@ -81,16 +83,14 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
 
   const handleDelete = (client: string, id: number) => {
     if (window.confirm(`Are you sure you want to delete the ${client} entry?`)) {
-      setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id != id));
+      setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id !== id));
       deleteTimeEntry(id);
     }
   };
 
-  const onClose = () => setIsModalOpen(false);
-
-  const getDurationByDay = (date: string, timeEntries: TimeEntryProps[]) => {
-    const duration = new Date(
-      timeEntries
+  const getDurationByDay = (date: string, _timeEntries: TimeEntryProps[]) => {
+    const _duration = new Date(
+      _timeEntries
         .filter(({ client, startTimestamp }) =>
           new Date(startTimestamp).toDateString() === new Date(date).toDateString() &&
           clientFilter === ""
@@ -103,7 +103,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
           0,
         ),
     );
-    return formatDuration(duration.getTime());
+    return formatDuration(_duration.getTime());
   };
 
   return (
@@ -122,10 +122,10 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
           aria-label="Filter time entries"
           onChange={(e) => setClientFilter(e.target.value)}
         >
-          <option label="Select client" value={""}>
+          <option label="Select client" value="">
             Select client
           </option>
-          {clients.map(({ id, name }) => (
+          {clients.map(({ id, name }: { id: number; name: string }) => (
             <option key={id} label={name} value={name}>
               {name}
             </option>
@@ -143,7 +143,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
 
             const isDateDifferent =
               i > 0
-                ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) !=
+                ? timestampToDateString(entries[i - 1].startTimestamp, dateOptionsSort) !==
                   currentDate
                 : true;
 

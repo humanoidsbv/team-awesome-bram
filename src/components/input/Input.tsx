@@ -1,4 +1,4 @@
-import { FocusEvent, useState } from "react";
+import { ChangeEvent, FocusEvent, useState } from "react";
 
 import * as Styled from "./Input.styled";
 
@@ -6,7 +6,7 @@ interface InputProps {
   label: string;
   minLength?: number;
   name: string;
-  onChange?: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ({ target }: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   fieldSize?: string;
   type: string;

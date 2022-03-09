@@ -32,8 +32,7 @@ export const getServerSideProps = async () => {
   const initialTeamMembers = await getTeamMembers();
 
   if (initialTeamMembers instanceof NotFoundError) {
-    console.log("404: Not found!");
-    return;
+    return {};
   }
 
   return {
