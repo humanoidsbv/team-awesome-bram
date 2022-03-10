@@ -18,7 +18,17 @@ jobs:
         run: npm ci --production-only
 
       - name: 📦  build
-        run: npm run build
+        run: npm run builds
+
+  Perform tests:
+    name: Test application
+    needs: build
+
+    steps:
+      name: test application
+        uses: 
+      - name: 🧹 Run lint
+        run: npm run lint
 
       - name: 🧪 test
-        run: npm run test
+        run: npm run test:prod
