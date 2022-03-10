@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { ChangeEvent, useContext, useEffect, useRef } from "react";
 
 import * as Styled from "./TeamMemberModal.styled";
 import { StoreContext } from "../../providers/storeProvider";
@@ -11,8 +11,8 @@ import { Button } from "../button";
 import { Input } from "../input";
 import { Modal } from "../modal";
 
-interface TeamMemberModal {
-  handleChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
+interface TeamMemberModalProps {
+  handleChange: ({ target }: ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: any) => void;
   newTeamMember: TeamMemberProps;
   onClose: () => void;
@@ -23,7 +23,7 @@ export const TeamMemberModal = ({
   handleSubmit,
   newTeamMember,
   onClose,
-}: TeamMemberModal) => {
+}: TeamMemberModalProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const [isModalOpen] = useContext(StoreContext).isModalOpen;

@@ -15,6 +15,7 @@ export const Modal = ({ children, onClose }: ModalProp) => {
 
   return isModalOpen
     ? createPortal(
+        // eslint-disable-next-line react/jsx-indent
         <Styled.ModalBackdrop onKeyUp={(e) => e.key === "Escape" && onClose()} onClick={onClose}>
           <Styled.Modal onClick={(e) => e.stopPropagation()}>{children}</Styled.Modal>
         </Styled.ModalBackdrop>,

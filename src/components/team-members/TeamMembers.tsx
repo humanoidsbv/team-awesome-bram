@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 
 import * as Styled from "./TeamMembers.styled";
 
@@ -22,7 +22,7 @@ export const TeamMembers = ({ initialTeamMembers }: InitialTeamMembersProps) => 
 
   useEffect(() => setTeamMembers(initialTeamMembers), []);
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setNewTeamMember({ ...newTeamMember, [target.name]: target.value });
   };
 

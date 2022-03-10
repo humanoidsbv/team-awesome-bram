@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
 
     @font-face {
+        font-display: swap;
         font-family: "Proxima Nova";
         src: url("fonts/proxima-nova-regular.ttf") format('truetype');
     }

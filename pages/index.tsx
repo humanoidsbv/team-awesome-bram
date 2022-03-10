@@ -32,8 +32,7 @@ export const getServerSideProps = async () => {
   const initialTimeEntries = await getTimeEntries();
 
   if (initialTimeEntries instanceof NotFoundError) {
-    console.log("404: Not found!");
-    return;
+    return {};
   }
 
   return {

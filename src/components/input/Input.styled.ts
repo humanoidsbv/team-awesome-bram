@@ -20,7 +20,7 @@ export const Input = styled.input<{ isValid: boolean; fieldSize?: string }>`
   box-shadow: none;
   flex: 1 0 auto;
   font-size: 14px;
-  height: ${({ fieldSize }) => (fieldSize == "large" ? "70px" : "40px")};
+  height: ${({ fieldSize }) => (fieldSize === "large" ? "70px" : "40px")};
   padding-left: 15px;
   width: 100%;
 `;
