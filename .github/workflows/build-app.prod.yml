@@ -20,7 +20,7 @@ jobs:
       - name: 📦  build
         run: npm run builds
 
-  Perform tests:
+  test:
     name: Test application
     runs-on: ubuntu-latest
     needs: build
