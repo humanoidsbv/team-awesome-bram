@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useRef } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useRef } from "react";
 
 import * as Styled from "./TeamMemberModal.styled";
 import { StoreContext } from "../../providers/storeProvider";
@@ -13,7 +13,7 @@ import { Modal } from "../modal";
 
 interface TeamMemberModalProps {
   handleChange: ({ target }: ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: any) => void;
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
   newTeamMember: TeamMemberProps;
   onClose: () => void;
 }

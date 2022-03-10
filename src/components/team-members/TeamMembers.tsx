@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 
 import * as Styled from "./TeamMembers.styled";
 
@@ -26,7 +26,7 @@ export const TeamMembers = ({ initialTeamMembers }: InitialTeamMembersProps) => 
     setNewTeamMember({ ...newTeamMember, [target.name]: target.value });
   };
 
-  const handleSubmit = async (event: Event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const addedTeamMember: TeamMemberProps = await addTeamMember(newTeamMember);

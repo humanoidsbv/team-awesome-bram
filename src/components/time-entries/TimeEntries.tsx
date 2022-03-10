@@ -89,7 +89,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
   };
 
   const getDurationByDay = (date: string, _timeEntries: TimeEntryProps[]) => {
-    const _duration = new Date(
+    const totalDuration = new Date(
       _timeEntries
         .filter(({ client, startTimestamp }) =>
           new Date(startTimestamp).toDateString() === new Date(date).toDateString() &&
@@ -103,7 +103,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
           0,
         ),
     );
-    return formatDuration(_duration.getTime());
+    return formatDuration(totalDuration.getTime());
   };
 
   return (
