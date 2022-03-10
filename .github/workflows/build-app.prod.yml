@@ -35,8 +35,11 @@ jobs:
           node-version: "17"
           cache: npm
 
+      - name: 🧰  Install
+        run: npm ci --production-only
+
       - name: 🧹 Run lint
         run: npm run lint
 
       - name: 🧪 Run test
-        run: npm run test:prod -a
+        run: npm run test:prod
