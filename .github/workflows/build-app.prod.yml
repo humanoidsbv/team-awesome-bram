@@ -18,7 +18,7 @@ jobs:
         run: npm ci --production-only
 
       - name: 📦  build
-        run: npm run builds
+        run: npm run build
 
   test:
     name: Test application
