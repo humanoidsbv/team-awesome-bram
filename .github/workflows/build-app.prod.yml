@@ -17,7 +17,7 @@ jobs:
       - name: 🧰  Install
         run: npm ci --production-only
 
-      - name: 📦  build
+      - name: 📦  Build
         run: npm run build
 
   test:
@@ -26,8 +26,17 @@ jobs:
     needs: build
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "17"
+          cache: npm
+
       - name: 🧹 Run lint
         run: npm run lint
 
-      - name: 🧪 test
+      - name: 🧪 Run test
         run: npm run test:prod -a

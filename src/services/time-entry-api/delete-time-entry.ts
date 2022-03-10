@@ -1,4 +1,3 @@
-import { TimeEntryProps } from "../../types/Types";
 import { NotFoundError } from "../../errors/not-found-error";
 
 export const deleteTimeEntry = async (id: number) => {
