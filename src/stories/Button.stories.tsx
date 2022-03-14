@@ -1,6 +1,14 @@
 import { ReactPortal } from "react";
 import { Button } from "../components/button/Button";
 
+interface ButtonProps {
+  icon?: boolean;
+  label: string;
+  onClick?: () => void;
+  secondary?: boolean;
+  type?: "button" | "submit" | "reset";
+}
+
 export default {
   title: "Button",
   component: Button,
@@ -20,13 +28,5 @@ export default {
     },
   },
 };
-
-interface ButtonProps {
-  icon?: boolean;
-  label: string;
-  onClick?: () => void;
-  secondary?: boolean;
-  type?: "button" | "submit" | "reset";
-}
 
 export const Primary = (args: ButtonProps) => <Button {...args} />;

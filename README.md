@@ -41,13 +41,13 @@ npm run storybook
 
 ## Usage
 
-Time entries can be added by click the `new time entry` button. This entry will be automatically be added to the already existing time entries. Filter the time entries by selecting a filter from the drop down menu.
+Time entries can be added by clicking the `new time entry` button. This entry will be automatically be added to the already existing time entries. Filter the time entries by selecting a filter from the drop down menu.
 
 Similarly, add new team member can be added by clicking the `new team member` button. Sort the team members by selecting a property to sort from the drop down menu.
 
 ## Technology Stack
 
-This project was built with `TypeScript` the following techologies:
+This project was built with `TypeScript` and uses the following technologies:
 
 - React - For building components
 - NextJS - For extending React's capabilities

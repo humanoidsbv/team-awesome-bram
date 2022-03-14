@@ -1,4 +1,4 @@
-import { ChangeEvent, Fragment, useContext, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, Fragment, useContext, useEffect, useState } from "react";
 
 import { StoreContext } from "../../providers/storeProvider";
 
@@ -61,7 +61,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
 
   const onClose = () => setIsModalOpen(false);
 
-  const handleSubmit = async (event: Event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const date = new Date(`${newTimeEntry.date}`).toDateString();
