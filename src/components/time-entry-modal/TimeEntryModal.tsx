@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useRef } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useRef } from "react";
 
 import * as Styled from "./TimeEntryModal.styled";
 import { StoreContext } from "../../providers/storeProvider";
@@ -17,7 +17,7 @@ interface TimeEntryModalProps {
   handleChange: ({
     target,
   }: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => void;
-  handleSubmit: (event: any) => void;
+  handleSubmit: (event: FormEvent<HTMLFormElement>) => void;
   newTimeEntry: Partial<NewTimeEntryProps>;
   onClose: () => void;
 }
