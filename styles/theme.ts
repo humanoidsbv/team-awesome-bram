@@ -8,7 +8,7 @@ export const defaultTheme = {
   colorSecondary700: "#4B5464",
   colorSecondary300: "#7F8FA4",
 
-  fontPrimary: "Proxima Nova",
+  fontPrimary: "Proxima Nova, Helvetica",
 
   greenShade200: "#37B047",
   greenShade300: "#1E990A",

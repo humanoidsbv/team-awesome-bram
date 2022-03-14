@@ -1,6 +1,6 @@
 describe("Routing", () => {
   it("Navigates to other pages", () => {
-    cy.visit("/");
+    cy.visit("http://localhost:3000");
     cy.get("a").contains("Team members").click();
     cy.url().should("include", "team-members");
     cy.get("button").contains("New Humanoid").click();
