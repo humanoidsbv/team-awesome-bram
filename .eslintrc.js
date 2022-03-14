@@ -1,11 +1,10 @@
 module.exports = {
-  extends: ["@humanoids/eslint-config", "plugin:cypress/recommended"],
-
+  extends: ["@humanoids/eslint-config", "plugin:cypress/recommended", "plugin:storybook/recommended"],
   env: {
-    jest: true,
+    jest: true
   },
   rules: {
     "react/react-in-jsx-scope": "off",
-    "no-alert": "off",
-  },
+    "no-alert": "off"
+  }
 };
