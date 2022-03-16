@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, Fragment, useContext, useEffect, useState } from "react";
 
+import { useMutation } from "@apollo/client";
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
+import { ADD_TIME_ENTRY, REMOVE_TIME_ENTRY } from "../../../graphql/time-entries";
 import { TimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
-import { addTimeEntry, deleteTimeEntry } from "../../services/time-entry-api";
 import {
   calculateDuration,
   formatDuration,
@@ -33,6 +34,17 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
   const state = useContext(StoreContext);
   const [timeEntries, setTimeEntries] = state.timeEntries;
   const [, setIsModalOpen] = state.isModalOpen;
+
+  const [addNewTimeEntry] = useMutation(ADD_TIME_ENTRY, {
+    onCompleted: (data) => {
+      setTimeEntries([...timeEntries, data.createTimeEntry]);
+    },
+  });
+  const [deleteTimeEntry] = useMutation(REMOVE_TIME_ENTRY, {
+    onCompleted: (data) => {
+      setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id !== data.removeTimeEntry.id));
+    },
+  });
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
@@ -65,26 +77,29 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
     event.preventDefault();
 
     const date = new Date(`${newTimeEntry.date}`).toDateString();
-    const startTime = new Date(`${date}  ${newTimeEntry.from}`);
-    const endTime = new Date(`${date}  ${newTimeEntry.to}`);
+    const endTimestamp = new Date(`${date}  ${newTimeEntry.to}`).toJSON();
+    const startTimestamp = new Date(`${date}  ${newTimeEntry.from}`).toJSON();
+    const client = `${newTimeEntry.client ?? clients[0].name}`;
 
-    const formattedNewTimeEntry = {
-      client: `${newTimeEntry.client}`,
-      startTimestamp: startTime.toJSON(),
-      endTimestamp: endTime.toJSON(),
-    };
-
-    const addedTimeEntry = await addTimeEntry(formattedNewTimeEntry);
-    if (addedTimeEntry) setTimeEntries([...timeEntries, addedTimeEntry]);
-
+    await addNewTimeEntry({
+      variables: {
+        client,
+        endTimestamp,
+        startTimestamp,
+      },
+    });
     setNewTimeEntry({});
+
     onClose();
   };
 
-  const handleDelete = (client: string, id: number) => {
+  const handleDelete = async (client: string, id: number) => {
     if (window.confirm(`Are you sure you want to delete the ${client} entry?`)) {
-      setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id !== id));
-      deleteTimeEntry(id);
+      await deleteTimeEntry({
+        variables: {
+          id,
+        },
+      });
     }
   };
 

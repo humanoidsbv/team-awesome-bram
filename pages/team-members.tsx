@@ -1,43 +1,32 @@
-import { ThemeProvider } from "styled-components";
-
-import { StoreProvider } from "../src/providers";
-
-import GlobalStyle from "../styles/global";
-import { defaultTheme } from "../styles/theme";
-
-import { NotFoundError } from "../src/errors/not-found-error";
+import client from "../apollo-client";
 
 import { Header } from "../src/components/header/Header";
 import { PageContainer } from "../src/components/page-container";
 import { TeamMembers } from "../src/components/team-members";
 
-import { getTeamMembers } from "../src/services/team-member-api";
 import { InitialTeamMembersProps } from "../src/types/Types";
+import { GET_TEAM_MEMBERS } from "../graphql/team-members";
 
 export const Homepage = ({ initialTeamMembers }: InitialTeamMembersProps) => {
   return (
-    <StoreProvider>
-      <GlobalStyle />
-      <ThemeProvider theme={defaultTheme}>
-        <Header />
-        <PageContainer>
-          <TeamMembers {...{ initialTeamMembers }} />
-        </PageContainer>
-      </ThemeProvider>
-    </StoreProvider>
+    <>
+      <title> Team members | Team Awesome Bram </title>
+      <Header />
+      <PageContainer>
+        <TeamMembers {...{ initialTeamMembers }} />
+      </PageContainer>
+    </>
   );
 };
 
 export const getServerSideProps = async () => {
-  const initialTeamMembers = await getTeamMembers();
-
-  if (initialTeamMembers instanceof NotFoundError) {
-    return {};
-  }
+  const { data } = await client.query({
+    query: GET_TEAM_MEMBERS,
+  });
 
   return {
     props: {
-      initialTeamMembers,
+      initialTeamMembers: data.allTeamMembers,
     },
   };
 };
