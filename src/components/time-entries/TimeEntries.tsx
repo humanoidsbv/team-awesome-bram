@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
-import { ADD_TIME_ENTRY, REMOVE_TIME_ENTRY } from "../../../graphql/time-entries";
+import { ADD_TIME_ENTRY, REMOVE_TIME_ENTRY } from "../../graphql/time-entries";
 import { TimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
 import {

@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 
 import * as Styled from "./TeamMembers.styled";
-import { ADD_TEAM_MEMBER } from "../../../graphql/team-members";
+import { ADD_TEAM_MEMBER } from "../../graphql/team-members";
 import { InitialTeamMembersProps, TeamMemberProps } from "../../types/Types";
 
 import { StoreContext } from "../../providers/storeProvider";
