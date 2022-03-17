@@ -1,5 +1,5 @@
 {
-  "time-entries": [
+  "timeEntries": [
     {
       "id": 93024,
       "client": "ABN Amro",
@@ -173,7 +173,7 @@
       "id": 14
     }
   ],
-  "team-members": [
+  "teamMembers": [
     {
       "firstName": "Kees",
       "lastName": "de Jager",
@@ -229,14 +229,14 @@
       "id": 2211221241
     },
     {
-      "firstName": "Eva",
-      "lastName": "Meijer",
       "emailAddress": "eva@hotmail.nl",
-      "label": "Dit is geen echt persoon",
       "employer": "McDonalds",
+      "firstName": "Eva",
+      "id": 221122125,
+      "label": "Dit is geen echt persoon",
+      "lastName": "Meijer",
       "role": "Burgerflipper",
-      "startingDate": "1998-12-01",
-      "id": 221122125
+      "startingDate": "1998-12-01"
     },
     {
       "firstName": "Nummer",

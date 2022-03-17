@@ -1,10 +1,9 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import { useMutation } from "@apollo/client";
 
 import * as Styled from "./TeamMembers.styled";
-
+import { ADD_TEAM_MEMBER } from "../../graphql/team-members";
 import { InitialTeamMembersProps, TeamMemberProps } from "../../types/Types";
-
-import { addTeamMember } from "../../services/team-member-api";
 
 import { StoreContext } from "../../providers/storeProvider";
 import { Subheader } from "../subheader";
@@ -18,6 +17,12 @@ export const TeamMembers = ({ initialTeamMembers }: InitialTeamMembersProps) => 
   const state = useContext(StoreContext);
   const [, setIsModalOpen] = state.isModalOpen;
 
+  const [addNewTeamMember] = useMutation(ADD_TEAM_MEMBER, {
+    onCompleted: (data) => {
+      setTeamMembers([...teamMembers, data.createTeamMember]);
+    },
+  });
+
   const onClose = () => setIsModalOpen(false);
 
   useEffect(() => setTeamMembers(initialTeamMembers), []);
@@ -29,10 +34,18 @@ export const TeamMembers = ({ initialTeamMembers }: InitialTeamMembersProps) => 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const addedTeamMember: TeamMemberProps = await addTeamMember(newTeamMember);
-    if (addedTeamMember) setTeamMembers([...teamMembers, addedTeamMember]);
-
+    addNewTeamMember({
+      variables: {
+        emailAddress: newTeamMember.emailAddress,
+        firstName: newTeamMember.firstName,
+        lastName: newTeamMember.lastName,
+        role: newTeamMember.role,
+        employer: newTeamMember.employer,
+        startingDate: newTeamMember.startingDate,
+      },
+    });
     setNewTeamMember({} as TeamMemberProps);
+
     onClose();
   };
 
