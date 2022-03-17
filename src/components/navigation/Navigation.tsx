@@ -9,12 +9,15 @@ import * as Styled from "./Navigation.styled";
 
 export const Navigation = () => {
   const state = useContext(StoreContext);
-  const [isMenuOpen] = state.isMenuOpen;
+  const [isMenuOpen, setIsMenuOpen] = state.isMenuOpen;
 
   const router = useRouter();
 
   return (
-    <Styled.Container isMenuOpen={isMenuOpen}>
+    <Styled.Container
+      isMenuOpen={isMenuOpen}
+      onClick={(event) => event.target instanceof HTMLAnchorElement && setIsMenuOpen(false)}
+    >
       <Styled.UnorderList>
         <li>
           <Link href="/" passHref>

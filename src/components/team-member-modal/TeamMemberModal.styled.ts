@@ -2,12 +2,21 @@ import styled from "styled-components";
 
 export const TitleBar = styled.div`
   align-items: baseline;
+  background-color: whirte;
   display: flex;
   font-size: 18px;
   justify-content: space-between;
+  left: 0;
+  opacity: 0.9;
+  padding: 30px 20px;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
     font-size: 24px;
+    padding: 0px;
+    position: relative;
   }
 `;
 
@@ -39,8 +48,17 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 100%;
+  height: auto;
   justify-content: space-between;
+  margin-bottom: 60px;
+  min-height: 100vh;
+  padding-top: 60px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
+    margin: 0;
+    min-height: auto;
+    padding: 0;
+  }
 `;
 
 export const InputContainer = styled.div`

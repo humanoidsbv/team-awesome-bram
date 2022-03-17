@@ -17,20 +17,25 @@ export const Modal = styled.dialog`
   background-color: white;
   border-radius: 4px;
   border: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   font-family: "Proxima Nova";
-  gap: 40px;
-  height: 100vh;
-  min-width: 360px;
-  overflow: hidden;
+  gap: 20px;
+  height: auto;
+  height: auto;
+  justify-content: start;
+  left: 0;
+  overflow-y: auto;
   padding: 30px;
   position: absolute;
+  right: 0;
+  top: 0;
   width: 100vw;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpointTablet}) {
-    height: auto;
-    width: 560px;
+    gap: 40px;
     position: relative;
+    width: 560px;
   }
 `;

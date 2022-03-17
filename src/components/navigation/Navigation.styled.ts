@@ -30,18 +30,7 @@ export const Container = styled.nav<{ isMenuOpen: boolean }>`
 `;
 
 export const UnorderList = styled.ul`
-  @keyframes slideUp {
-    0% {
-      transform: translateY(100vh);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-
   align-items: center;
-  animation-duration: 0.2s;
-  animation-name: slideUp;
   display: flex;
   flex-direction: column;
   gap: 50px;
