@@ -33,13 +33,16 @@ export const TimeEntries = ({ clients }: TimeEntriesProps) => {
 
   const state = useContext(StoreContext);
 
-  const { data ={} } = useQuery(GET_TIME_ENTRIES);
+  const { data ={}, loading } = useQuery(GET_TIME_ENTRIES);
   const { allTimeEntries = {} } = data;
 
   const [, setIsModalOpen] = state.isModalOpen;
 
   const [addNewTimeEntry] = useMutation(ADD_TIME_ENTRY, {refetchQueries: [{query: GET_TIME_ENTRIES}]});
-  const [deleteTimeEntry] = useMutation(REMOVE_TIME_ENTRY, {refetchQueries: [{query: GET_TIME_ENTRIES}]});
+  const [deleteTimeEntry] = useMutation(REMOVE_TIME_ENTRY);
+  
+
+
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
@@ -91,7 +94,16 @@ export const TimeEntries = ({ clients }: TimeEntriesProps) => {
         variables: {
           id,
         },
-      });
+  
+        update: (cache) => {
+          cache.writeQuery({
+            query:  GET_TIME_ENTRIES,
+            data: {
+              allTimeEntries: allTimeEntries.filter((timeEntry: TimeEntryProps) => timeEntry.id !== id)
+            }
+          })
+         
+      }});
     }
   };
 
@@ -112,6 +124,10 @@ export const TimeEntries = ({ clients }: TimeEntriesProps) => {
     );
     return formatDuration(totalDuration.getTime());
   };
+
+  useEffect(() => {
+      console.log("FRESH")
+  }, [allTimeEntries])
 
   return (
     <>
@@ -140,6 +156,7 @@ export const TimeEntries = ({ clients }: TimeEntriesProps) => {
         </Styled.Select>
       </Styled.SelectorBar>
       <Styled.TimeEntries>
+        {loading && <p>Loading....</p>}
         {allTimeEntries.length && 
          allTimeEntries?.filter((timeEntry: TimeEntryProps) => (clientFilter !== "" ? timeEntry.client === clientFilter : true))
           .sort(
