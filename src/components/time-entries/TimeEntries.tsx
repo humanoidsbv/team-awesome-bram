@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, Fragment, useContext, useEffect, useState } from "react";
 
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { StoreContext } from "../../providers/storeProvider";
 
 import * as Styled from "./TimeEntries.styled";
-import { ADD_TIME_ENTRY, REMOVE_TIME_ENTRY } from "../../graphql/time-entries";
+import { ADD_TIME_ENTRY, GET_TIME_ENTRIES, REMOVE_TIME_ENTRY } from "../../graphql/time-entries";
 import { TimeEntriesProps, NewTimeEntryProps, TimeEntryProps } from "../../types/Types";
 
 import {
@@ -17,7 +17,7 @@ import { TimeEntryModal } from "../time-entry-modal";
 import { Subheader } from "../subheader";
 import { TimeEntry } from "../time-entry/TimeEntry";
 
-export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) => {
+export const TimeEntries = ({ clients }: TimeEntriesProps) => {
   const dateOptions = {
     weekday: "long",
     day: "numeric",
@@ -32,27 +32,19 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
   };
 
   const state = useContext(StoreContext);
-  const [timeEntries, setTimeEntries] = state.timeEntries;
+
+  const { data ={} } = useQuery(GET_TIME_ENTRIES);
+  const { allTimeEntries = {} } = data;
+
   const [, setIsModalOpen] = state.isModalOpen;
 
-  const [addNewTimeEntry] = useMutation(ADD_TIME_ENTRY, {
-    onCompleted: (data) => {
-      setTimeEntries([...timeEntries, data.createTimeEntry]);
-    },
-  });
-  const [deleteTimeEntry] = useMutation(REMOVE_TIME_ENTRY, {
-    onCompleted: (data) => {
-      setTimeEntries(timeEntries.filter((timeEntry) => timeEntry.id !== data.removeTimeEntry.id));
-    },
-  });
+  const [addNewTimeEntry] = useMutation(ADD_TIME_ENTRY, {refetchQueries: [{query: GET_TIME_ENTRIES}]});
+  const [deleteTimeEntry] = useMutation(REMOVE_TIME_ENTRY, {refetchQueries: [{query: GET_TIME_ENTRIES}]});
 
   const [newTimeEntry, setNewTimeEntry] = useState({} as Partial<NewTimeEntryProps>);
   const [duration, setDuration] = useState("--:--");
   const [clientFilter, setClientFilter] = useState("");
 
-  useEffect(() => {
-    setTimeEntries(initialTimeEntries);
-  }, []);
 
   useEffect(() => {
     if (newTimeEntry.from && newTimeEntry.to && newTimeEntry.date) {
@@ -126,7 +118,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
       <Subheader
         buttonLabel="New time entry"
         buttonCallback={() => setIsModalOpen(true)}
-        subtitle={`${timeEntries.length}  Entries`}
+        subtitle={`${allTimeEntries.length}  Entries`}
         title="Timesheets"
       />
       <TimeEntryModal
@@ -148,12 +140,12 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
         </Styled.Select>
       </Styled.SelectorBar>
       <Styled.TimeEntries>
-        {timeEntries
-          .filter((timeEntry) => (clientFilter !== "" ? timeEntry.client === clientFilter : true))
+        {allTimeEntries.length && 
+         allTimeEntries?.filter((timeEntry: TimeEntryProps) => (clientFilter !== "" ? timeEntry.client === clientFilter : true))
           .sort(
-            (a, b) => new Date(a.startTimestamp).getTime() - new Date(b.startTimestamp).getTime(),
+            (a: { startTimestamp: string | number | Date; }, b: { startTimestamp: string | number | Date; }) => new Date(a.startTimestamp).getTime() - new Date(b.startTimestamp).getTime(),
           )
-          .map((timeEntry, i, entries) => {
+          .map((timeEntry: TimeEntryProps, i: number, entries: TimeEntryProps[]) => {
             const currentDate = timestampToDateString(timeEntry.startTimestamp, dateOptionsSort);
 
             const isDateDifferent =
@@ -170,7 +162,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
                       {timestampToDateString(timeEntry.startTimestamp, dateOptions)}
                     </Styled.Date>
                     <Styled.Duration>
-                      {getDurationByDay(timeEntry.startTimestamp, timeEntries)}
+                      {getDurationByDay(timeEntry.startTimestamp, allTimeEntries)}
                     </Styled.Duration>
                   </Styled.TimeEntryHeader>
                 )}
@@ -179,7 +171,7 @@ export const TimeEntries = ({ initialTimeEntries, clients }: TimeEntriesProps) =
                 </Styled.TimeEntryContainer>
               </Fragment>
             );
-          })}
+          })} 
       </Styled.TimeEntries>
     </>
   );

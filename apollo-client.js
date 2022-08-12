@@ -1,9 +1,9 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 
 export const client = new ApolloClient({
-  ssrMode: true,
+  cache: new InMemoryCache(),
   link: createHttpLink({
     uri: "http://localhost:3333",
   }),
-  cache: new InMemoryCache(),
+  ssrMode: typeof window === 'undefined',
 });
